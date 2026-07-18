@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IanFit — Deep Physiology & Athletic Recovery Blog</title>
+  
+  <!-- Inter & Syne Fonts for Premium Tech-Fitness Aesthetic -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            syne: ['Syne', 'sans-serif'],
+          },
+          colors: {
+            electricBlue: {
+              50: '#f0f5ff',
+              100: '#e0ebff',
+              400: '#60a5fa',
+              500: '#3b82f6',
+              600: '#2563eb',
+              700: '#1d4ed8',
+              900: '#1e3a8a',
+              950: '#0b1329',
+            },
+            lightCyan: {
+              50: '#ecfeff',
+              400: '#22d3ee',
+              500: '#06b6d4',
+              600: '#0891b2',
+            },
+            darkBg: '#050811',
+            darkCard: '#0f172a',
+            darkBorder: '#1e293b',
+          },
+          boxShadow: {
+            glowBlue: '0 0 20px rgba(37,99,235,0.15)',
+            glowCyan: '0 0 20px rgba(6,182,212,0.15)',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Custom Scrollbar for Premium UX */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .dark ::-webkit-scrollbar-track {
+      background: #050811;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #c5c5c5;
+      border-radius: 4px;
+    }
+    .dark ::-webkit-scrollbar-thumb {
+      background: #1e293b;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #a3a3a3;
+    }
+    .dark ::-webkit-scrollbar-thumb:hover {
+      background: #334155;
+    }
+  </style>
+</head>
+<body class="bg-white text-slate-900 dark:bg-darkBg dark:text-slate-100 transition-colors duration-300 font-sans antialiased overflow-x-hidden">
+
+  <!-- ==============================================
+       GLOBAL HEADER (Pristine Blur-Glass Navigation)
+       ============================================== -->
+  <header class="sticky top-0 z-50 w-full border-b border-slate-200/80 dark:border-darkBorder/60 bg-white/80 dark:bg-darkBg/80 backdrop-blur-md transition-all">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      
+      <!-- Brand Logo -->
+      <a href="index.html" class="flex items-center space-x-2 group">
+        <span class="font-syne text-2xl font-extrabold tracking-tight bg-gradient-to-r from-electricBlue-600 to-lightCyan-500 bg-clip-text text-transparent group-hover:opacity-90 transition-opacity">
+          IANFIT
+        </span>
+        <div class="h-2 w-2 rounded-full bg-lightCyan-500 animate-pulse"></div>
+      </a>
+
+      <!-- Desktop Navigation Menu -->
+      <nav class="hidden md:flex items-center space-x-8">
+        <a href="index.html" class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-electricBlue-600 dark:hover:text-lightCyan-400 transition-colors">Home</a>
+        <a href="products.html" class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-electricBlue-600 dark:hover:text-lightCyan-400 transition-colors">Products &amp; Programs</a>
+        <a href="about.html" class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-electricBlue-600 dark:hover:text-lightCyan-400 transition-colors">About</a>
+        <a href="blog.html" class="text-sm font-semibold text-electricBlue-600 dark:text-lightCyan-400 border-b-2 border-electricBlue-600 dark:border-lightCyan-400 pb-1 transition-all">Library</a>
+        <a href="contact.html" class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-electricBlue-600 dark:hover:text-lightCyan-400 transition-colors">Consultation</a>
+      </nav>
+
+      <!-- Right Actions: Theme Toggle & CTA -->
+      <div class="flex items-center space-x-4">
+        
+        <!-- Native Sun/Moon Toggle Button -->
+        <button id="themeToggleBtn" aria-label="Toggle theme" class="p-2.5 rounded-xl border border-slate-200 dark:border-darkBorder bg-slate-50 dark:bg-darkCard text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all">
+          <!-- Moon Icon (Visible in Light Mode) -->
+          <svg id="moonIcon" class="w-5 h-5 hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+          </svg>
+          <!-- Sun Icon (Visible in Dark Mode) -->
+          <svg id="sunIcon" class="w-5 h-5 hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m0-12.728l.707.707m12.728 12.728l.707.707M12 8a4 4 0 100 8 4 4 0 000-8z" />
+          </svg>
+        </button>
+
+        <!-- Dynamic Consultation CTA Button -->
+        <a href="contact.html" class="hidden sm:inline-flex items-center justify-center px-5 py-2.5 rounded-xl text-sm font-semibold text-white bg-gradient-to-r from-electricBlue-600 to-electricBlue-700 hover:from-electricBlue-700 hover:to-electricBlue-800 shadow-md hover:shadow-electricBlue-600/20 active:scale-95 transition-all">
+          Free Strategy Call
+        </a>
+
+        <!-- Mobile Menu Toggle Button -->
+        <button id="mobileMenuBtn" class="md:hidden p-2.5 rounded-xl border border-slate-200 dark:border-darkBorder text-slate-600 dark:text-slate-300" aria-label="Open menu">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+
+      </div>
+    </div>
+
+    <!-- Mobile Navigation Drawer -->
+    <div id="mobileDrawer" class="hidden md:hidden border-b border-slate-200 dark:border-darkBorder bg-white dark:bg-darkBg transition-all px-4 py-6 space-y-4">
+      <a href="index.html" class="block text-base font-medium text-slate-600 dark:text-slate-300 hover:text-electricBlue-600">Home</a>
+      <a href="products.html" class="block text-base font-medium text-slate-600 dark:text-slate-300 hover:text-electricBlue-600">Products &amp; Programs</a>
+      <a href="about.html" class="block text-base font-medium text-slate-600 dark:text-slate-300 hover:text-electricBlue-600">About</a>
+      <a href="blog.html" class="block text-base font-semibold text-electricBlue-600 dark:text-lightCyan-400">Library</a>
+      <a href="contact.html" class="block text-base font-medium text-slate-600 dark:text-slate-300 hover:text-electricBlue-600">Consultation</a>
+      <a href="contact.html" class="block w-full text-center px-4 py-3 rounded-xl text-sm font-semibold text-white bg-electricBlue-600 hover:bg-electricBlue-700">Free Strategy Call</a>
+    </div>
+  </header>
+
+  <!-- ==============================================
+       CORE BODY CONTENT: Deep Physiology Blog Library
+       ============================================== -->
+  <main class="min-h-screen">
+    
+    <!-- Hero / Headline Area -->
+    <section class="relative pt-16 pb-12 overflow-hidden">
+      <!-- Background Abstract Glow Elements -->
+      <div class="absolute top-0 left-1/4 -z-10 w-96 h-96 bg-electricBlue-600/10 dark:bg-electricBlue-600/5 rounded-full blur-[100px] pointer-events-none"></div>
+      <div class="absolute bottom-0 right-1/4 -z-10 w-96 h-96 bg-lightCyan-500/10 dark:bg-lightCyan-500/5 rounded-full blur-[100px] pointer-events-none"></div>
+
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <span class="inline-flex items-center px-3.5 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase bg-electricBlue-50 text-electricBlue-600 dark:bg-electricBlue-950/50 dark:text-lightCyan-400 mb-4 border border-electricBlue-100 dark:border-electricBlue-900/40">
+          Biological Engineering &amp; Athletic Longevity
+        </span>
+        <h1 class="font-syne text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight max-w-4xl mx-auto leading-tight">
+          The Science of <span class="bg-gradient-to-r from-electricBlue-600 to-lightCyan-400 bg-clip-text text-transparent">Pristine Movement</span> &amp; Injury Recovery
+        </h1>
+        <p class="mt-6 text-lg sm:text-xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
+          We break down complex physical adaptation, cellular energy, and human biomechanics into clear, high-leverage blueprints designed for active longevity.
+        </p>
+
+        <!-- Live Search and Smart Categories Module -->
+        <div class="mt-12 max-w-2xl mx-auto">
+          <div class="relative flex items-center">
+            <span class="absolute left-4 text-slate-400">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
+            </span>
+            <input 
+              id="searchInput" 
+              type="text" 
+              placeholder="Search concepts (e.g., knee recovery, cellular ATP, movement patterns)..." 
+              class="w-full pl-12 pr-4 py-4 rounded-2xl border border-slate-200 dark:border-darkBorder bg-slate-50 dark:bg-darkCard focus:ring-2 focus:ring-electricBlue-500 focus:outline-none transition-all shadow-sm text-sm"
+            />
+          </div>
+
+          <!-- Dynamic Category Pills -->
+          <div class="mt-6 flex flex-wrap justify-center gap-2" id="categoryContainer">
+            <button class="category-btn px-4 py-1.5 rounded-full text-xs font-medium bg-electricBlue-600 text-white shadow-sm transition-all" data-category="all">
+              All Deep Dives
+            </button>
+            <button class="category-btn px-4 py-1.5 rounded-full text-xs font-medium bg-slate-100 dark:bg-darkCard text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-800 transition-all" data-category="corrective">
+              Corrective Exercise
+            </button>
+            <button class="category-btn px-4 py-1.5 rounded-full text-xs font-medium bg-slate-100 dark:bg-darkCard text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-800 transition-all" data-category="biomechanics">
+              Biomechanics Mastery
+            </button>
+            <button class="category-btn px-4 py-1.5 rounded-full text-xs font-medium bg-slate-100 dark:bg-darkCard text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-800 transition-all" data-category="metabolism">
+              Metabolism &amp; Energy
+            </button>
+            <button class="category-btn px-4 py-1.5 rounded-full text-xs font-medium bg-slate-100 dark:bg-darkCard text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-800 transition-all" data-category="matrix">
+              The Body Matrix
+            </button>
+            <button class="category-btn px-4 py-1.5 rounded-full text-xs font-medium bg-slate-100 dark:bg-darkCard text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-800 transition-all" data-category="aging">
+              Active Aging
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Asymmetric Bento Grid Showcase (Dynamic Render) -->
+    <section class="py-12">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <!-- Search Results Count/Notice -->
+        <div id="resultsMeta" class="mb-6 text-sm font-semibold text-slate-500 dark:text-slate-400 hidden"></div>
+
+        <!-- The Bento Grid Framework -->
+        <div id="bentoGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-[250px] md:auto-rows-[300px]">
+          <!-- Dynanically populated cards go here -->
+        </div>
+
+        <!-- Empty State UI -->
+        <div id="emptyState" class="hidden text-center py-24 border border-dashed border-slate-200 dark:border-darkBorder rounded-3xl">
+          <div class="text-4xl">🔬</div>
+          <h3 class="mt-4 font-syne text-xl font-bold">No articles match your search parameters</h3>
+          <p class="mt-2 text-slate-500 dark:text-slate-400">Try modifying your search tags or checking different anatomical categories.</p>
+          <button id="resetSearchBtn" class="mt-6 px-6 py-2.5 rounded-xl bg-electricBlue-600 text-white font-medium hover:bg-electricBlue-700 transition-all">
+            Show All Articles
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Deep-Dive Science Callout Banner (Asymmetric Feature) -->
+    <section class="py-16 relative overflow-hidden">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="relative rounded-3xl overflow-hidden bg-gradient-to-br from-slate-900 to-black p-8 sm:p-12 lg:p-16 border border-slate-800 shadow-2xl">
+          <!-- Ambient lighting -->
+          <div class="absolute -right-20 -bottom-20 w-80 h-80 bg-lightCyan-500/10 rounded-full blur-[80px]"></div>
+          <div class="absolute -left-20 -top-20 w-80 h-80 bg-electricBlue-600/15 rounded-full blur-[80px]"></div>
+
+          <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            <div class="lg:col-span-7">
+              <span class="inline-flex items-center px-3 py-1 rounded-full text-[11px] font-bold tracking-widest uppercase bg-electricBlue-500/10 text-lightCyan-400 border border-electricBlue-500/20 mb-6">
+                Active Adaptation Blueprint
+              </span>
+              <h2 class="font-syne text-3xl sm:text-4xl font-extrabold text-white tracking-tight leading-tight">
+                Stop managing pain. <br/>Start re-engineering your biomechanics.
+              </h2>
+              <p class="mt-4 text-slate-300 text-base sm:text-lg max-w-xl">
+                Every pain pattern has a kinetic root cause. Our custom blueprint assessments isolate exact muscle firing patterns, neurological feedback loops, and physiological adaptations to keep you agile for life.
+              </p>
+              
+              <!-- Author Quote Micro-element -->
+              <div class="mt-8 flex items-center space-x-4">
+                <div class="w-12 h-12 rounded-full border-2 border-lightCyan-500 bg-slate-800 flex-shrink-0 flex items-center justify-center font-syne font-bold text-white">
+                  IF
+                </div>
+                <div>
+                  <h4 class="text-white text-sm font-semibold">Head Coach Ian</h4>
+                  <p class="text-xs text-slate-400">Founder, IanFit Personal Systems</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Interative Program Highlights Bento Side-Card -->
+            <div class="lg:col-span-5 bg-slate-950/60 backdrop-blur-md rounded-2xl p-6 border border-slate-800/80 space-y-4">
+              <div class="flex items-start space-x-3">
+                <span class="p-1.5 rounded-lg bg-electricBlue-600/10 text-lightCyan-400">
+                  ⚡
+                </span>
+                <div>
+                  <h4 class="text-white text-sm font-semibold">The Core Rule of Adaptation</h4>
+                  <p class="text-slate-400 text-xs mt-1">Specific adaptation to imposed demands (SAID principle). We guarantee positive cellular progression.</p>
+                </div>
+              </div>
+              <hr class="border-slate-800/80">
+              <div class="flex items-start space-x-3">
+                <span class="p-1.5 rounded-lg bg-electricBlue-600/10 text-lightCyan-400">
+                  ⚙️
+                </span>
+                <div>
+                  <h4 class="text-white text-sm font-semibold">Movement Optimization Loop</h4>
+                  <p class="text-slate-400 text-xs mt-1">Continuous diagnostic testing. No generic models; dynamic biomechanics customized to your actual skeletal mechanics.</p>
+                </div>
+              </div>
+              <hr class="border-slate-800/80">
+              <div class="flex items-start space-x-3">
+                <span class="p-1.5 rounded-lg bg-electricBlue-600/10 text-lightCyan-400">
+                  🔬
+                </span>
+                <div>
+                  <h4 class="text-white text-sm font-semibold">The Cellular Energy Engine</h4>
+                  <p class="text-slate-400 text-xs mt-1">We address the underlying mitochondria matrix and metabolic limits to optimize baseline systemic health.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Email Newsletter Engine -->
+    <section class="py-12 border-t border-slate-100 dark:border-darkBorder/60">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 text-center">
+        <h3 class="font-syne text-2xl sm:text-3xl font-extrabold tracking-tight">
+          Join <span class="text-electricBlue-600 dark:text-lightCyan-400">The Weekly Blueprint</span>
+        </h3>
+        <p class="mt-3 text-slate-600 dark:text-slate-400 text-sm sm:text-base max-w-lg mx-auto">
+          Ultra-practical physiology, functional biomechanics breakdowns, and corrective programs delivered directly to your inbox without the standard industry filler.
+        </p>
+
+        <!-- Newsletter Interactive Form -->
+        <form class="mt-8 sm:flex max-w-xl mx-auto gap-3" onsubmit="event.preventDefault(); alert('Deep-dive science dispatched! Welcome aboard.');">
+          <input 
+            type="email" 
+            required 
+            placeholder="Enter your email to join" 
+            class="w-full px-5 py-3.5 rounded-xl border border-slate-200 dark:border-darkBorder bg-white dark:bg-darkCard focus:ring-2 focus:ring-electricBlue-500 focus:outline-none text-sm shadow-sm"
+          />
+          <button 
+            type="submit" 
+            class="mt-3 sm:mt-0 w-full sm:w-auto px-6 py-3.5 rounded-xl bg-gradient-to-r from-electricBlue-600 to-electricBlue-700 hover:from-electricBlue-700 hover:to-electricBlue-800 text-white font-semibold text-sm transition-all shadow-md active:scale-95 flex-shrink-0"
+          >
+            Access Blueprints
+          </button>
+        </form>
+        <p class="mt-3 text-xs text-slate-400">We respect data autonomy. Opt-out at any time with a single click.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==============================================
+       GLOBAL FOOTER (Highly Organized Clean System)
+       ============================================== -->
+  <footer class="border-t border-slate-200 dark:border-darkBorder bg-slate-50 dark:bg-darkBg transition-colors duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+        
+        <!-- Identity column -->
+        <div class="md:col-span-1 space-y-4">
+          <a href="index.html" class="flex items-center space-x-2">
+            <span class="font-syne text-xl font-extrabold tracking-tight bg-gradient-to-r from-electricBlue-600 to-lightCyan-500 bg-clip-text text-transparent">
+              IANFIT
+            </span>
+          </a>
+          <p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
+            Personal biomechanics engineering, chronic injury resolution, and dynamic longevity protocols built on uncompromising anatomical facts.
+          </p>
+        </div>
+
+        <!-- Directory Links -->
+        <div>
+          <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 mb-4">Ecosystem Map</h4>
+          <ul class="space-y-2">
+            <li><a href="index.html" class="text-sm text-slate-600 dark:text-slate-300 hover:text-electricBlue-600 dark:hover:text-lightCyan-400 transition-colors">Home Base</a></li>
+            <li><a href="products.html" class="text-sm text-slate-600 dark:text-slate-300 hover:text-electricBlue-600 dark:hover:text-lightCyan-400 transition-colors">Training Packages</a></li>
+            <li><a href="about.html" class="text-sm text-slate-600 dark:text-slate-300 hover:text-electricBlue-600 dark:hover:text-lightCyan-400 transition-colors">Ian's Bio</a></li>
+            <li><a href="blog.html" class="text-sm text-slate-600 dark:text-slate-300 hover:text-electricBlue-600 dark:hover:text-lightCyan-400 transition-colors">Library</a></li>
+            <li><a href="contact.html" class="text-sm text-slate-600 dark:text-slate-300 hover:text-electricBlue-600 dark:hover:text-lightCyan-400 transition-colors">Contact</a></li>
+          </ul>
+        </div>
+
+        <!-- Expertise Links -->
+        <div>
+          <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 mb-4">Core Focus Areas</h4>
+          <ul class="space-y-2">
+            <li class="text-sm text-slate-500 dark:text-slate-400">Permanent Injury Recovery</li>
+            <li class="text-sm text-slate-500 dark:text-slate-400">Biomechanical Reconstruction</li>
+            <li class="text-sm text-slate-500 dark:text-slate-400">Nutritional Biochemistry</li>
+            <li class="text-sm text-slate-500 dark:text-slate-400">Systemic Lifelong Autonomy</li>
+          </ul>
+        </div>
+
+        <!-- Legal Links -->
+        <div>
+          <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 mb-4">Policies &amp; Safety</h4>
+          <ul class="space-y-2">
+            <li><a href="privacy.html" class="text-sm text-slate-600 dark:text-slate-300 hover:text-electricBlue-600 dark:hover:text-lightCyan-400 transition-colors">Privacy Framework</a></li>
+            <li><a href="terms.html" class="text-sm text-slate-600 dark:text-slate-300 hover:text-electricBlue-600 dark:hover:text-lightCyan-400 transition-colors">Terms of Operations</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Footer bottom details -->
+      <div class="mt-12 pt-8 border-t border-slate-200 dark:border-darkBorder flex flex-col sm:flex-row items-center justify-between gap-4">
+        <p class="text-xs text-slate-500 dark:text-slate-400">
+          &copy; <span id="currentYear"></span> IanFit System. All engineering rights protected.
+        </p>
+        <div class="flex space-x-6 text-xs text-slate-400">
+          <span>Designed with zero cognitive clutter.</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==============================================
+       SYSTEM JAVASCRIPT: THEME AND BENTO ENGINE
+       ============================================== -->
+  <script>
+    // System Clock
+    document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+    // Mobile Drawer Navigation Toggler
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileDrawer = document.getElementById('mobileDrawer');
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileDrawer.classList.toggle('hidden');
+    });
+
+    // Elegant Theme Engine Handler (Sun/Moon Toggle Script)
+    const htmlEl = document.documentElement;
+    const themeToggleBtn = document.getElementById('themeToggleBtn');
+    const sunIcon = document.getElementById('sunIcon');
+    const moonIcon = document.getElementById('moonIcon');
+
+    function applyTheme(theme) {
+      if (theme === 'dark') {
+        htmlEl.classList.add('dark');
+        sunIcon.classList.remove('hidden');
+        moonIcon.classList.add('hidden');
+      } else {
+        htmlEl.classList.remove('dark');
+        sunIcon.classList.add('hidden');
+        moonIcon.classList.remove('hidden');
+      }
+    }
+
+    // Initialize Theme (Persisted via LocalStorage or System Prefs)
+    const savedTheme = localStorage.getItem('theme');
+    const userPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    let currentTheme = savedTheme || (userPrefersDark ? 'dark' : 'light');
+    applyTheme(currentTheme);
+
+    // Click Event Handler
+    themeToggleBtn.addEventListener('click', () => {
+      currentTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      localStorage.setItem('theme', currentTheme);
+      applyTheme(currentTheme);
+    });
+
+    // ==============================================
+    // BENTO SYSTEM ARTICLE DATA & ENGINE
+    // ==============================================
+    const postsData = [
+      {
+        id: 1,
+        title: "The Biomechanics of Chronic Knee Pain: Re-Engineering Your Squat Pattern",
+        category: "corrective",
+        categoryLabel: "Corrective Exercise",
+        tag: "Knee Mechanics",
+        readTime: "7 min read",
+        date: "Oct 24, 2024",
+        img: "https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&q=80&w=1000",
+        summary: "Identify the anatomical causes of patellar tracking dysfunction and discover how resetting ankle dorsiflexion stops knee erosion immediately.",
+        gridSize: "col-span-1 md:col-span-2 md:row-span-2", // Large Featured Asymmetric Card
+        bgTone: "bg-slate-50 dark:bg-darkCard/80 border-electricBlue-500/20"
+      },
+      {
+        id: 2,
+        title: "The Body Matrix: How Neural Fatigue Simulates Muscular Failure",
+        category: "matrix",
+        categoryLabel: "The Body Matrix",
+        tag: "Neurological Output",
+        readTime: "5 min read",
+        date: "Oct 19, 2024",
+        img: "https://images.unsplash.com/photo-1507398941214-572c25f4b1dc?auto=format&fit=crop&q=80&w=1000",
+        summary: "Why your central nervous system stops motor recruitment before muscles are truly fatigued, and how to program neurological recovery.",
+        gridSize: "col-span-1",
+        bgTone: "bg-slate-50 dark:bg-darkCard/40"
+      },
+      {
+        id: 3,
+        title: "The Truth About Fat Adaptation & ATP Synthesis",
+        category: "metabolism",
+        categoryLabel: "Metabolism & Energy",
+        tag: "Cellular Biology",
+        readTime: "6 min read",
+        date: "Oct 12, 2024",
+        img: "https://images.unsplash.com/photo-1511556532299-8f662fc26c06?auto=format&fit=crop&q=80&w=1000",
+        summary: "Why traditional zone-2 cardio rules miss the real biological path to adaptation and how to build mitochondria density.",
+        gridSize: "col-span-1",
+        bgTone: "bg-slate-50 dark:bg-darkCard/40"
+      },
+      {
+        id: 4,
+        title: "Active Aging: Restoring Movement Autonomy After 50",
+        category: "aging",
+        categoryLabel: "Active Aging",
+        tag: "Joint Health",
+        readTime: "8 min read",
+        date: "Sep 28, 2024",
+        img: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&q=80&w=1000",
+        summary: "Reversing biological aging by targeting synovial fluid production, joint capsule elasticity, and reactive explosive power.",
+        gridSize: "col-span-1",
+        bgTone: "bg-slate-50 dark:bg-darkCard/40"
+      },
+      {
+        id: 5,
+        title: "Deciphering the Kinetic Chain: Ankle Mobility & Low Back Pain",
+        category: "biomechanics",
+        categoryLabel: "Biomechanics Mastery",
+        tag: "Anatomical Chains",
+        readTime: "6 min read",
+        date: "Sep 15, 2024",
+        img: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&q=80&w=1000",
+        summary: "How structural limitation in your heel forces the lumbar spine to hyper-stabilize during dynamic locomotion patterns.",
+        gridSize: "col-span-1 md:col-span-2",
+        bgTone: "bg-slate-50 dark:bg-darkCard/40"
+      },
+      {
+        id: 6,
+        title: "True Nutritional Impact: Navigating Biological Energy Density",
+        category: "metabolism",
+        categoryLabel: "Metabolism & Energy",
+        tag: "Micronutrients",
+        readTime: "4 min read",
+        date: "Sep 02, 2024",
+        img: "https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&q=80&w=1000",
+        summary: "Ditch tracking macros blindly. Explore the exact metabolic inputs that reduce systemic inflammation and amplify cellular recovery.",
+        gridSize: "col-span-1",
+        bgTone: "bg-slate-50 dark:bg-darkCard/40"
+      }
+    ];
+
+    let activeCategory = 'all';
+    let searchQuery = '';
+
+    // Elements
+    const searchInput = document.getElementById('searchInput');
+    const categoryBtns = document.querySelectorAll('.category-btn');
+    const bentoGrid = document.getElementById('bentoGrid');
+    const emptyState = document.getElementById('emptyState');
+    const resetSearchBtn = document.getElementById('resetSearchBtn');
+    const resultsMeta = document.getElementById('resultsMeta');
+
+    // Dynamic Filter Engine
+    function renderPosts() {
+      // Filter list
+      const filtered = postsData.filter(post => {
+        const matchesCategory = activeCategory === 'all' || post.category === activeCategory;
+        const matchesSearch = post.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
+                              post.summary.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                              post.tag.toLowerCase().includes(searchQuery.toLowerCase());
+        return matchesCategory && matchesSearch;
+      });
+
+      // Clear layout
+      bentoGrid.innerHTML = '';
+
+      if (filtered.length === 0) {
+        bentoGrid.classList.add('hidden');
+        emptyState.classList.remove('hidden');
+        resultsMeta.classList.add('hidden');
+      } else {
+        bentoGrid.classList.remove('hidden');
+        emptyState.classList.add('hidden');
+        
+        // Show results count if searching
+        if (searchQuery !== '' || activeCategory !== 'all') {
+          resultsMeta.textContent = `Found ${filtered.length} scientific blueprints matching query`;
+          resultsMeta.classList.remove('hidden');
+        } else {
+          resultsMeta.classList.add('hidden');
+        }
+
+        filtered.forEach((post, index) => {
+          // Re-index layout for perfect asymmetry depending on visible results size
+          let sizeClass = post.gridSize;
+          if (filtered.length <= 2) {
+            sizeClass = "col-span-1 md:col-span-2 md:row-span-1";
+          }
+
+          const card = document.createElement('article');
+          card.className = `${sizeClass} group relative overflow-hidden rounded-3xl border border-slate-200/80 dark:border-darkBorder ${post.bgTone} p-6 flex flex-col justify-between hover:shadow-xl hover:scale-[1.01] transition-all duration-300 ease-out cursor-pointer`;
+          
+          // Image overlay absolute logic depending on card size
+          const isLarge = sizeClass.includes('md:col-span-2');
+          
+          card.innerHTML = `
+            <div class="absolute inset-0 z-0 opacity-15 dark:opacity-20 group-hover:opacity-25 transition-opacity pointer-events-none">
+              <img src="${post.img}" alt="" class="w-full h-full object-cover grayscale brightness-50" />
+              <div class="absolute inset-0 bg-gradient-to-t from-white via-white/40 to-transparent dark:from-darkBg dark:via-darkBg/60"></div>
+            </div>
+
+            <div class="relative z-10 flex flex-col h-full justify-between">
+              <!-- Header Details of Card -->
+              <div>
+                <div class="flex items-center justify-between gap-2 mb-4">
+                  <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-bold tracking-widest uppercase bg-electricBlue-500/10 text-electricBlue-600 dark:text-lightCyan-400 border border-electricBlue-500/20">
+                    ${post.categoryLabel}
+                  </span>
+                  <span class="text-xs text-slate-400 dark:text-slate-500">${post.readTime}</span>
+                </div>
+                <h3 class="font-syne text-lg ${isLarge ? 'md:text-2xl' : 'text-lg'} font-bold tracking-tight text-slate-900 dark:text-white group-hover:text-electricBlue-600 dark:group-hover:text-lightCyan-400 transition-colors">
+                  ${post.title}
+                </h3>
+                <p class="mt-3 text-sm text-slate-600 dark:text-slate-400 line-clamp-3 leading-relaxed">
+                  ${post.summary}
+                </p>
+              </div>
+
+              <!-- Footer Details of Card -->
+              <div class="mt-6 pt-4 border-t border-slate-200/40 dark:border-darkBorder/40 flex items-center justify-between">
+                <div class="flex items-center space-x-2">
+                  <span class="text-xs font-semibold text-slate-500 dark:text-slate-400">#${post.tag}</span>
+                </div>
+                <div class="flex items-center text-xs font-bold text-electricBlue-600 dark:text-lightCyan-400 group-hover:translate-x-1 transition-transform">
+                  Read Protocol 
+                  <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+                  </svg>
+                </div>
+              </div>
+            </div>
+          `;
+          
+          // Action for viewing a simulated individual post page
+          card.addEventListener('click', () => {
+            alert(`Protocol details for: "${post.title}"\n\nUnder construction. Custom programs targeting this field of physiology are currently active.`);
+          });
+
+          bentoGrid.appendChild(card);
+        });
+      }
+    }
+
+    // Category Buttons Switcher
+    categoryBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // Reset old active button styling
+        categoryBtns.forEach(b => {
+          b.className = "category-btn px-4 py-1.5 rounded-full text-xs font-medium bg-slate-100 dark:bg-darkCard text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-800 transition-all";
+        });
+        
+        // Select new active
+        btn.className = "category-btn px-4 py-1.5 rounded-full text-xs font-medium bg-electricBlue-600 text-white shadow-sm transition-all";
+        activeCategory = btn.getAttribute('data-category');
+        renderPosts();
+      });
+    });
+
+    // Search input listener
+    searchInput.addEventListener('input', (e) => {
+      searchQuery = e.target.value;
+      renderPosts();
+    });
+
+    // Reset buttons
+    resetSearchBtn.addEventListener('click', () => {
+      searchInput.value = '';
+      searchQuery = '';
+      activeCategory = 'all';
+      categoryBtns.forEach((b, idx) => {
+        if (idx === 0) {
+          b.className = "category-btn px-4 py-1.5 rounded-full text-xs font-medium bg-electricBlue-600 text-white shadow-sm transition-all";
+        } else {
+          b.className = "category-btn px-4 py-1.5 rounded-full text-xs font-medium bg-slate-100 dark:bg-darkCard text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-800 transition-all";
+        }
+      });
+      renderPosts();
+    });
+
+    // Initial load
+    renderPosts();
+
+  </script>
+</body>
+</html>
