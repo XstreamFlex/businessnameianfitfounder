@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms of Service - IanFit</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            electric: '#0033FF',
+                            cyan: '#00F0FF',
+                            darkBg: '#090D16',
+                            darkCard: '#111827',
+                            lightBg: '#FFFFFF',
+                            lightCard: '#F8FAFC',
+                        }
+                    },
+                    boxShadow: {
+                        'neon-blue': '0 0 20px rgba(0, 51, 255, 0.15)',
+                        'neon-cyan': '0 0 20px rgba(0, 240, 255, 0.15)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Smooth transitions for theme switching */
+        .theme-transition {
+            transition: background-color 0.3s ease, border-color 0.3s ease, text-color 0.3s ease, fill 0.3s ease;
+        }
+        /* Custom scrollbar for legal text */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .dark ::-webkit-scrollbar-thumb {
+            background: #111827;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #E2E8F0;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="theme-transition bg-brand-lightBg dark:bg-brand-darkBg text-slate-800 dark:text-slate-200 min-h-screen flex flex-col font-sans">
+
+    <!-- GLOBAL HEADER -->
+    <header class="theme-transition sticky top-0 z-50 w-full border-b border-slate-200/80 dark:border-slate-800/80 bg-white/90 dark:bg-brand-darkBg/90 backdrop-blur-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Logo -->
+            <a href="index.html" class="flex items-center space-x-2 group">
+                <div class="relative w-9 h-9 flex items-center justify-center rounded-lg bg-gradient-to-tr from-brand-electric to-brand-cyan shadow-neon-blue">
+                    <span class="text-white font-extrabold text-lg">IF</span>
+                </div>
+                <span class="text-2xl font-extrabold tracking-tight text-slate-900 dark:text-white">
+                    Ian<span class="bg-gradient-to-r from-brand-electric to-brand-cyan bg-clip-text text-transparent">Fit</span>
+                </span>
+            </a>
+
+            <!-- Navigation Links -->
+            <nav class="hidden md:flex items-center space-x-8">
+                <a href="index.html" class="text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-brand-electric dark:hover:text-brand-cyan transition-colors">Home</a>
+                <a href="products.html" class="text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-brand-electric dark:hover:text-brand-cyan transition-colors">Products</a>
+                <a href="about.html" class="text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-brand-electric dark:hover:text-brand-cyan transition-colors">About</a>
+                <a href="blog.html" class="text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-brand-electric dark:hover:text-brand-cyan transition-colors">Blog</a>
+                <a href="contact.html" class="text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-brand-electric dark:hover:text-brand-cyan transition-colors">Contact</a>
+            </nav>
+
+            <!-- Actions & Theme Toggle -->
+            <div class="flex items-center space-x-4">
+                <!-- Theme Toggle Button -->
+                <button id="themeToggle" class="theme-transition p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-all duration-200" aria-label="Toggle Theme">
+                    <!-- Sun Icon (Visible in Dark Mode) -->
+                    <svg id="sunIcon" class="hidden w-5 h-5 text-brand-cyan" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m0-12.728l.707.707m12.728 12.728l.707-.707M12 8a4 4 0 100 8 4 4 0 000-8z" />
+                    </svg>
+                    <!-- Moon Icon (Visible in Light Mode) -->
+                    <svg id="moonIcon" class="w-5 h-5 text-brand-electric" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                    </svg>
+                </button>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobileMenuBtn" class="md:hidden p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300" aria-label="Toggle Navigation Menu">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+
+                <!-- CTA Button -->
+                <a href="contact.html" class="hidden sm:inline-flex items-center justify-center px-5 py-2.5 rounded-xl font-bold text-sm text-white bg-brand-electric hover:bg-blue-700 transition-all shadow-md hover:shadow-neon-blue">
+                    Get Started
+                </a>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Menu Dropdown -->
+        <div id="mobileMenu" class="hidden md:hidden border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-brand-darkBg px-4 py-4 space-y-3">
+            <a href="index.html" class="block text-base font-semibold text-slate-700 dark:text-slate-300 py-2 px-3 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800">Home</a>
+            <a href="products.html" class="block text-base font-semibold text-slate-700 dark:text-slate-300 py-2 px-3 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800">Products</a>
+            <a href="about.html" class="block text-base font-semibold text-slate-700 dark:text-slate-300 py-2 px-3 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800">About</a>
+            <a href="blog.html" class="block text-base font-semibold text-slate-700 dark:text-slate-300 py-2 px-3 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800">Blog</a>
+            <a href="contact.html" class="block text-base font-semibold text-slate-700 dark:text-slate-300 py-2 px-3 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800">Contact</a>
+            <a href="contact.html" class="block text-center text-sm font-bold text-white bg-brand-electric py-2.5 rounded-xl">Get Started</a>
+        </div>
+    </header>
+
+    <!-- CORE BODY CONTENT -->
+    <main class="flex-grow">
+        <!-- Hero Section -->
+        <section class="relative py-20 overflow-hidden border-b border-slate-100 dark:border-slate-900 bg-slate-50/50 dark:bg-slate-950/20">
+            <!-- Decorative Glow Elements -->
+            <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-brand-electric/10 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="absolute bottom-10 left-10 w-[300px] h-[300px] bg-brand-cyan/5 rounded-full blur-2xl pointer-events-none"></div>
+
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+                <span class="inline-flex items-center px-3.5 py-1 rounded-full text-xs font-bold tracking-wide uppercase bg-brand-electric/10 text-brand-electric dark:text-brand-cyan border border-brand-electric/20 dark:border-brand-cyan/20">
+                    Legal Framework
+                </span>
+                <h1 class="mt-4 text-4xl sm:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white">
+                    Terms of <span class="bg-gradient-to-r from-brand-electric to-brand-cyan bg-clip-text text-transparent">Service</span>
+                </h1>
+                <p class="mt-4 text-base sm:text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
+                    Welcome to IanFit. Please read our Terms of Service thoroughly. These terms outline our mutual agreement regarding your physical training, recovery protocols, and platform usage.
+                </p>
+                <p class="mt-2 text-xs text-slate-500 dark:text-slate-500">
+                    Last Updated: October 24, 2023
+                </p>
+            </div>
+        </section>
+
+        <!-- Dynamic Two-Column Layout / Bento Inspired -->
+        <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                
+                <!-- Sticky Navigation Bar (Left Column) -->
+                <aside class="lg:col-span-4 sticky top-28 hidden lg:block bg-brand-lightCard dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800/80 rounded-2xl p-6 shadow-sm">
+                    <h3 class="text-xs font-extrabold text-slate-400 uppercase tracking-widest mb-4">Table of Contents</h3>
+                    <ul class="space-y-3">
+                        <li>
+                            <a href="#acceptance" class="block text-sm font-medium text-brand-electric dark:text-brand-cyan hover:underline transition-all">1. Acceptance of Terms</a>
+                        </li>
+                        <li>
+                            <a href="#coaching" class="block text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-brand-electric dark:hover:text-brand-cyan transition-all">2. The Coaching & Recovery Protocol</a>
+                        </li>
+                        <li>
+                            <a href="#health-disclaimer" class="block text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-brand-electric dark:hover:text-brand-cyan transition-all">3. Health Disclaimer & Assumption of Risk</a>
+                        </li>
+                        <li>
+                            <a href="#intellectual-property" class="block text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-brand-electric dark:hover:text-brand-cyan transition-all">4. Proprietary Knowledge & Content</a>
+                        </li>
+                        <li>
+                            <a href="#billing" class="block text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-brand-electric dark:hover:text-brand-cyan transition-all">5. Billing, Cancellations & Transparency</a>
+                        </li>
+                        <li>
+                            <a href="#limitations" class="block text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-brand-electric dark:hover:text-brand-cyan transition-all">6. Limitation of Liability</a>
+                        </li>
+                        <li>
+                            <a href="#termination" class="block text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-brand-electric dark:hover:text-brand-cyan transition-all">7. Account Termination</a>
+                        </li>
+                    </ul>
+                    <div class="mt-8 pt-6 border-t border-slate-200 dark:border-slate-800">
+                        <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+                            Need absolute clarity on legal provisions? Contact Ian directly via our <a href="contact.html" class="text-brand-electric dark:text-brand-cyan font-semibold hover:underline">contact portal</a>.
+                        </p>
+                    </div>
+                </aside>
+
+                <!-- Detailed Legal Documents (Right Column & Bento Showcase Card) -->
+                <div class="lg:col-span-8 space-y-6">
+                    
+                    <!-- Card 1: Acceptance -->
+                    <div id="acceptance" class="bg-brand-lightCard dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800/80 rounded-2xl p-6 sm:p-8 hover:border-brand-electric/30 transition-all group">
+                        <div class="flex items-center space-x-3 mb-4">
+                            <div class="w-8 h-8 rounded-lg bg-brand-electric/10 text-brand-electric flex items-center justify-center font-bold text-sm">1</div>
+                            <h2 class="text-xl font-bold text-slate-900 dark:text-white group-hover:text-brand-electric dark:group-hover:text-brand-cyan transition-colors">Acceptance of Terms</h2>
+                        </div>
+                        <div class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed space-y-3">
+                            <p>
+                                By accessing, viewing, registering for, or interacting with any services provided by IanFit ("we", "us", "our", or "IanFit"), you are acknowledging that you have read, understood, and agreed to be fully bound by these Terms of Service.
+                            </p>
+                            <p>
+                                If you do not agree to these terms, you are strictly prohibited from utilizing the coaching platforms, custom instructional resources, fitness templates, and specialized biomechanical material provided by Ian.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Card 2: Coaching Paradigm -->
+                    <div id="coaching" class="bg-brand-lightCard dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800/80 rounded-2xl p-6 sm:p-8 hover:border-brand-electric/30 transition-all group">
+                        <div class="flex items-center space-x-3 mb-4">
+                            <div class="w-8 h-8 rounded-lg bg-brand-electric/10 text-brand-electric flex items-center justify-center font-bold text-sm">2</div>
+                            <h2 class="text-xl font-bold text-slate-900 dark:text-white group-hover:text-brand-electric dark:group-hover:text-brand-cyan transition-colors">The Coaching & Recovery Protocol</h2>
+                        </div>
+                        <div class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed space-y-3">
+                            <p>
+                                IanFit provides digital personal physical optimization protocols, corrective exercise methodologies, movement assessments, and nutritional/metabolic education templates. 
+                            </p>
+                            <ul class="list-disc pl-5 space-y-2 mt-2">
+                                <li><strong>Highly Personalized Framework:</strong> All plans scale safely relative to your biology and physiological capability, but outcomes dictate consistent client feedback and precise movement execution.</li>
+                                <li><strong>Client Responsibilities:</strong> You agree to provide exact physiological capabilities, existing physical feedback, and metabolic data honestly to minimize injury and optimize physical progress.</li>
+                                <li><strong>No Guaranteed Timelines:</strong> Because human biological processes respond strictly to consistent mechanics, rest, nutrition, and stress management, exact physical outcomes remain subjective.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Card 3: Crucial Health Disclaimer -->
+                    <div id="health-disclaimer" class="relative bg-brand-lightCard dark:bg-brand-darkCard border-2 border-brand-electric/20 dark:border-brand-cyan/20 rounded-2xl p-6 sm:p-8 shadow-neon-blue group">
+                        <!-- Cyan tag indicator -->
+                        <span class="absolute top-4 right-4 bg-red-500/10 text-red-500 dark:text-red-400 text-xs font-extrabold px-3 py-1 rounded-full border border-red-500/20">
+                            Critical Alert
+                        </span>
+                        <div class="flex items-center space-x-3 mb-4">
+                            <div class="w-8 h-8 rounded-lg bg-brand-electric/20 text-brand-electric dark:text-brand-cyan flex items-center justify-center font-bold text-sm">3</div>
+                            <h2 class="text-xl font-bold text-slate-900 dark:text-white group-hover:text-brand-cyan transition-colors">Health Disclaimer & Assumption of Risk</h2>
+                        </div>
+                        <div class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed space-y-4">
+                            <div class="p-4 rounded-xl bg-slate-200/50 dark:bg-slate-900/60 text-slate-800 dark:text-slate-300 font-medium">
+                                IanFit is NOT a medical organization. Ian is an elite biomechanics personal trainer and corrective exercise specialist, not a licensed medical doctor, psychiatrist, physical therapist, or clinical dietitian.
+                            </div>
+                            <p>
+                                The instruction regarding the Body Matrix, biomechanics, movement re-engineering, nutritional habits, and physiological stress management on this platform is purely educational. No individual guide or direct session substitutes for medical diagnosis, treatment, or physical therapy prescribed by primary healthcare providers.
+                            </p>
+                            <p>
+                                <strong>Physical Readiness Requirement:</strong> You agree that you are in adequate physical health to perform standard movements (walking, lifting weights, running, metabolic drills). If you experience severe physical anomalies, sharp pain, chest pressure, or respiratory issues, you agree to immediately discontinue activity and consult clinical specialists. You assume all personal physical risk associated with executing physical training methodologies.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Card 4: Proprietary Intellectual Property -->
+                    <div id="intellectual-property" class="bg-brand-lightCard dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800/80 rounded-2xl p-6 sm:p-8 hover:border-brand-electric/30 transition-all group">
+                        <div class="flex items-center space-x-3 mb-4">
+                            <div class="w-8 h-8 rounded-lg bg-brand-electric/10 text-brand-electric flex items-center justify-center font-bold text-sm">4</div>
+                            <h2 class="text-xl font-bold text-slate-900 dark:text-white group-hover:text-brand-electric dark:group-hover:text-brand-cyan transition-colors">Proprietary Knowledge & Content</h2>
+                        </div>
+                        <div class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed space-y-3">
+                            <p>
+                                Every element of our training engine—including codebases, video modules, step-by-step form breakdowns, metabolic adaptation calculators, and digital layout designs—is the proprietary intellectual property of IanFit.
+                            </p>
+                            <p>
+                                You are granted a limited, personal, non-transferable, and revocable license to interact with your purchased products and coaching templates for direct personal growth. You are strictly forbidden from distributing, modifying, white-labeling, or selling our proprietary intellectual systems without explicit written consent from Ian.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Card 5: Payment & Transparency -->
+                    <div id="billing" class="bg-brand-lightCard dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800/80 rounded-2xl p-6 sm:p-8 hover:border-brand-electric/30 transition-all group">
+                        <div class="flex items-center space-x-3 mb-4">
+                            <div class="w-8 h-8 rounded-lg bg-brand-electric/10 text-brand-electric flex items-center justify-center font-bold text-sm">5</div>
+                            <h2 class="text-xl font-bold text-slate-900 dark:text-white group-hover:text-brand-electric dark:group-hover:text-brand-cyan transition-colors">Billing, Cancellations & Transparency</h2>
+                        </div>
+                        <div class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed space-y-3">
+                            <p>
+                                We stand by absolute, zero-friction cost transparency. All coaching fees, subscription structures, and program costs are represented explicitly at the time of purchase.
+                            </p>
+                            <ul class="list-disc pl-5 space-y-2 mt-2">
+                                <li><strong>Subscriptions:</strong> All ongoing fitness programs or subscription tools charge periodically according to your active schedule. You maintain total power to disable renewals in your dashboard.</li>
+                                <li><strong>Cancellations:</strong> You can cancel active monthly coaching relationships up to 5 days before your recurring payment triggers without fee penalties.</li>
+                                <li><strong>Refund Policy:</strong> Since educational and physical materials are delivered directly, refunds are managed on a case-by-case basis. We respect high-integrity communication; contact us if a specific package did not match specified parameters.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Card 6: Limitation of Liability -->
+                    <div id="limitations" class="bg-brand-lightCard dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800/80 rounded-2xl p-6 sm:p-8 hover:border-brand-electric/30 transition-all group">
+                        <div class="flex items-center space-x-3 mb-4">
+                            <div class="w-8 h-8 rounded-lg bg-brand-electric/10 text-brand-electric flex items-center justify-center font-bold text-sm">6</div>
+                            <h2 class="text-xl font-bold text-slate-900 dark:text-white group-hover:text-brand-electric dark:group-hover:text-brand-cyan transition-colors">Limitation of Liability</h2>
+                        </div>
+                        <div class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed space-y-3">
+                            <p>
+                                Under no legal mechanism or theoretical scenario shall IanFit, Ian, or his network coaches be held liable for personal injury, performance loss, economic damage, or emotional distress resulting directly or indirectly from executing any guidelines found on this site.
+                            </p>
+                            <p>
+                                You explicitly execute all workouts, physical movements, nutritional guides, and physical transformation milestones entirely at your own biological risk.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Card 7: Termination -->
+                    <div id="termination" class="bg-brand-lightCard dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800/80 rounded-2xl p-6 sm:p-8 hover:border-brand-electric/30 transition-all group">
+                        <div class="flex items-center space-x-3 mb-4">
+                            <div class="w-8 h-8 rounded-lg bg-brand-electric/10 text-brand-electric flex items-center justify-center font-bold text-sm">7</div>
+                            <h2 class="text-xl font-bold text-slate-900 dark:text-white group-hover:text-brand-electric dark:group-hover:text-brand-cyan transition-colors">Account Termination</h2>
+                        </div>
+                        <div class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed space-y-3">
+                            <p>
+                                We preserve the uninhibited authority to terminate access to our portals, interactive video libraries, and premium coach-facing messaging channels instantly and without advanced warning, in cases of:
+                            </p>
+                            <ul class="list-disc pl-5 space-y-2 mt-2">
+                                <li>Breach of respect/conduct guidelines toward coaches and community members.</li>
+                                <li>Attempts to scrape content, reverse-engineer proprietary physical code, or distribute exclusive instructional resources.</li>
+                                <li>Failure to clear legitimate subscription fees in a prompt manner.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Dynamic Trust Callout Banner -->
+        <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
+            <div class="bg-gradient-to-r from-brand-electric/10 to-brand-cyan/10 border border-brand-electric/20 rounded-3xl p-8 sm:p-12 text-center relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-32 h-32 bg-brand-cyan/10 rounded-full blur-2xl pointer-events-none"></div>
+                <h3 class="text-2xl font-extrabold text-slate-900 dark:text-white">Have questions regarding our policies?</h3>
+                <p class="mt-2 text-sm text-slate-600 dark:text-slate-400 max-w-xl mx-auto">
+                    We believe transparency is the highest form of fitness instruction. If you need any clarity on physical safety, membership terms, or payment, please communicate openly.
+                </p>
+                <div class="mt-6">
+                    <a href="contact.html" class="inline-flex items-center justify-center px-6 py-3 rounded-xl font-extrabold text-sm text-white bg-slate-900 dark:bg-white dark:text-slate-950 hover:bg-slate-800 dark:hover:bg-slate-100 transition-all shadow-md">
+                        Get In Touch
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- GLOBAL FOOTER -->
+    <footer class="theme-transition border-t border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-[#060910]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-10">
+                
+                <!-- Brand Info (Col 1) -->
+                <div class="md:col-span-4 space-y-4">
+                    <a href="index.html" class="flex items-center space-x-2 group">
+                        <div class="relative w-8 h-8 flex items-center justify-center rounded-lg bg-gradient-to-tr from-brand-electric to-brand-cyan">
+                            <span class="text-white font-extrabold text-sm">IF</span>
+                        </div>
+                        <span class="text-xl font-extrabold tracking-tight text-slate-900 dark:text-white">
+                            Ian<span class="bg-gradient-to-r from-brand-electric to-brand-cyan bg-clip-text text-transparent">Fit</span>
+                        </span>
+                    </a>
+                    <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
+                        The ultimate ecosystem for ultra-accessible, deeply educational physical training and permanent athletic recovery. Re-engineering human movement form and function.
+                    </p>
+                    <p class="text-xs text-slate-400 dark:text-slate-500 pt-2">
+                        &copy; 2023 IanFit. All Rights Reserved.
+                    </p>
+                </div>
+
+                <!-- Sitemap Links (Col 2) -->
+                <div class="md:col-span-4 md:col-start-6 space-y-4">
+                    <h4 class="text-xs font-bold uppercase tracking-wider text-slate-900 dark:text-white">Sitemap</h4>
+                    <div class="grid grid-cols-2 gap-2">
+                        <a href="index.html" class="text-sm text-slate-500 dark:text-slate-400 hover:text-brand-electric dark:hover:text-brand-cyan">Home</a>
+                        <a href="products.html" class="text-sm text-slate-500 dark:text-slate-400 hover:text-brand-electric dark:hover:text-brand-cyan">Products</a>
+                        <a href="about.html" class="text-sm text-slate-500 dark:text-slate-400 hover:text-brand-electric dark:hover:text-brand-cyan">About</a>
+                        <a href="blog.html" class="text-sm text-slate-500 dark:text-slate-400 hover:text-brand-electric dark:hover:text-brand-cyan">Blog</a>
+                        <a href="contact.html" class="text-sm text-slate-500 dark:text-slate-400 hover:text-brand-electric dark:hover:text-brand-cyan">Contact</a>
+                    </div>
+                </div>
+
+                <!-- Legal Focus (Col 3) -->
+                <div class="md:col-span-3 space-y-4">
+                    <h4 class="text-xs font-bold uppercase tracking-wider text-slate-900 dark:text-white">Security & Terms</h4>
+                    <div class="flex flex-col space-y-2">
+                        <a href="privacy.html" class="text-sm text-slate-500 dark:text-slate-400 hover:text-brand-electric dark:hover:text-brand-cyan">Privacy Policy</a>
+                        <a href="terms.html" class="text-sm font-semibold text-brand-electric dark:text-brand-cyan">Terms of Service</a>
+                    </div>
+                    <!-- Small reassurance note -->
+                    <p class="text-[11px] text-slate-400 dark:text-slate-500 leading-normal">
+                        Physical movement patterns require physical responsibility. Always maintain body awareness during corrective drills.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </footer>
+
+    <!-- LIGHT/DARK THEME TOGGLE AND RESPONSIVE INTERACTION SCRIPT -->
+    <script>
+        // Check and apply local storage configuration or default to dark mode
+        const htmlElement = document.documentElement;
+        const themeToggleBtn = document.getElementById('themeToggle');
+        const sunIcon = document.getElementById('sunIcon');
+        const moonIcon = document.getElementById('moonIcon');
+
+        // Apply dynamic initial theme configuration
+        if (localStorage.getItem('theme') === 'light') {
+            htmlElement.classList.remove('dark');
+            sunIcon.classList.add('hidden');
+            moonIcon.classList.remove('hidden');
+        } else {
+            htmlElement.classList.add('dark');
+            sunIcon.classList.remove('hidden');
+            moonIcon.classList.add('hidden');
+        }
+
+        // Toggle theme execution loop
+        themeToggleBtn.addEventListener('click', () => {
+            if (htmlElement.classList.contains('dark')) {
+                htmlElement.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+                sunIcon.classList.add('hidden');
+                moonIcon.classList.remove('hidden');
+            } else {
+                htmlElement.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+                sunIcon.classList.remove('hidden');
+                moonIcon.classList.add('hidden');
+            }
+        });
+
+        // Mobile responsive hamburger navigation configuration
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html>
