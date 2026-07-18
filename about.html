@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About IanFit | Master Your Biomechanics & Human Machine</title>
+  <meta name="description" content="Discover the philosophy behind IanFit. Founded by Head Coach Ian, we specialize in permanent athletic recovery, corrective exercise, and premium biomechanics training.">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Premium Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <script>
+    // Tailwind Custom Configuration
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              blue: '#0B53F4',      // Deep Electric Blue
+              cyan: '#00F0FF',      // Vibrant Light Cyan
+              darkBg: '#090D16',    // Immersive Dark Background
+              darkCard: '#121826',  // Premium Dark Card Layer
+              lightBg: '#FFFFFF',   // Pristine Light Background
+              lightCard: '#F8FAFC', // Crisp Light Card Layer
+            }
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            display: ['"Space Grotesk"', 'sans-serif'],
+          },
+          animation: {
+            'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Premium custom styles & scrollbars */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #090D16;
+    }
+    .dark ::-webkit-scrollbar-track {
+      background: #090D16;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #0B53F4;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #00F0FF;
+    }
+    .bento-glow-blue {
+      box-shadow: 0 0 40px -10px rgba(11, 83, 244, 0.15);
+    }
+    .dark .bento-glow-blue {
+      box-shadow: 0 0 50px -15px rgba(0, 240, 255, 0.12);
+    }
+  </style>
+</head>
+<body class="bg-brand-lightBg text-slate-900 dark:bg-brand-darkBg dark:text-slate-100 font-sans transition-colors duration-300 overflow-x-hidden">
+
+  <!-- ==================== GLOBAL HEADER ==================== -->
+  <header class="sticky top-0 z-50 w-full border-b border-slate-200/80 dark:border-slate-800/80 bg-brand-lightBg/90 dark:bg-brand-darkBg/90 backdrop-blur-md transition-colors duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      
+      <!-- Brand Logo -->
+      <a href="index.html" class="flex items-center gap-2.5 group">
+        <div class="relative flex items-center justify-center w-10 h-10 rounded-xl bg-gradient-to-br from-brand-blue to-brand-cyan shadow-md shadow-brand-blue/20">
+          <span class="text-white font-display font-bold text-xl tracking-wider">I</span>
+          <div class="absolute inset-0 rounded-xl bg-gradient-to-br from-brand-cyan to-brand-blue opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          <span class="absolute text-white font-display font-bold text-xl tracking-wider z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300">I</span>
+        </div>
+        <span class="font-display font-bold text-2xl tracking-tight bg-gradient-to-r from-slate-900 to-slate-700 dark:from-white dark:to-slate-300 bg-clip-text text-transparent">
+          Ian<span class="text-brand-blue dark:text-brand-cyan font-extrabold">Fit</span>
+        </span>
+      </a>
+
+      <!-- Desktop Navigation Tree -->
+      <nav class="hidden md:flex items-center gap-8 font-medium text-sm tracking-wide">
+        <a href="index.html" class="text-slate-600 hover:text-brand-blue dark:text-slate-300 dark:hover:text-brand-cyan transition-colors">Home</a>
+        <a href="products.html" class="text-slate-600 hover:text-brand-blue dark:text-slate-300 dark:hover:text-brand-cyan transition-colors">Programs</a>
+        <a href="about.html" class="relative text-brand-blue dark:text-brand-cyan font-semibold transition-colors py-1">
+          About
+          <span class="absolute bottom-0 left-0 w-full h-[2px] bg-brand-blue dark:bg-brand-cyan rounded-full"></span>
+        </a>
+        <a href="blog.html" class="text-slate-600 hover:text-brand-blue dark:text-slate-300 dark:hover:text-brand-cyan transition-colors">Edu Hub</a>
+        <a href="contact.html" class="text-slate-600 hover:text-brand-blue dark:text-slate-300 dark:hover:text-brand-cyan transition-colors">Contact</a>
+      </nav>
+
+      <!-- Utility Actions (Theme & CTA) -->
+      <div class="flex items-center gap-4">
+        <!-- Sun/Moon Theme Toggle Button -->
+        <button id="themeToggle" onclick="toggleTheme()" class="relative p-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all duration-300" aria-label="Toggle Dark Mode">
+          <!-- Moon Icon (Visible in light mode) -->
+          <svg id="themeToggleMoon" class="w-5 h-5 block dark:hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z"></path>
+          </svg>
+          <!-- Sun Icon (Visible in dark mode) -->
+          <svg id="themeToggleSun" class="w-5 h-5 hidden dark:block text-brand-cyan" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m0 13.5V21M4.22 4.22l1.58 1.58m12.42 12.42l1.58 1.58M3 12h2.25m13.5 0H21M4.22 19.78l1.58-1.58M17.78 6.22l1.58-1.58M12 7.5a4.5 4.5 0 110 9 4.5 4.5 0 010-9z"></path>
+          </svg>
+        </button>
+
+        <!-- Dynamic Header CTA -->
+        <a href="contact.html" class="hidden sm:inline-flex items-center justify-center px-5  py-2.5 rounded-xl bg-brand-blue hover:bg-blue-600 dark:bg-brand-blue dark:hover:bg-blue-700 text-white font-medium text-sm shadow-md shadow-brand-blue/15 hover:shadow-lg transition-all duration-300">
+          Analyze My Form
+        </a>
+
+        <!-- Mobile Menu Toggle -->
+        <button id="mobileMenuButton" class="md:hidden p-2.5 rounded-xl border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300" aria-label="Toggle Mobile Menu">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16m-7 6h7"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Navigation Drawer -->
+    <div id="mobileMenu" class="hidden md:hidden border-t border-slate-200 dark:border-slate-800 bg-brand-lightBg dark:bg-brand-darkBg px-4 py-6 space-y-4 transition-all">
+      <a href="index.html" class="block text-base font-medium text-slate-700 dark:text-slate-300 hover:text-brand-blue dark:hover:text-brand-cyan">Home</a>
+      <a href="products.html" class="block text-base font-medium text-slate-700 dark:text-slate-300 hover:text-brand-blue dark:hover:text-brand-cyan">Programs</a>
+      <a href="about.html" class="block text-base font-semibold text-brand-blue dark:text-brand-cyan">About</a>
+      <a href="blog.html" class="block text-base font-medium text-slate-700 dark:text-slate-300 hover:text-brand-blue dark:hover:text-brand-cyan">Edu Hub</a>
+      <a href="contact.html" class="block text-base font-medium text-slate-700 dark:text-slate-300 hover:text-brand-blue dark:hover:text-brand-cyan">Contact</a>
+      <a href="contact.html" class="w-full text-center block px-5 py-3 rounded-xl bg-brand-blue text-white font-medium shadow-md">Analyze My Form</a>
+    </div>
+  </header>
+
+  <!-- ==================== HERO SECTION ==================== -->
+  <section class="relative pt-16 pb-20 md:pt-24 md:pb-32 overflow-hidden">
+    <!-- Background Accents -->
+    <div class="absolute -top-40 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-gradient-to-tr from-brand-blue/10 to-brand-cyan/10 rounded-full blur-[120px] pointer-events-none dark:opacity-40"></div>
+    <div class="absolute top-1/4 right-0 w-96 h-96 bg-brand-cyan/5 rounded-full blur-[100px] pointer-events-none dark:opacity-20"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+      <!-- Minimalist Tagline Box -->
+      <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/50 backdrop-blur shadow-sm mb-6">
+        <span class="flex h-2.5 w-2.5 rounded-full bg-brand-cyan animate-pulse-slow"></span>
+        <span class="text-xs font-semibold tracking-wider uppercase text-slate-500 dark:text-slate-400">Our Core Philosophy</span>
+      </div>
+
+      <h1 class="font-display font-bold text-4xl sm:text-5xl md:text-7xl tracking-tight text-slate-900 dark:text-white max-w-5xl mx-auto leading-tight sm:leading-none">
+        Redefining the <span class="bg-gradient-to-r from-brand-blue to-brand-cyan bg-clip-text text-transparent">Human Machine</span>
+      </h1>
+      
+      <p class="mt-6 text-lg sm:text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto font-light leading-relaxed">
+        IanFit is the ultimate home for ultra-accessible, deeply educational personal fitness training and permanent athletic recovery. We bypass trends to focus on mechanics, physiology, and absolute human potential.
+      </p>
+
+      <!-- Quick Metrics Ribbon -->
+      <div class="mt-12 grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto border-y border-slate-200/60 dark:border-slate-800/60 py-8">
+        <div>
+          <p class="font-display font-bold text-3xl sm:text-4xl text-brand-blue dark:text-brand-cyan">10k+</p>
+          <p class="text-xs uppercase tracking-widest text-slate-400 dark:text-slate-500 mt-1">Coaching Hours</p>
+        </div>
+        <div>
+          <p class="font-display font-bold text-3xl sm:text-4xl text-slate-900 dark:text-white">100%</p>
+          <p class="text-xs uppercase tracking-widest text-slate-400 dark:text-slate-500 mt-1">Zero-Fluff Policy</p>
+        </div>
+        <div>
+          <p class="font-display font-bold text-3xl sm:text-4xl text-brand-blue dark:text-brand-cyan">1-on-1</p>
+          <p class="text-xs uppercase tracking-widest text-slate-400 dark:text-slate-500 mt-1">Biomapping Focus</p>
+        </div>
+        <div>
+          <p class="font-display font-bold text-3xl sm:text-4xl text-slate-900 dark:text-white">Zero</p>
+          <p class="text-xs uppercase tracking-widest text-slate-400 dark:text-slate-500 mt-1">Gimmicks / Secrets</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== ASYMMETRICAL BENTO GRID: THE PILLARS ==================== -->
+  <section class="py-12 bg-slate-50/50 dark:bg-slate-950/30 border-y border-slate-200/60 dark:border-slate-900/60 transition-colors duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center md:text-left mb-12 max-w-2xl">
+        <h2 class="font-display font-bold text-3xl text-slate-900 dark:text-white">Our Methodological Matrix</h2>
+        <p class="text-slate-500 dark:text-slate-400 mt-2">We construct performance from the skeleton up, mapping every individual adaptation clearly and cost-transparently.</p>
+      </div>
+
+      <!-- Bento Grid Frame -->
+      <div class="grid grid-cols-1 md:grid-cols-6 gap-6">
+
+        <!-- Card 1: Corrective Exercise & Recovery (Large 4-Col) -->
+        <div class="bento-glow-blue md:col-span-4 p-8 sm:p-10 rounded-3xl border border-slate-200/80 dark:border-slate-800/80 bg-white dark:bg-brand-darkCard flex flex-col justify-between group transition-all duration-300 hover:border-brand-blue/30 dark:hover:border-brand-cyan/30">
+          <div>
+            <div class="w-12 h-12 rounded-2xl bg-brand-blue/10 flex items-center justify-center text-brand-blue dark:text-brand-cyan mb-6">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12.75 3.03v.568c0 .334.148.65.405.864l4.038 3.348a.75.75 0 01.275.575v9.123c0 .414-.336.75-.75.75H7.25a.75.75 0 01-.75-.75V8.381c0-.22.096-.43.264-.57L10.8 4.462a1.125 1.125 0 011.53-.024l.42.592"></path>
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15 11.25a3 3 0 11-6 0 3 3 0 016 0z"></path>
+              </svg>
+            </div>
+            <h3 class="font-display font-bold text-2xl text-slate-900 dark:text-white group-hover:text-brand-blue dark:group-hover:text-brand-cyan transition-colors">Corrective Exercise & Permanent Recovery</h3>
+            <p class="mt-4 text-slate-600 dark:text-slate-300 font-light leading-relaxed">
+              Pain is not a default baseline. We help individuals move out of structural limitations permanently. By analyzing and identifying destructive daily movement habits, we completely re-engineer your lifting, posture, and active form to restore painless capability.
+            </p>
+          </div>
+          <div class="mt-8 pt-6 border-t border-slate-100 dark:border-slate-800/50 flex items-center justify-between">
+            <span class="text-xs uppercase tracking-widest font-semibold text-slate-400">Pillar #01 — Biomechanics</span>
+            <span class="text-brand-blue dark:text-brand-cyan text-sm font-semibold opacity-0 group-hover:opacity-100 transition-opacity">Learn More &rarr;</span>
+          </div>
+        </div>
+
+        <!-- Card 2: Biomechanics Mastery (2-Col) -->
+        <div class="bento-glow-blue md:col-span-2 p-8 rounded-3xl border border-slate-200/80 dark:border-slate-800/80 bg-white dark:bg-brand-darkCard flex flex-col justify-between group transition-all duration-300 hover:border-brand-blue/30 dark:hover:border-brand-cyan/30">
+          <div>
+            <div class="w-12 h-12 rounded-2xl bg-brand-blue/10 flex items-center justify-center text-brand-blue dark:text-brand-cyan mb-6">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"></path>
+              </svg>
+            </div>
+            <h3 class="font-display font-bold text-xl text-slate-900 dark:text-white group-hover:text-brand-blue dark:group-hover:text-brand-cyan transition-colors">Perfect Human Gait</h3>
+            <p class="mt-3 text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+              We teach pristine mechanics across basic biological demands: walking, running, shifting weight, and loaded lifting.
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-slate-100 dark:border-slate-800/50">
+            <span class="text-xs uppercase tracking-widest font-semibold text-slate-400">Pillar #02 — Kinematics</span>
+          </div>
+        </div>
+
+        <!-- Card 3: The Body Matrix (2-Col) -->
+        <div class="bento-glow-blue md:col-span-2 p-8 rounded-3xl border border-slate-200/80 dark:border-slate-800/80 bg-white dark:bg-brand-darkCard flex flex-col justify-between group transition-all duration-300 hover:border-brand-blue/30 dark:hover:border-brand-cyan/30">
+          <div>
+            <div class="w-12 h-12 rounded-2xl bg-brand-blue/10 flex items-center justify-center text-brand-blue dark:text-brand-cyan mb-6">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 12c0-1.232-.046-2.453-.138-3.662a4.006 4.006 0 00-3.7-3.7 48.656 48.656 0 00-7.324 0 4.006 4.006 0 00-3.7 3.7c-.017.22-.032.441-.046.662M19.5 12l3-3m-3 3l-3-3m-12 3c0 1.232.046 2.453.138 3.662a4.006 4.006 0 003.7 3.7 48.656 48.656 0 007.324 0 4.006 4.006 0 003.7-3.7c.017-.22.032-.441.046-.662M4.5 12l-3 3m3-3l3 3"></path>
+              </svg>
+            </div>
+            <h3 class="font-display font-bold text-xl text-slate-900 dark:text-white group-hover:text-brand-blue dark:group-hover:text-brand-cyan transition-colors">The Body Matrix</h3>
+            <p class="mt-3 text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+              Unifying Brain, Heart, Lungs, Stomach, and Muscle. Internal metabolic harmony Directly regulates physical drive, biological output, and mental focus.
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-slate-100 dark:border-slate-800/50">
+            <span class="text-xs uppercase tracking-widest font-semibold text-slate-400">Pillar #03 — Systems Integration</span>
+          </div>
+        </div>
+
+        <!-- Card 4: Energy, Fat Loss & Nutrition (Large 4-Col) -->
+        <div class="bento-glow-blue md:col-span-4 p-8 sm:p-10 rounded-3xl border border-slate-200/80 dark:border-slate-800/80 bg-white dark:bg-brand-darkCard flex flex-col justify-between group transition-all duration-300 hover:border-brand-blue/30 dark:hover:border-brand-cyan/30">
+          <div>
+            <div class="w-12 h-12 rounded-2xl bg-brand-blue/10 flex items-center justify-center text-brand-blue dark:text-brand-cyan mb-6">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15.362 5.214A8.252 8.252 0 0112 21 8.25 8.25 0 016.038 7.048 8.287 8.287 0 009 9.6a8.283 8.283 0 013.337-4.167 8.187 8.187 0 00-3.572 1.041 8.287 8.287 0 00-.765-.544 8.252 8.252 0 015.061-1.017z"></path>
+              </svg>
+            </div>
+            <h3 class="font-display font-bold text-2xl text-slate-900 dark:text-white group-hover:text-brand-blue dark:group-hover:text-brand-cyan transition-colors">The Engine of True Nutritional Impact</h3>
+            <p class="mt-4 text-slate-600 dark:text-slate-300 font-light leading-relaxed">
+              We cut through modern, algorithmically-fueled diet trends to isolate high-leverage lifestyle elements that actually move the needle for cellular energy production, natural fat adaptation, and metabolic responsiveness. Transform your biology into a high-capacity, self-sustaining furnace.
+            </p>
+          </div>
+          <div class="mt-8 pt-6 border-t border-slate-100 dark:border-slate-800/50 flex items-center justify-between">
+            <span class="text-xs uppercase tracking-widest font-semibold text-slate-400">Pillar #04 — Metabolic Chemistry</span>
+            <span class="text-brand-blue dark:text-brand-cyan text-sm font-semibold opacity-0 group-hover:opacity-100 transition-opacity">Analyze Metrics &rarr;</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== MEET THE COACH: IN-DEPTH SECTION ==================== -->
+  <section class="py-20 md:py-32 relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
+        
+        <!-- Left Column: Visual Profile Card (Asymmetric Layout) -->
+        <div class="lg:col-span-5 relative">
+          <!-- Ambient Glow behind Profile Elements -->
+          <div class="absolute -inset-4 bg-gradient-to-tr from-brand-blue to-brand-cyan rounded-[40px] opacity-20 blur-2xl"></div>
+          
+          <div class="relative bg-white dark:bg-brand-darkCard rounded-3xl p-8 border border-slate-200/80 dark:border-slate-800/80 shadow-xl overflow-hidden group">
+            <!-- Sleek abstract line art to act as profile image placeholder -->
+            <div class="aspect-square rounded-2xl bg-gradient-to-br from-slate-900 to-slate-800 dark:from-slate-950 dark:to-slate-900 relative flex items-center justify-center overflow-hidden mb-6">
+              <!-- Geometric overlay -->
+              <div class="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
+              
+              <!-- Clean minimal representation of dynamic human lines -->
+              <svg class="w-1/2 h-1/2 text-brand-blue/30 dark:text-brand-cyan/20 animate-pulse-slow" viewBox="0 0 200 200" fill="none">
+                <circle cx="100" cy="100" r="80" stroke="currentColor" stroke-width="2" stroke-dasharray="8 8"></circle>
+                <line x1="100" y1="20" x2="100" y2="180" stroke="currentColor" stroke-width="1.5"></line>
+                <line x1="20" y1="100" x2="180" y2="100" stroke="currentColor" stroke-width="1.5"></line>
+                <path d="M60 140 C 80 80, 120 80, 140 140" stroke="brand-blue" stroke-width="4" stroke-linecap="round" class="stroke-brand-blue dark:stroke-brand-cyan"></path>
+              </svg>
+              
+              <div class="absolute bottom-4 left-4 right-4 bg-slate-900/80 backdrop-blur-sm p-4 rounded-xl border border-white/10 flex justify-between items-center">
+                <div>
+                  <p class="text-white font-bold text-base leading-tight">Coach Ian</p>
+                  <p class="text-brand-cyan text-xs leading-tight font-medium">Head Coach & Founder</p>
+                </div>
+                <div class="text-right">
+                  <p class="text-white font-bold text-xs">15+ Years</p>
+                  <p class="text-slate-400 text-[10px] uppercase">Scientific Training</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Profile Badges -->
+            <div class="space-y-3">
+              <div class="flex items-center gap-3">
+                <div class="w-2.5 h-2.5 rounded-full bg-brand-cyan"></div>
+                <p class="text-sm font-semibold text-slate-700 dark:text-slate-300">Neuromuscular Specialist</p>
+              </div>
+              <div class="flex items-center gap-3">
+                <div class="w-2.5 h-2.5 rounded-full bg-brand-blue"></div>
+                <p class="text-sm font-semibold text-slate-700 dark:text-slate-300">Form & Gait Reconstructionist</p>
+              </div>
+              <div class="flex items-center gap-3">
+                <div class="w-2.5 h-2.5 rounded-full bg-slate-400"></div>
+                <p class="text-sm font-semibold text-slate-700 dark:text-slate-300">Metabolic Fat-Adaptation Guide</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column: Context & Founder Manifesto -->
+        <div class="lg:col-span-7 space-y-8">
+          <div>
+            <span class="text-brand-blue dark:text-brand-cyan text-sm uppercase tracking-widest font-extrabold">The Founder's Journey</span>
+            <h2 class="font-display font-bold text-3xl sm:text-4xl text-slate-900 dark:text-white mt-2 leading-tight">
+              "We must understand the blueprint before we try to modify the machine."
+            </h2>
+          </div>
+
+          <div class="space-y-6 text-slate-600 dark:text-slate-300 font-light leading-relaxed text-base sm:text-lg">
+            <p>
+              For years, I saw the exact same issue repeating in traditional gyms and clinics: individuals pushing their physical envelopes on frameworks that were inherently broken. We force-fed loaded weight, aggressive cardio, and drastic dieting to bodies that were already in chronic structural patterns of misalignment and pain.
+            </p>
+            <p>
+              <strong>IanFit</strong> was built as an antidote to this chaotic industry framework. We don't believe in guessing. We break down the complex mechanics of physiology into clear, unshakeable rules that you can easily master and maintain.
+            </p>
+            <p>
+              Whether you are looking to run pain-free again, fully recover a shoulder or knee, or transform your metabolic health from a cellular level, we lay out the precise commitment, biological laws, and real transparency you deserve.
+            </p>
+          </div>
+
+          <!-- Highlight CTA Block -->
+          <div class="p-6 rounded-2xl bg-slate-100/50 dark:bg-slate-900/50 border border-slate-200/60 dark:border-slate-800/60 flex flex-col sm:flex-row gap-6 justify-between items-start sm:items-center">
+            <div>
+              <p class="font-bold text-slate-900 dark:text-white text-base">Want a personal biomechanical evaluation?</p>
+              <p class="text-sm text-slate-500 dark:text-slate-400">Send Coach Ian a brief summary of your pain points.</p>
+            </div>
+            <a href="contact.html" class="inline-flex items-center justify-center px-5 py-3 rounded-xl bg-slate-900 hover:bg-black dark:bg-brand-blue dark:hover:bg-blue-600 text-white font-medium text-sm transition-all shadow-md">
+              Start Free Assessment &rarr;
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== THE BODY MATRIX EXPLORATION SECTION ==================== -->
+  <section class="py-16 bg-slate-50 dark:bg-brand-darkCard border-y border-slate-200/60 dark:border-slate-900/60 transition-colors duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span class="text-xs uppercase tracking-widest font-extrabold text-brand-blue dark:text-brand-cyan">Biological Connectivity</span>
+        <h2 class="font-display font-bold text-3xl sm:text-4xl text-slate-900 dark:text-white mt-2">The Integrated Body Matrix</h2>
+        <p class="text-slate-500 dark:text-slate-400 mt-3 max-w-xl mx-auto font-light">
+          Your results are not isolated to a single muscle group. True athletic recovery and body change happen through our five-layer biological system.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-5 gap-6">
+        
+        <!-- System 1: Brain -->
+        <div class="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-brand-darkBg text-center transition-all duration-300 hover:-translate-y-1">
+          <div class="w-10 h-10 rounded-full bg-brand-cyan/10 text-brand-cyan mx-auto flex items-center justify-center font-bold text-sm mb-4">01</div>
+          <h4 class="font-display font-bold text-lg text-slate-900 dark:text-white">Brain / Nervous System</h4>
+          <p class="text-xs text-slate-500 dark:text-slate-400 mt-2">
+            Regulates motor unit recruitment, posture, neurological threat levels, and daily movement drive.
+          </p>
+        </div>
+
+        <!-- System 2: Heart -->
+        <div class="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-brand-darkBg text-center transition-all duration-300 hover:-translate-y-1">
+          <div class="w-10 h-10 rounded-full bg-brand-blue/10 text-brand-blue mx-auto flex items-center justify-center font-bold text-sm mb-4">02</div>
+          <h4 class="font-display font-bold text-lg text-slate-900 dark:text-white">Heart / Vascularity</h4>
+          <p class="text-xs text-slate-500 dark:text-slate-400 mt-2">
+            Powers system-wide oxygen delivery, vascular recovery, tissue nutrient partitioning, and stroke volume.
+          </p>
+        </div>
+
+        <!-- System 3: Lungs -->
+        <div class="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-brand-darkBg text-center transition-all duration-300 hover:-translate-y-1">
+          <div class="w-10 h-10 rounded-full bg-brand-cyan/10 text-brand-cyan mx-auto flex items-center justify-center font-bold text-sm mb-4">03</div>
+          <h4 class="font-display font-bold text-lg text-slate-900 dark:text-white">Lungs / Respiration</h4>
+          <p class="text-xs text-slate-500 dark:text-slate-400 mt-2">
+            Governs intra-abdominal pressure (spinal safety), carbon dioxide tolerance, and pH management during output.
+          </p>
+        </div>
+
+        <!-- System 4: Stomach -->
+        <div class="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-brand-darkBg text-center transition-all duration-300 hover:-translate-y-1">
+          <div class="w-10 h-10 rounded-full bg-brand-blue/10 text-brand-blue mx-auto flex items-center justify-center font-bold text-sm mb-4">04</div>
+          <h4 class="font-display font-bold text-lg text-slate-900 dark:text-white">Stomach / Microbiome</h4>
+          <p class="text-xs text-slate-500 dark:text-slate-400 mt-2">
+            Enables high-leverage nutrient absorption, limits inflammation, and directly regulates serotonin and focus.
+          </p>
+        </div>
+
+        <!-- System 5: Muscle -->
+        <div class="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-brand-darkBg text-center transition-all duration-300 hover:-translate-y-1">
+          <div class="w-10 h-10 rounded-full bg-brand-cyan/10 text-brand-cyan mx-auto flex items-center justify-center font-bold text-sm mb-4">05</div>
+          <h4 class="font-display font-bold text-lg text-slate-900 dark:text-white">Muscle / Skeleton</h4>
+          <p class="text-xs text-slate-500 dark:text-slate-400 mt-2">
+            Produces dynamic movement, stabilizes skeletal alignment, and acts as the final driver of systemic physical force.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== TRANSPARENCY & AUTONOMY PRINCIPLES ==================== -->
+  <section class="py-20 md:py-32">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        
+        <div class="lg:col-span-6 space-y-6">
+          <h2 class="font-display font-bold text-3xl sm:text-4xl text-slate-900 dark:text-white">Active Aging & Absolute Cost Transparency</h2>
+          <p class="text-slate-600 dark:text-slate-300 font-light leading-relaxed">
+            The ultimate human goal is lifelong functional autonomy—keeping the body machine responsive, dense, strong, and deeply capable at any stage of life. We design custom biological adaptation frameworks that grow alongside you.
+          </p>
+          <p class="text-slate-600 dark:text-slate-300 font-light leading-relaxed">
+            We operate with a commitment to raw honesty. There are no surprise upsells, complex recurring subscription traps, or vague training agendas. We lay out exactly what your specific biology requires to change and the exact personal discipline required to secure it.
+          </p>
+
+          <div class="flex flex-wrap gap-4 pt-4">
+            <div class="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-900 text-xs font-semibold text-slate-600 dark:text-slate-400 border border-slate-200/50 dark:border-slate-800/50">
+              ✓ No Hidden Charges
+            </div>
+            <div class="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-900 text-xs font-semibold text-slate-600 dark:text-slate-400 border border-slate-200/50 dark:border-slate-800/50">
+              ✓ Tailored For Your Anatomy
+            </div>
+            <div class="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-900 text-xs font-semibold text-slate-600 dark:text-slate-400 border border-slate-200/50 dark:border-slate-800/50">
+              ✓ Science-Backed Protocol
+            </div>
+          </div>
+        </div>
+
+        <div class="lg:col-span-6">
+          <div class="p-8 rounded-3xl bg-slate-50 dark:bg-brand-darkCard border border-slate-200/80 dark:border-slate-800/80 shadow-md space-y-6">
+            <h3 class="font-display font-bold text-xl text-slate-900 dark:text-white">The IanFit Accountability Pledge</h3>
+            
+            <div class="space-y-4">
+              <div class="p-4 rounded-xl bg-white dark:bg-brand-darkBg border border-slate-150 dark:border-slate-800">
+                <p class="text-xs font-bold uppercase tracking-widest text-brand-blue dark:text-brand-cyan">Rule 01: Full Biology Mapping</p>
+                <p class="text-sm text-slate-600 dark:text-slate-400 mt-1">We assess physical limitations before any loaded plan begins. No assumptions.</p>
+              </div>
+              <div class="p-4 rounded-xl bg-white dark:bg-brand-darkBg border border-slate-150 dark:border-slate-800">
+                <p class="text-xs font-bold uppercase tracking-widest text-brand-blue dark:text-brand-cyan">Rule 02: Realistic Timeframe Expectations</p>
+                <p class="text-sm text-slate-600 dark:text-slate-400 mt-1">True injury recovery takes structural remodeling time. We set explicit, data-driven timelines.</p>
+              </div>
+              <div class="p-4 rounded-xl bg-white dark:bg-brand-darkBg border border-slate-150 dark:border-slate-800">
+                <p class="text-xs font-bold uppercase tracking-widest text-brand-blue dark:text-brand-cyan">Rule 03: Complete Performance Autonomy</p>
+                <p class="text-sm text-slate-600 dark:text-slate-400 mt-1">Our primary purpose is teaching you how to maintain your own biomechanics forever without dependent coaching.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== FINAL CTA / OUTRO SECTION ==================== -->
+  <section class="relative py-24 overflow-hidden border-t border-slate-200/60 dark:border-slate-900/60">
+    <!-- Visual Gradient Overlays -->
+    <div class="absolute inset-0 bg-slate-50 dark:bg-brand-darkCard transition-colors"></div>
+    <div class="absolute -bottom-48 left-1/2 -translate-x-1/2 w-[700px] h-[400px] bg-gradient-to-tr from-brand-blue/15 to-brand-cyan/15 rounded-full blur-[100px] opacity-60 pointer-events-none"></div>
+
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center space-y-8">
+      <h2 class="font-display font-bold text-3xl sm:text-4xl md:text-5xl text-slate-900 dark:text-white tracking-tight">
+        Ready to build permanent <span class="bg-gradient-to-r from-brand-blue to-brand-cyan bg-clip-text text-transparent">injury resistance</span>?
+      </h2>
+      <p class="text-slate-600 dark:text-slate-300 max-w-2xl mx-auto font-light text-base sm:text-lg leading-relaxed">
+        Let's stop guessing with generic templates and address your unique biomechanics. Start with a direct, comprehensive form analysis or join an educational custom cohort.
+      </p>
+      
+      <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+        <a href="products.html" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-brand-blue hover:bg-blue-600 text-white font-semibold text-base transition-all shadow-md shadow-brand-blue/20 hover:shadow-lg">
+          View Programs
+        </a>
+        <a href="contact.html" class="w-full sm:w-auto px-8 py-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-brand-darkBg text-slate-900 dark:text-white font-semibold text-base transition-all hover:bg-slate-50 dark:hover:bg-slate-900">
+          Message Coach Ian
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== GLOBAL FOOTER ==================== -->
+  <footer class="border-t border-slate-200/80 dark:border-slate-900/80 bg-white dark:bg-brand-darkBg py-16 transition-colors duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+        
+        <!-- Column 1: Core Brand Identity -->
+        <div class="space-y-4 md:col-span-1">
+          <a href="index.html" class="flex items-center gap-2 group">
+            <div class="relative flex items-center justify-center w-8 h-8 rounded-lg bg-gradient-to-br from-brand-blue to-brand-cyan shadow-md">
+              <span class="text-white font-display font-bold text-sm tracking-wider">I</span>
+            </div>
+            <span class="font-display font-bold text-xl tracking-tight bg-gradient-to-r from-slate-900 to-slate-700 dark:from-white dark:to-slate-300 bg-clip-text text-transparent">
+              Ian<span class="text-brand-blue dark:text-brand-cyan">Fit</span>
+            </span>
+          </a>
+          <p class="text-xs text-slate-500 dark:text-slate-400 font-light leading-relaxed">
+            Pristine modern personal training, biomechanical realignment, and metabolic adaptation. Designed for physical autonomy and permanent recovery.
+          </p>
+        </div>
+
+        <!-- Column 2: Quick Links Tree -->
+        <div class="space-y-4">
+          <h4 class="font-display font-bold text-sm text-slate-900 dark:text-white uppercase tracking-wider">Programs & Methods</h4>
+          <ul class="space-y-2 text-xs">
+            <li><a href="products.html" class="text-slate-500 hover:text-brand-blue dark:text-slate-400 dark:hover:text-brand-cyan transition-colors">Corrective Reconstruction</a></li>
+            <li><a href="products.html" class="text-slate-500 hover:text-brand-blue dark:text-slate-400 dark:hover:text-brand-cyan transition-colors">The Body Matrix Protocol</a></li>
+            <li><a href="products.html" class="text-slate-500 hover:text-brand-blue dark:text-slate-400 dark:hover:text-brand-cyan transition-colors">Active Aging Program</a></li>
+            <li><a href="products.html" class="text-slate-500 hover:text-brand-blue dark:text-slate-400 dark:hover:text-brand-cyan transition-colors">Biomechanics Analysis</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 3: Corporate Links -->
+        <div class="space-y-4">
+          <h4 class="font-display font-bold text-sm text-slate-900 dark:text-white uppercase tracking-wider">Knowledge Base</h4>
+          <ul class="space-y-2 text-xs">
+            <li><a href="about.html" class="text-slate-500 hover:text-brand-blue dark:text-slate-400 dark:hover:text-brand-cyan transition-colors">Our Deep Philosophy</a></li>
+            <li><a href="blog.html" class="text-slate-500 hover:text-brand-blue dark:text-slate-400 dark:hover:text-brand-cyan transition-colors">Educational Articles</a></li>
+            <li><a href="contact.html" class="text-slate-500 hover:text-brand-blue dark:text-slate-400 dark:hover:text-brand-cyan transition-colors">Direct Inquiry</a></li>
+            <li><a href="privacy.html" class="text-slate-500 hover:text-brand-blue dark:text-slate-400 dark:hover:text-brand-cyan transition-colors">Privacy Policy</a></li>
+            <li><a href="terms.html" class="text-slate-500 hover:text-brand-blue dark:text-slate-400 dark:hover:text-brand-cyan transition-colors">Terms of Service</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 4: Newsletter Box -->
+        <div class="space-y-4">
+          <h4 class="font-display font-bold text-sm text-slate-900 dark:text-white uppercase tracking-wider">The Biomechanics Brief</h4>
+          <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+            Join 5,000+ athletes receiving zero-fluff, pure science updates on form, metabolism, and active movement.
+          </p>
+          <form class="flex gap-2" onsubmit="event.preventDefault(); alert('Subscribed to the Biomechanics Brief!');">
+            <input type="email" placeholder="Your biological email" class="w-full px-4 py-2.5 rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 text-xs focus:ring-2 focus:ring-brand-blue focus:outline-none dark:text-white" required>
+            <button class="px-4 py-2 rounded-lg bg-brand-blue hover:bg-blue-600 text-white font-medium text-xs transition-colors">
+              Subscribe
+            </button>
+          </form>
+        </div>
+
+      </div>
+
+      <!-- Footer Bottom -->
+      <div class="pt-8 border-t border-slate-100 dark:border-slate-900 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <p class="text-[11px] text-slate-400 dark:text-slate-500">&copy; <script>document.write(new Date().getFullYear())</script> IanFit LLC. All structural recovery rights reserved.</p>
+        <div class="flex gap-6 text-[11px] text-slate-400 dark:text-slate-500">
+          <a href="privacy.html" class="hover:text-brand-blue dark:hover:text-brand-cyan transition-colors">Privacy Policy</a>
+          <a href="terms.html" class="hover:text-brand-blue dark:hover:text-brand-cyan transition-colors">Terms of Service</a>
+          <a href="contact.html" class="hover:text-brand-blue dark:hover:text-brand-cyan transition-colors">Accessibility</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==================== SCRIPT SECTIONS (NATIVE INTERACTION LAW) ==================== -->
+  <script>
+    // 1. Dual Mode Theme System Controller
+    function applyInitialTheme() {
+      if (localStorage.getItem('theme') === 'dark' || 
+          (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+    }
+
+    function toggleTheme() {
+      if (document.documentElement.classList.contains('dark')) {
+        document.documentElement.classList.remove('dark');
+        localStorage.setItem('theme', 'light');
+      } else {
+        document.documentElement.classList.add('dark');
+        localStorage.setItem('theme', 'dark');
+      }
+    }
+
+    // Apply initial theme layout seamlessly
+    applyInitialTheme();
+
+    // 2. Responsive Mobile Drawer Interaction System
+    const mobileMenuButton = document.getElementById('mobileMenuButton');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    mobileMenuButton.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    // Close mobile menu on larger screen dynamic resize
+    window.addEventListener('resize', () => {
+      if (window.innerWidth >= 768) {
+        mobileMenu.classList.add('hidden');
+      }
+    });
+  </script>
+</body>
+</html>
