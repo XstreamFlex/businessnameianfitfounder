@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Re-Engineering the Squat & Hinge | IanFit Blog</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              blue: '#0055ff',
+              cyan: '#00e5ff',
+              darkBg: '#050814',
+              darkCard: '#0f1426',
+              lightBg: '#f8fafc',
+              lightCard: '#ffffff'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    .text-glow-blue {
+      text-shadow: 0 0 15px rgba(0, 85, 255, 0.4);
+    }
+    .text-glow-cyan {
+      text-shadow: 0 0 15px rgba(0, 229, 255, 0.4);
+    }
+  </style>
+  <script>
+    // Initialize dark/light theme before rendering to prevent flashing
+    if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  </script>
+</head>
+<body class="bg-brand-lightBg text-slate-900 dark:bg-brand-darkBg dark:text-slate-100 min-h-screen flex flex-col antialiased">
+
+  <!-- GLOBAL HEADER -->
+  <header class="sticky top-0 z-50 w-full backdrop-blur-md bg-white/80 dark:bg-brand-darkBg/80 border-b border-slate-200 dark:border-slate-800 transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        <!-- Brand Logo -->
+        <a href="index.html" class="flex items-center space-x-2 group">
+          <span class="text-2xl font-black tracking-tight text-slate-900 dark:text-white transition-colors duration-200">
+            IAN<span class="text-brand-blue group-hover:text-brand-cyan transition-colors duration-200">FIT</span>
+          </span>
+          <span class="h-2 w-2 rounded-full bg-brand-cyan animate-pulse"></span>
+        </a>
+
+        <!-- Desktop Navigation -->
+        <nav class="hidden md:flex space-x-8 items-center">
+          <a href="index.html" class="text-sm font-semibold text-slate-600 hover:text-brand-blue dark:text-slate-300 dark:hover:text-brand-cyan transition-colors">Home</a>
+          <a href="products.html" class="text-sm font-semibold text-slate-600 hover:text-brand-blue dark:text-slate-300 dark:hover:text-brand-cyan transition-colors">Programs</a>
+          <a href="about.html" class="text-sm font-semibold text-slate-600 hover:text-brand-blue dark:text-slate-300 dark:hover:text-brand-cyan transition-colors">About</a>
+          <a href="blog.html" class="text-sm font-semibold text-brand-blue dark:text-brand-cyan transition-colors">Blog</a>
+          <a href="contact.html" class="text-sm font-semibold text-slate-600 hover:text-brand-blue dark:text-slate-300 dark:hover:text-brand-cyan transition-colors">Contact</a>
+        </nav>
+
+        <!-- Theme Toggle & CTA -->
+        <div class="flex items-center space-x-4">
+          <!-- Theme Toggle Button -->
+          <button id="theme-toggle" type="button" aria-label="Toggle Theme" class="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-all">
+            <!-- Dark Mode (Moon) Icon -->
+            <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+              <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+            </svg>
+            <!-- Light Mode (Sun) Icon -->
+            <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464a1 1 0 101.414-1.414l-.707-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2h1a1 1 0 100 2h-1z" fill-rule="evenodd" clip-rule="evenodd"></path>
+            </svg>
+          </button>
+
+          <!-- Action Button -->
+          <a href="contact.html" class="hidden sm:inline-flex items-center px-5 py-2.5 text-sm font-bold text-white bg-brand-blue hover:bg-blue-700 rounded-xl transition-all shadow-lg shadow-blue-500/10 hover:shadow-blue-500/20">
+            Free Assessment
+          </a>
+
+          <!-- Mobile Menu Button -->
+          <button id="mobile-menu-btn" type="button" class="md:hidden p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-all">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Navigation Drawer -->
+    <div id="mobile-menu" class="hidden md:hidden bg-white dark:bg-brand-darkBg border-b border-slate-200 dark:border-slate-800 px-4 pt-2 pb-6 space-y-3">
+      <a href="index.html" class="block px-3 py-2.5 rounded-lg text-base font-semibold text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800">Home</a>
+      <a href="products.html" class="block px-3 py-2.5 rounded-lg text-base font-semibold text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800">Programs</a>
+      <a href="about.html" class="block px-3 py-2.5 rounded-lg text-base font-semibold text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800">About</a>
+      <a href="blog.html" class="block px-3 py-2.5 rounded-lg text-base font-semibold text-brand-blue dark:text-brand-cyan hover:bg-slate-50 dark:hover:bg-slate-800">Blog</a>
+      <a href="contact.html" class="block px-3 py-2.5 rounded-lg text-base font-semibold text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800">Contact</a>
+      <a href="contact.html" class="block w-full text-center px-3 py-3 rounded-lg text-base font-bold text-white bg-brand-blue hover:bg-blue-700">Free Assessment</a>
+    </div>
+  </header>
+
+  <!-- READING PROGRESS BAR -->
+  <div class="fixed top-20 left-0 w-full h-1 bg-slate-200 dark:bg-slate-800 z-50">
+    <div id="progress-bar" class="h-full bg-gradient-to-r from-brand-blue to-brand-cyan w-0 transition-all duration-100"></div>
+  </div>
+
+  <!-- MAIN ARTICLE CONTAINER -->
+  <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    
+    <!-- Breadcrumb -->
+    <nav class="flex mb-8 text-sm font-medium text-slate-500 dark:text-slate-400" aria-label="Breadcrumb">
+      <ol class="inline-flex items-center space-x-1 md:space-x-3">
+        <li class="inline-flex items-center">
+          <a href="index.html" class="hover:text-brand-blue dark:hover:text-brand-cyan transition-colors">Home</a>
+        </li>
+        <li>
+          <div class="flex items-center">
+            <svg class="w-3.5 h-3.5 text-slate-400 mx-1" aria-hidden="true" fill="none" viewBox="0 0 6 10">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+            </svg>
+            <a href="blog.html" class="hover:text-brand-blue dark:hover:text-brand-cyan transition-colors ml-1 md:ml-2">Blog</a>
+          </div>
+        </li>
+        <li aria-current="page">
+          <div class="flex items-center">
+            <svg class="w-3.5 h-3.5 text-slate-400 mx-1" aria-hidden="true" fill="none" viewBox="0 0 6 10">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+            </svg>
+            <span class="text-slate-400 dark:text-slate-500 ml-1 md:ml-2 truncate max-w-xs sm:max-w-none">Biomechanics Mastery</span>
+          </div>
+        </li>
+      </ol>
+    </nav>
+
+    <!-- ARTICLE HEADER -->
+    <header class="mb-12">
+      <div class="inline-flex items-center space-x-2 px-3 py-1.5 rounded-full bg-blue-50 dark:bg-blue-950/40 border border-blue-100 dark:border-blue-900/50 mb-6">
+        <span class="w-2 h-2 rounded-full bg-brand-blue animate-pulse"></span>
+        <span class="text-xs font-bold uppercase tracking-wider text-brand-blue dark:text-brand-cyan">Corrective Exercise & Biomechanics</span>
+      </div>
+      <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-tight mb-6 text-slate-900 dark:text-white">
+        The Biomechanics of Pain-Free Movement: <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-blue to-brand-cyan">Re-engineering the Squat & Hinge</span>
+      </h1>
+      
+      <!-- Author & Metadata -->
+      <div class="flex flex-wrap items-center justify-between gap-6 pb-8 border-b border-slate-200 dark:border-slate-800">
+        <div class="flex items-center space-x-4">
+          <!-- Author Avatar Placeholder with CSS design -->
+          <div class="relative w-12 h-12 rounded-full bg-gradient-to-br from-brand-blue to-brand-cyan flex items-center justify-center text-white font-black text-lg shadow-lg shadow-blue-500/10">
+            IF
+          </div>
+          <div>
+            <p class="text-base font-bold text-slate-900 dark:text-white">Ian</p>
+            <p class="text-xs text-slate-500 dark:text-slate-400">Founder & Head Coach, IanFit</p>
+          </div>
+        </div>
+        <div class="flex items-center space-x-6 text-sm text-slate-500 dark:text-slate-400">
+          <span class="flex items-center space-x-1.5">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+            <span>October 24, 2023</span>
+          </span>
+          <span class="flex items-center space-x-1.5">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+            <span>8 min read</span>
+          </span>
+        </div>
+      </div>
+    </header>
+
+    <!-- TWO-COLUMN ASYMMETRICAL LAYOUT -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+      
+      <!-- Article Content (8 columns) -->
+      <article class="lg:col-span-8 space-y-8 text-slate-700 dark:text-slate-300 leading-relaxed text-lg">
+        
+        <p class="text-xl font-medium text-slate-800 dark:text-slate-200 leading-relaxed">
+          Joint pain during fundamental movements is rarely a sign of "aging" or "weakness." Instead, it is almost always the consequence of poor structural engineering. When we ignore the underlying biomechanics of how the human frame is designed to disperse torque, we transform basic movement patterns into destructive friction machines.
+        </p>
+
+        <p>
+          At IanFit, we specialize in moving out of pain permanently. We do this not by prescribing superficial stretches or resting endlessly, but by meticulously identifying destructive movement habits and re-engineering your mechanics from the ground up. In this deep-dive guide, we are going to tear down and rebuild the two most essential movement frameworks in human movement: <strong>The Hip Hinge</strong> and <strong>The Squat</strong>.
+        </p>
+
+        <!-- Dynamic High-contrast Callout Section -->
+        <div class="p-6 sm:p-8 rounded-2xl bg-gradient-to-r from-blue-500/10 to-cyan-500/10 border border-blue-500/20 dark:border-cyan-500/30">
+          <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">The IanFit Rule of Joint Integrity</h3>
+          <p class="text-sm sm:text-base">
+            "Your joints do not exist in isolation. If the joint directly above or directly below a movement plane does not maintain structural stability, the middle joint will absorb the excess shear force to prevent systemic structural collapse."
+          </p>
+        </div>
+
+        <h2 class="text-3xl font-bold tracking-tight text-slate-900 dark:text-white pt-6">
+          1. The Physics of Joint Loading: Squat vs. Hinge
+        </h2>
+        <p>
+          Before we attempt corrective action, we must clarify what these movements actually represent in biological terms. While they look superficially similar—both involve bending at the hips and knees—they utilize entirely different leverage systems:
+        </p>
+
+        <ul class="space-y-4 list-none pl-0">
+          <li class="flex items-start">
+            <span class="flex-shrink-0 w-6 h-6 rounded-md bg-brand-blue/10 text-brand-blue dark:bg-brand-blue/20 dark:text-brand-cyan flex items-center justify-center font-bold text-xs mr-3 mt-1">1</span>
+            <div>
+              <strong class="text-slate-900 dark:text-white">The Squat:</strong> A vertical displacement pattern. It is a knee-dominant mechanism designed to maintain an upright torso while maximizing depth. Force is distributed globally across the quadriceps, glutes, and calves.
+            </div>
+          </li>
+          <li class="flex items-start">
+            <span class="flex-shrink-0 w-6 h-6 rounded-md bg-brand-blue/10 text-brand-blue dark:bg-brand-blue/20 dark:text-brand-cyan flex items-center justify-center font-bold text-xs mr-3 mt-1">2</span>
+            <div>
+              <strong class="text-slate-900 dark:text-white">The Hip Hinge:</strong> A horizontal posterior-displacement pattern. It is a hip-dominant mechanism designed to maximize posterior tension (glutes and hamstrings) while protecting the anterior knee and lumbar spine.
+            </div>
+          </li>
+        </ul>
+
+        <p>
+          When you mistake a hinge for a squat (or vice-versa), you introduce severe shear force into structural nodes—most notably, the lumbar vertebrae and the patellar tendon.
+        </p>
+
+        <!-- Asymmetric Bento-Style Insight Box -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 my-8">
+          <div class="p-6 rounded-2xl bg-white dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800 shadow-sm">
+            <span class="text-xs font-bold uppercase tracking-wider text-brand-blue dark:text-brand-cyan">Destructive habit</span>
+            <h4 class="text-lg font-bold text-slate-900 dark:text-white mt-2 mb-2">The Knee-First Descent</h4>
+            <p class="text-sm">Initiating a squat by driving the knees forward without unlocking the hips first. This forces the patella to absorb nearly 100% of the bodyweight load under immense kinetic tension.</p>
+          </div>
+          <div class="p-6 rounded-2xl bg-white dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800 shadow-sm">
+            <span class="text-xs font-bold uppercase tracking-wider text-rose-500">Destructive habit</span>
+            <h4 class="text-lg font-bold text-slate-900 dark:text-white mt-2 mb-2">Lumbar Compensation</h4>
+            <p class="text-sm">Rounding the lower back to reach deeper in a hinge, rather than driving the pelvis backward. This places extreme pressure on the spinal discs under load.</p>
+          </div>
+        </div>
+
+        <h2 class="text-3xl font-bold tracking-tight text-slate-900 dark:text-white pt-6">
+          2. The Spine-Saving Formula: Creating Torque
+        </h2>
+        <p>
+          How do we prevent joint shear permanently? The answer lies in <em>torque</em>. To create a pristine, rigid structural posture, you must establish external rotational force through your feet before you move a single inch.
+        </p>
+        <p>
+          Imagine your feet are giant screwdrivers. Once your feet are placed, try to actively "screw" your feet into the floor—your left foot turning counter-clockwise, and your right foot turning clockwise.
+        </p>
+        
+        <blockquote class="border-l-4 border-brand-blue pl-6 my-6 italic text-slate-800 dark:text-slate-200">
+          "This simple rotational engagement instantly activates your gluteus medius, stabilizes the pelvis, opens up space in the hip sockets, and aligns the knee track directly over the second toe. The dynamic structure is locked."
+        </blockquote>
+
+        <h2 class="text-3xl font-bold tracking-tight text-slate-900 dark:text-white pt-6">
+          3. Step-by-Step Re-engineering Blueprints
+        </h2>
+
+        <!-- Tabular Blueprint Display -->
+        <div class="border border-slate-200 dark:border-slate-800 rounded-2xl overflow-hidden bg-white dark:bg-brand-darkCard">
+          <div class="p-5 border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/50">
+            <h3 class="text-lg font-bold text-slate-900 dark:text-white">Active Alignment Checklist</h3>
+          </div>
+          <div class="divide-y divide-slate-200 dark:divide-slate-800">
+            <div class="p-5 sm:grid sm:grid-cols-3 sm:gap-4">
+              <dt class="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wider">Phase</dt>
+              <dd class="mt-1 text-sm sm:col-span-2 sm:mt-0 font-bold text-brand-blue dark:text-brand-cyan">The Safe Squat Blueprint</dd>
+            </div>
+            <div class="p-5 sm:grid sm:grid-cols-3 sm:gap-4">
+              <dt class="text-sm font-medium text-slate-500 dark:text-slate-400">1. Stance & Setup</dt>
+              <dd class="mt-1 text-sm text-slate-950 dark:text-slate-200 sm:col-span-2 sm:mt-0">Feet slightly wider than shoulder-width, toes angled 15-30 degrees outward. Push your heels down and engage the "screwdriver" torque.</dd>
+            </div>
+            <div class="p-5 sm:grid sm:grid-cols-3 sm:gap-4">
+              <dt class="text-sm font-medium text-slate-500 dark:text-slate-400">2. The Initiation</dt>
+              <dd class="mt-1 text-sm text-slate-950 dark:text-slate-200 sm:col-span-2 sm:mt-0">Simultaneously unlock your hips and knees. Pull your tailbone directly down between your heels, keeping your chest tall.</dd>
+            </div>
+            <div class="p-5 sm:grid sm:grid-cols-3 sm:gap-4">
+              <dt class="text-sm font-medium text-slate-500 dark:text-slate-400">3. The Apex</dt>
+              <dd class="mt-1 text-sm text-slate-950 dark:text-slate-200 sm:col-span-2 sm:mt-0">Stop descending immediately if your lower spine begins to tuck ("butt wink"). Maintain strict tension at the bottom, then drive through the floor to return.</dd>
+            </div>
+          </div>
+        </div>
+
+        <h2 class="text-3xl font-bold tracking-tight text-slate-900 dark:text-white pt-6">
+          The Long-term Autonomy Advantage
+        </h2>
+        <p>
+          Mastering these biomechanics is not simply about being able to lift more weight in a gym setting. It is about preservation. Keeping your hips highly responsive, your knees perfectly tracked, and your spine deeply stabilized means keeping your body functional, strong, and independent at age 40, 60, and 80.
+        </p>
+        <p>
+          At IanFit, we translate these complex physiological mechanics into straightforward rules. Moving without pain is a choice, and it starts with the way you approach your very next repetition.
+        </p>
+
+        <!-- Dynamic Author Sign-off -->
+        <div class="pt-8 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between">
+          <div>
+            <p class="font-bold text-slate-900 dark:text-white">Written by Ian</p>
+            <p class="text-sm text-slate-500 dark:text-slate-400">Do you need a custom movement assessment? Reach out today.</p>
+          </div>
+          <a href="contact.html" class="inline-flex items-center px-4 py-2 text-sm font-bold text-brand-blue dark:text-brand-cyan hover:underline">
+            Get Checked &rarr;
+          </a>
+        </div>
+
+      </article>
+
+      <!-- SIDEBAR / BENTO SIDE PANELS (4 columns) -->
+      <aside class="lg:col-span-4 space-y-8">
+        
+        <!-- Interactive Newsletter Card -->
+        <div class="p-6 rounded-3xl bg-slate-100 dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800/80 shadow-md relative overflow-hidden">
+          <div class="absolute top-0 right-0 w-32 h-32 bg-brand-blue/10 rounded-full blur-3xl"></div>
+          <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Get Weekly Biomechanics Breakdowns</h3>
+          <p class="text-sm text-slate-600 dark:text-slate-400 mb-6">
+            We send ultra-practical, high-leverage physiology and corrective drills straight to your inbox. No noise. Just biomechanics.
+          </p>
+          <form class="space-y-3" onsubmit="event.preventDefault(); alert('Thank you for subscribing! Check your inbox soon.');">
+            <div>
+              <label for="email" class="sr-only">Email address</label>
+              <input type="email" id="email" required placeholder="your.email@gmail.com" class="w-full px-4 py-3 rounded-xl bg-white dark:bg-slate-900 text-sm border border-slate-200 dark:border-slate-800 focus:outline-none focus:ring-2 focus:ring-brand-blue" />
+            </div>
+            <button type="submit" class="w-full py-3 px-4 text-sm font-bold text-white bg-brand-blue hover:bg-blue-700 rounded-xl transition-all shadow-md shadow-blue-500/10">
+              Join 12,000+ Lifters
+            </button>
+          </form>
+        </div>
+
+        <!-- Bento Spotlight: Core Training Philosophy -->
+        <div class="p-6 rounded-3xl bg-white dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800 shadow-md">
+          <span class="text-xs font-bold uppercase tracking-wider text-brand-cyan">The Core Matrix</span>
+          <h3 class="text-xl font-bold text-slate-900 dark:text-white mt-1 mb-4">Why IanFit Rules</h3>
+          
+          <div class="space-y-4">
+            <div class="flex space-x-3">
+              <svg class="w-5 h-5 text-brand-blue flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+              <div>
+                <h4 class="text-sm font-bold text-slate-900 dark:text-white">Active Recovery First</h4>
+                <p class="text-xs text-slate-500 dark:text-slate-400">Identify bad habits & re-engineer patterns permanently.</p>
+              </div>
+            </div>
+            <div class="flex space-x-3">
+              <svg class="w-5 h-5 text-brand-blue flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+              <div>
+                <h4 class="text-sm font-bold text-slate-900 dark:text-white">No Hidden Costs</h4>
+                <p class="text-xs text-slate-500 dark:text-slate-400">Complete biological transparency. You pay for execution.</p>
+              </div>
+            </div>
+            <div class="flex space-x-3">
+              <svg class="w-5 h-5 text-brand-blue flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+              <div>
+                <h4 class="text-sm font-bold text-slate-900 dark:text-white">The Body Matrix System</h4>
+                <p class="text-xs text-slate-500 dark:text-slate-400">Connecting brain, lung, heart, gut, and muscle action.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Related Reading Bento -->
+        <div class="p-6 rounded-3xl bg-white dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800 shadow-md">
+          <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-4">Related Masterclasses</h3>
+          <div class="space-y-4">
+            <a href="blog.html" class="block group">
+              <p class="text-xs font-semibold text-brand-blue dark:text-brand-cyan uppercase">Metabolic Adaptation</p>
+              <h4 class="text-sm font-bold text-slate-900 dark:text-white group-hover:text-brand-blue dark:group-hover:text-brand-cyan transition-colors mt-0.5">The Engine of Energy: Pulling Back the Curtain on Fat Loss</h4>
+            </a>
+            <hr class="border-slate-100 dark:border-slate-800" />
+            <a href="blog.html" class="block group">
+              <p class="text-xs font-semibold text-brand-blue dark:text-brand-cyan uppercase">Active Aging</p>
+              <h4 class="text-sm font-bold text-slate-900 dark:text-white group-hover:text-brand-blue dark:group-hover:text-brand-cyan transition-colors mt-0.5">Autonomy Over 50: Keep Your Kinetic Machine Responsive</h4>
+            </a>
+          </div>
+        </div>
+
+      </aside>
+
+    </div>
+
+  </main>
+
+  <!-- GLOBAL FOOTER -->
+  <footer class="bg-white dark:bg-brand-darkBg border-t border-slate-200 dark:border-slate-800 transition-colors duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+        <!-- Brand Info -->
+        <div class="space-y-4">
+          <a href="index.html" class="flex items-center space-x-2 group">
+            <span class="text-xl font-black tracking-tight text-slate-900 dark:text-white">
+              IAN<span class="text-brand-blue">FIT</span>
+            </span>
+            <span class="h-2 w-2 rounded-full bg-brand-cyan"></span>
+          </a>
+          <p class="text-sm text-slate-500 dark:text-slate-400">
+            Ultra-accessible, deeply educational personal training and permanent physical autonomy. Move with purpose, live with power.
+          </p>
+        </div>
+
+        <!-- Navigation Links -->
+        <div>
+          <h4 class="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wider mb-4">Explore</h4>
+          <ul class="space-y-2 text-sm">
+            <li><a href="index.html" class="text-slate-500 dark:text-slate-400 hover:text-brand-blue dark:hover:text-brand-cyan transition-colors">Home</a></li>
+            <li><a href="products.html" class="text-slate-500 dark:text-slate-400 hover:text-brand-blue dark:hover:text-brand-cyan transition-colors">Programs</a></li>
+            <li><a href="about.html" class="text-slate-500 dark:text-slate-400 hover:text-brand-blue dark:hover:text-brand-cyan transition-colors">About Us</a></li>
+            <li><a href="blog.html" class="text-slate-500 dark:text-slate-400 hover:text-brand-blue dark:hover:text-brand-cyan transition-colors">Blog</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact / Info -->
+        <div>
+          <h4 class="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wider mb-4">Specialties</h4>
+          <ul class="space-y-2 text-sm text-slate-500 dark:text-slate-400">
+            <li>Corrective Joint Movement</li>
+            <li>Energy Path Adaptation</li>
+            <li>Neuromuscular Resilience</li>
+            <li>Cost & Goal Transparency</li>
+          </ul>
+        </div>
+
+        <!-- Action / Assessment -->
+        <div class="space-y-4">
+          <h4 class="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wider mb-4">Ready to start?</h4>
+          <p class="text-sm text-slate-500 dark:text-slate-400">Book an absolute transparency assessment today.</p>
+          <a href="contact.html" class="inline-flex w-full justify-center items-center px-4 py-2.5 text-sm font-bold text-white bg-brand-blue hover:bg-blue-700 rounded-xl transition-all shadow-md">
+            Get Your Free Blueprint
+          </a>
+        </div>
+      </div>
+
+      <!-- Legal Footer -->
+      <div class="pt-8 border-t border-slate-200 dark:border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <p class="text-xs text-slate-500 dark:text-slate-400">
+          &copy; 2023 IanFit. All rights reserved. Built for permanent athletic recovery.
+        </p>
+        <div class="flex space-x-6 text-xs text-slate-500 dark:text-slate-400">
+          <a href="privacy.html" class="hover:text-brand-blue dark:hover:text-brand-cyan transition-colors">Privacy Policy</a>
+          <a href="terms.html" class="hover:text-brand-blue dark:hover:text-brand-cyan transition-colors">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- DYNAMIC INTERACTION SCRIPTS -->
+  <script>
+    // Theme Switcher Implementation
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+    const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+
+    // Sync theme display icons
+    function syncThemeIcons() {
+      if (document.documentElement.classList.contains('dark')) {
+        themeToggleLightIcon.classList.remove('hidden');
+        themeToggleDarkIcon.classList.add('hidden');
+      } else {
+        themeToggleDarkIcon.classList.remove('hidden');
+        themeToggleLightIcon.classList.add('hidden');
+      }
+    }
+    syncThemeIcons();
+
+    // Toggle theme action
+    themeToggleBtn.addEventListener('click', () => {
+      if (document.documentElement.classList.contains('dark')) {
+        document.documentElement.classList.remove('dark');
+        localStorage.setItem('theme', 'light');
+      } else {
+        document.documentElement.classList.add('dark');
+        localStorage.setItem('theme', 'dark');
+      }
+      syncThemeIcons();
+    });
+
+    // Mobile Hamburger Menu Toggle
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    // Scroll Progress Indicator
+    window.addEventListener('scroll', () => {
+      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      document.getElementById('progress-bar').style.width = scrolled + '%';
+    });
+  </script>
+</body>
+</html>
