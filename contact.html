@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Connect with IanFit | Core Diagnostics & Coaching Intake</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+    .glow-hover:hover {
+      box-shadow: 0 0 25px rgba(0, 82, 255, 0.25);
+    }
+    .dark .glow-hover:hover {
+      box-shadow: 0 0 25px rgba(0, 240, 255, 0.2);
+    }
+    /* Hide scrollbar for Chrome, Safari and Opera */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    /* Hide scrollbar for IE, Edge and Firefox */
+    .no-scrollbar {
+      -ms-overflow-style: none;  /* IE and Edge */
+      scrollbar-width: none;  /* Firefox */
+    }
+  </style>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            electric: {
+              500: '#0052FF',
+              600: '#0041CC',
+              700: '#0033A0',
+            },
+            cyanNeon: {
+              400: '#00F0FF',
+              500: '#00D8E6',
+            },
+            darkBg: '#080C14',
+            darkCard: '#0F1626'
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-slate-50 text-slate-900 dark:bg-darkBg dark:text-slate-100 transition-colors duration-300 flex flex-col min-h-screen">
+
+  <!-- GLOBAL NAV BAR -->
+  <header class="sticky top-0 z-50 w-full border-b border-slate-200/80 bg-white/80 backdrop-blur-md dark:border-slate-800/80 dark:bg-darkBg/80 transition-colors duration-300">
+    <div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
+      <!-- Logo -->
+      <a href="index.html" class="flex items-center space-x-2">
+        <span class="text-2xl font-extrabold tracking-tight bg-gradient-to-r from-electric-500 to-cyanNeon-400 bg-clip-text text-transparent">
+          Ian<span class="dark:text-white text-slate-900 transition-colors duration-300">Fit</span>
+        </span>
+      </a>
+
+      <!-- Desktop Navigation Tree -->
+      <nav class="hidden md:flex items-center space-x-8 text-sm font-semibold tracking-wide">
+        <a href="index.html" class="text-slate-600 hover:text-electric-500 dark:text-slate-300 dark:hover:text-cyanNeon-400 transition-colors duration-200">Home</a>
+        <a href="products.html" class="text-slate-600 hover:text-electric-500 dark:text-slate-300 dark:hover:text-cyanNeon-400 transition-colors duration-200">Programs</a>
+        <a href="about.html" class="text-slate-600 hover:text-electric-500 dark:text-slate-300 dark:hover:text-cyanNeon-400 transition-colors duration-200">About</a>
+        <a href="blog.html" class="text-slate-600 hover:text-electric-500 dark:text-slate-300 dark:hover:text-cyanNeon-400 transition-colors duration-200">Articles</a>
+        <a href="contact.html" class="text-electric-500 dark:text-cyanNeon-400 font-bold border-b-2 border-electric-500 dark:border-cyanNeon-400 pb-0.5">Contact</a>
+      </nav>
+
+      <!-- Action Area: Theme Toggle & Navigation CTA -->
+      <div class="flex items-center space-x-4">
+        <!-- Sun/Moon Theme Toggle -->
+        <button id="theme-toggle" type="button" aria-label="Toggle system theme" class="rounded-lg p-2.5 text-slate-500 hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-electric-500/50 dark:text-slate-400 dark:hover:bg-slate-800 dark:focus:ring-cyanNeon-400/50 transition-all duration-200">
+          <!-- Moon Icon (Visible in Light Mode) -->
+          <svg id="theme-toggle-moon-icon" class="hidden h-5 w-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+          </svg>
+          <!-- Sun Icon (Visible in Dark Mode) -->
+          <svg id="theme-toggle-sun-icon" class="hidden h-5 w-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+            <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464a1 1 0 101.414-1.414l-.707-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2h1a1 1 0 100 2H4z" fill-rule="evenodd" clip-rule="evenodd"></path>
+          </svg>
+        </button>
+
+        <!-- CTA Button -->
+        <a href="contact.html" class="hidden sm:inline-flex items-center justify-center rounded-full bg-electric-500 px-5 py-2 text-sm font-bold text-white transition-all duration-300 hover:bg-electric-600 hover:scale-[1.02] active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-electric-500/50 dark:bg-cyanNeon-400 dark:text-darkBg dark:hover:bg-cyanNeon-500 shadow-md">
+          Join Program
+        </a>
+
+        <!-- Mobile Menu Toggle -->
+        <button id="mobile-menu-btn" class="md:hidden p-2 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg">
+          <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Navigation Menu -->
+    <div id="mobile-menu" class="hidden md:hidden border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-darkBg px-6 py-4 space-y-3">
+      <a href="index.html" class="block text-slate-600 hover:text-electric-500 dark:text-slate-300 dark:hover:text-cyanNeon-400 font-semibold">Home</a>
+      <a href="products.html" class="block text-slate-600 hover:text-electric-500 dark:text-slate-300 dark:hover:text-cyanNeon-400 font-semibold">Programs</a>
+      <a href="about.html" class="block text-slate-600 hover:text-electric-500 dark:text-slate-300 dark:hover:text-cyanNeon-400 font-semibold">About</a>
+      <a href="blog.html" class="block text-slate-600 hover:text-electric-500 dark:text-slate-300 dark:hover:text-cyanNeon-400 font-semibold">Articles</a>
+      <a href="contact.html" class="block text-electric-500 dark:text-cyanNeon-400 font-bold">Contact</a>
+      <a href="contact.html" class="w-full inline-flex items-center justify-center rounded-full bg-electric-500 dark:bg-cyanNeon-400 px-5 py-2.5 text-sm font-bold text-white dark:text-darkBg">Join Program</a>
+    </div>
+  </header>
+
+  <!-- MAIN CORE CONTENT AREA -->
+  <main class="flex-grow">
+    
+    <!-- Hero / Header Section -->
+    <section class="relative overflow-hidden py-16 md:py-24 border-b border-slate-100 dark:border-slate-900/60">
+      <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(0,82,255,0.08),transparent_50%)] dark:bg-[radial-gradient(ellipse_at_top_right,rgba(0,240,255,0.05),transparent_50%)]"></div>
+      <div class="mx-auto max-w-4xl px-6 text-center relative z-10">
+        <span class="inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-wider text-electric-500 bg-electric-500/10 dark:text-cyanNeon-400 dark:bg-cyanNeon-400/10 mb-6">
+          Direct Access Gateway
+        </span>
+        <h1 class="text-4xl md:text-6xl font-black tracking-tight text-slate-900 dark:text-white leading-tight">
+          Let’s Re-Engineer <br class="hidden sm:inline" />
+          <span class="bg-gradient-to-r from-electric-500 to-cyanNeon-400 bg-clip-text text-transparent">Your Physical Matrix</span>
+        </h1>
+        <p class="mt-6 text-lg md:text-xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto leading-relaxed">
+          Skip the generic templates and empty promises. Apply below for customized biomechanics adjustment, permanent injury recovery, and metabolically matched custom design.
+        </p>
+      </div>
+    </section>
+
+    <!-- Asymmetrical Bento Grid Intake & Information Ecosystem -->
+    <section class="py-16 px-6 mx-auto max-w-7xl">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        
+        <!-- CARD A: The Core Diagnostics Form (Spans 2 columns on Desktop, Span 2 rows tall) -->
+        <div class="lg:col-span-2 bg-white dark:bg-darkCard rounded-3xl border border-slate-200/80 dark:border-slate-800/80 p-8 md:p-10 shadow-sm relative overflow-hidden transition-all duration-300 glow-hover">
+          <div class="absolute top-0 right-0 w-32 h-32 bg-electric-500/5 dark:bg-cyanNeon-400/5 rounded-full blur-2xl"></div>
+          
+          <div class="mb-8">
+            <h2 class="text-2xl md:text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white">
+              Application & Diagnostic Intake
+            </h2>
+            <p class="mt-2 text-sm text-slate-500 dark:text-slate-400">
+              Provide honest physiological baselines. Coach Ian reads and diagnostics-matches every single intake form within 12 hours.
+            </p>
+          </div>
+
+          <!-- Dynamic Contact/Application Intake Form -->
+          <form id="intake-form" onsubmit="handleIntakeSubmit(event)" class="space-y-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <!-- Full Name -->
+              <div>
+                <label for="full-name" class="block text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-2">Full Name</label>
+                <input type="text" id="full-name" name="name" required placeholder="Ian Harrison" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3.5 text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-electric-500 dark:bg-slate-900/40 dark:border-slate-800 dark:text-slate-100 dark:focus:ring-cyanNeon-400 transition-all duration-200" />
+              </div>
+              <!-- Email Address -->
+              <div>
+                <label for="email" class="block text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-2">Email Address</label>
+                <input type="email" id="email" name="email" required placeholder="ian@example.com" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3.5 text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-electric-500 dark:bg-slate-900/40 dark:border-slate-800 dark:text-slate-100 dark:focus:ring-cyanNeon-400 transition-all duration-200" />
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <!-- Primary Adaptive Goal -->
+              <div>
+                <label for="goal" class="block text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-2">Primary Goal Focus</label>
+                <div class="relative">
+                  <select id="goal" name="goal" class="w-full appearance-none bg-slate-50 border border-slate-200 rounded-xl px-4 py-3.5 text-slate-900 focus:outline-none focus:ring-2 focus:ring-electric-500 dark:bg-slate-900/40 dark:border-slate-800 dark:text-slate-100 dark:focus:ring-cyanNeon-400 transition-all duration-200">
+                    <option value="injury-recovery">Corrective Exercise & Injury Recovery</option>
+                    <option value="biomechanics">Biomechanics & Movement Form Mastery</option>
+                    <option value="metabolic-fat">Fat Adaptation & Metabolic Optimization</option>
+                    <option value="aging-autonomy">Active Aging & Physical Autonomy</option>
+                    <option value="full-reconstruction">The Full Body Matrix Program</option>
+                  </select>
+                  <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-slate-500">
+                    <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Estimated Physical Commitment Level -->
+              <div>
+                <label for="commitment" class="block text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-2">Weekly Physical Commitment Availability</label>
+                <div class="relative">
+                  <select id="commitment" name="commitment" class="w-full appearance-none bg-slate-50 border border-slate-200 rounded-xl px-4 py-3.5 text-slate-900 focus:outline-none focus:ring-2 focus:ring-electric-500 dark:bg-slate-900/40 dark:border-slate-800 dark:text-slate-100 dark:focus:ring-cyanNeon-400 transition-all duration-200">
+                    <option value="1-2-hours">1 - 2 Hours / Week (Ultra-High Efficiency)</option>
+                    <option value="3-4-hours">3 - 4 Hours / Week (Optimal Scale-In)</option>
+                    <option value="5plus-hours">5+ Hours / Week (Elite System Integration)</option>
+                  </select>
+                  <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-slate-500">
+                    <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Current Chronic Pain / History Assessment Toggle style text area -->
+            <div>
+              <label for="pain-history" class="block text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-2">Describe Any Persistent Joint/Muscle Pain (If Applicable)</label>
+              <textarea id="pain-history" name="pain" rows="3" placeholder="Example: Left shoulder pinches when pressing overhead; lower back stiffness every morning." class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3.5 text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-electric-500 dark:bg-slate-900/40 dark:border-slate-800 dark:text-slate-100 dark:focus:ring-cyanNeon-400 transition-all duration-200 resize-none"></textarea>
+            </div>
+
+            <!-- Detailed Goals Message -->
+            <div>
+              <label for="message" class="block text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-2">Message & Background Context (Where are you starting from?)</label>
+              <textarea id="message" name="message" required rows="5" placeholder="Share anything you want Coach Ian to know before assessing your dynamic plan..." class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3.5 text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-electric-500 dark:bg-slate-900/40 dark:border-slate-800 dark:text-slate-100 dark:focus:ring-cyanNeon-400 transition-all duration-200 resize-none"></textarea>
+            </div>
+
+            <!-- Custom Checkbox (Transparency Agreement) -->
+            <div class="flex items-start">
+              <input id="transparency-consent" name="consent" type="checkbox" required class="mt-1 h-4 w-4 rounded border-slate-300 text-electric-500 focus:ring-electric-500 dark:border-slate-800 dark:bg-slate-900/40 dark:focus:ring-cyanNeon-400" />
+              <label for="transparency-consent" class="ml-3 text-xs text-slate-500 dark:text-slate-400 leading-normal">
+                I agree to receive precise, scientifically optimized response emails and acknowledge that IanFit strictly respects my data privacy without selling it to third parties.
+              </label>
+            </div>
+
+            <!-- CTA submit button -->
+            <button type="submit" class="w-full inline-flex items-center justify-center rounded-xl bg-electric-500 px-8 py-4 text-base font-bold text-white transition-all duration-300 hover:bg-electric-600 hover:shadow-lg dark:bg-cyanNeon-400 dark:text-darkBg dark:hover:bg-cyanNeon-500 active:scale-[0.99] focus:outline-none focus:ring-2 focus:ring-electric-500 dark:focus:ring-cyanNeon-400">
+              Submit Dynamic Assessment Request
+            </button>
+          </form>
+
+          <!-- Dynamic Success Screen overlay placeholder -->
+          <div id="form-success-card" class="hidden absolute inset-0 bg-white dark:bg-darkCard flex flex-col items-center justify-center text-center p-8 z-20">
+            <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-electric-500/10 text-electric-500 dark:bg-cyanNeon-400/10 dark:text-cyanNeon-400 mb-6">
+              <svg class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path>
+              </svg>
+            </div>
+            <h3 class="text-3xl font-extrabold text-slate-900 dark:text-white">Transmission Received</h3>
+            <p class="mt-3 text-slate-600 dark:text-slate-400 max-w-md mx-auto">
+              Your physical matrix markers have been submitted directly to Ian. Expect a customized initial corrective plan recommendation within 12 hours.
+            </p>
+            <button onclick="resetForm()" class="mt-8 text-sm font-bold text-electric-500 hover:text-electric-600 dark:text-cyanNeon-400 dark:hover:text-cyanNeon-500">
+              ← Submit Another Request
+            </button>
+          </div>
+        </div>
+
+        <!-- Sidebar Grid Content -->
+        <div class="flex flex-col gap-8">
+          
+          <!-- CARD B: Immediate SLA Diagnostic Priority -->
+          <div class="bg-gradient-to-br from-electric-600 to-electric-700 text-white dark:from-darkCard dark:to-slate-900 dark:border dark:border-slate-800/80 rounded-3xl p-8 relative overflow-hidden transition-all duration-300 glow-hover flex-grow">
+            <!-- Background element -->
+            <div class="absolute -right-10 -bottom-10 w-40 h-40 bg-white/5 rounded-full pointer-events-none"></div>
+
+            <div class="relative z-10 flex flex-col h-full justify-between">
+              <div>
+                <span class="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold bg-white/20 dark:bg-cyanNeon-400/15 text-white dark:text-cyanNeon-400 mb-6">
+                  SLA Response Guarantee
+                </span>
+                <h3 class="text-2xl font-extrabold leading-tight">
+                  No Corporate Gatekeepers. Straight to Ian.
+                </h3>
+                <p class="mt-4 text-sm text-slate-200 dark:text-slate-400 leading-relaxed">
+                  Every message goes straight to Head Coach Ian’s dashboard. There are no automated filters or unqualified support bots. Our commitment is direct human analysis of your biomechanics, every single time.
+                </p>
+              </div>
+
+              <div class="mt-8 border-t border-white/15 dark:border-slate-800 pt-6">
+                <div class="flex items-center space-x-3 mb-4">
+                  <span class="h-2.5 w-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                  <p class="text-xs font-semibold tracking-wider text-slate-200 dark:text-slate-400">CURRENT SLA RESPONSE RATE: &lt;12 HOURS</p>
+                </div>
+                <div class="flex flex-col space-y-2 text-sm">
+                  <a href="mailto:ian@ianfit.com" class="hover:underline flex items-center gap-2">
+                    <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                    ian@ianfit.co
+                  </a>
+                  <p class="flex items-center gap-2 text-slate-200 dark:text-slate-400">
+                    <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                    Virtual Assessment Globally / HQ in USA
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- CARD C: Physical Assessment Space Status (Asymmetrical layout) -->
+          <div class="bg-white dark:bg-darkCard rounded-3xl border border-slate-200/80 dark:border-slate-800/80 p-8 relative overflow-hidden transition-all duration-300 glow-hover">
+            <span class="text-xs font-bold uppercase tracking-widest text-electric-500 dark:text-cyanNeon-400">Location Strategy</span>
+            <h4 class="mt-3 text-lg font-bold text-slate-900 dark:text-white">Hybrid-Global Dynamic Coaching</h4>
+            <p class="mt-2 text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+              We leverage clean custom video biomechanics breakdowns. You submit structural recording assets; we deploy targeted corrective form matrices. High autonomy, highly precise.
+            </p>
+            <div class="mt-5 inline-flex items-center text-xs font-bold text-electric-500 dark:text-cyanNeon-400">
+              Available in All Countries Worldwide →
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive Bento Block: FAQ Accordion Section -->
+    <section class="py-12 px-6 mx-auto max-w-7xl">
+      <div class="bg-white dark:bg-darkCard rounded-3xl border border-slate-200/80 dark:border-slate-800/80 p-8 md:p-12 relative overflow-hidden">
+        <div class="max-w-3xl mx-auto">
+          <div class="text-center mb-12">
+            <span class="text-xs font-bold uppercase tracking-widest text-electric-500 dark:text-cyanNeon-400">Intake Clarified</span>
+            <h2 class="mt-3 text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white">
+              Essential Questions Answered
+            </h2>
+            <p class="mt-3 text-sm text-slate-500 dark:text-slate-400">
+              Understand the mechanics of our onboarding process before submitting your data.
+            </p>
+          </div>
+
+          <!-- Accordion Stack -->
+          <div class="space-y-4">
+            
+            <!-- Accordion item 1 -->
+            <div class="border-b border-slate-100 dark:border-slate-800/80 pb-4">
+              <button onclick="toggleAccordion('faq-1')" class="w-full flex items-center justify-between text-left py-2 font-bold text-slate-900 dark:text-white hover:text-electric-500 dark:hover:text-cyanNeon-400 transition-colors focus:outline-none">
+                <span>Who is Coach Ian’s primary training style designed for?</span>
+                <span id="faq-1-icon" class="text-xl transition-transform duration-200">+</span>
+              </button>
+              <div id="faq-1" class="hidden mt-2 text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
+                We cater to active high performers, aging populations searching for lifelong autonomy, and anyone experiencing chronic movement pain. If you have been stuck in injury cycles or feel plateaued because you lack raw biomechanical understanding, this method is optimized for your biology.
+              </div>
+            </div>
+
+            <!-- Accordion item 2 -->
+            <div class="border-b border-slate-100 dark:border-slate-800/80 pb-4">
+              <button onclick="toggleAccordion('faq-2')" class="w-full flex items-center justify-between text-left py-2 font-bold text-slate-900 dark:text-white hover:text-electric-500 dark:hover:text-cyanNeon-400 transition-colors focus:outline-none">
+                <span>How does virtual biomechanics coaching work?</span>
+                <span id="faq-2-icon" class="text-xl transition-transform duration-200">+</span>
+              </button>
+              <div id="faq-2" class="hidden mt-2 text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
+                You submit simple, structured smartphone videos of basic movement tests (squats, gates, shoulder rotations) taken from standard angles. Coach Ian analyzes alignment vectors, joint tracking, and muscular firing sequences to produce clear, actionable rules for correction.
+              </div>
+            </div>
+
+            <!-- Accordion item 3 -->
+            <div class="border-b border-slate-100 dark:border-slate-800/80 pb-4">
+              <button onclick="toggleAccordion('faq-3')" class="w-full flex items-center justify-between text-left py-2 font-bold text-slate-900 dark:text-white hover:text-electric-500 dark:hover:text-cyanNeon-400 transition-colors focus:outline-none">
+                <span>Is nutrition analysis included in physical coaching?</span>
+                <span id="faq-3-icon" class="text-xl transition-transform duration-200">+</span>
+              </button>
+              <div id="faq-3" class="hidden mt-2 text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
+                Yes. True athletic results require systemic synchronization. We cut out metabolic noise to teach the Body Matrix—how your stomach, brain, cardiorespiratory system, and physical output influence your mood, motivation, and physical transformation.
+              </div>
+            </div>
+
+            <!-- Accordion item 4 -->
+            <div class="border-b border-slate-100 dark:border-slate-800/80 pb-4">
+              <button onclick="toggleAccordion('faq-4')" class="w-full flex items-center justify-between text-left py-2 font-bold text-slate-900 dark:text-white hover:text-electric-500 dark:hover:text-cyanNeon-400 transition-colors focus:outline-none">
+                <span>How fast will I see relief from corrective physical exercise?</span>
+                <span id="faq-4-icon" class="text-xl transition-transform duration-200">+</span>
+              </button>
+              <div id="faq-4" class="hidden mt-2 text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
+                Many clients report immediate structural differences during their first physical training sessions because we re-engineer systemic motor patterns, rather than masking symptoms with localized heat or generic stretching protocols.
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- GLOBAL FOOTER -->
+  <footer class="bg-slate-100 border-t border-slate-200/60 dark:bg-darkBg dark:border-slate-900/80 text-slate-600 dark:text-slate-400 transition-colors duration-300">
+    <div class="mx-auto max-w-7xl px-6 py-12 md:py-16">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+        
+        <!-- Brand Segment -->
+        <div class="space-y-4">
+          <span class="text-xl font-black bg-gradient-to-r from-electric-500 to-cyanNeon-400 bg-clip-text text-transparent">
+            IanFit
+          </span>
+          <p class="text-xs leading-relaxed text-slate-500 dark:text-slate-400">
+            Ultra-accessible, deeply educational personal physical training and permanent athletic recovery. Building human movement systems designed to last a lifetime.
+          </p>
+        </div>
+
+        <!-- Relative Site Map Links -->
+        <div>
+          <h5 class="text-xs font-bold uppercase tracking-widest text-slate-900 dark:text-white mb-4">Ecosystem</h5>
+          <ul class="space-y-2 text-xs">
+            <li><a href="index.html" class="hover:text-electric-500 dark:hover:text-cyanNeon-400">Home Showcase</a></li>
+            <li><a href="products.html" class="hover:text-electric-500 dark:hover:text-cyanNeon-400">Service Programs</a></li>
+            <li><a href="about.html" class="hover:text-electric-500 dark:hover:text-cyanNeon-400">Scientific Foundation</a></li>
+            <li><a href="blog.html" class="hover:text-electric-500 dark:hover:text-cyanNeon-400">Educational Articles</a></li>
+          </ul>
+        </div>
+
+        <!-- Pillar Areas -->
+        <div>
+          <h5 class="text-xs font-bold uppercase tracking-widest text-slate-900 dark:text-white mb-4">Core Focus</h5>
+          <ul class="space-y-2 text-xs text-slate-500 dark:text-slate-400">
+            <li>Corrective Pain Mechanics</li>
+            <li>Energy Adaptability & Fat Loss</li>
+            <li>The Interconnected Body Matrix</li>
+            <li>Lifelong Athletic Autonomy</li>
+          </ul>
+        </div>
+
+        <!-- Direct Contact Status -->
+        <div>
+          <h5 class="text-xs font-bold uppercase tracking-widest text-slate-900 dark:text-white mb-4">Assigned Support</h5>
+          <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed mb-2">
+            No dynamic intake physical diagnostic fee required for first-round applications this season.
+          </p>
+          <a href="mailto:ian@ianfit.com" class="text-xs font-bold text-electric-500 dark:text-cyanNeon-400 hover:underline">ian@ianfit.co</a>
+        </div>
+      </div>
+
+      <!-- Legal Footnotes & Dynamic Backlinks -->
+      <div class="mt-12 pt-8 border-t border-slate-200 dark:border-slate-800/80 flex flex-col sm:flex-row items-center justify-between text-[11px] text-slate-500 dark:text-slate-500">
+        <p>© 2026 IanFit Physical Training & Permanent Recovery. All rights reserved.</p>
+        <div class="flex space-x-6 mt-4 sm:mt-0">
+          <a href="privacy.html" class="hover:underline hover:text-slate-900 dark:hover:text-white">Privacy Policy</a>
+          <a href="terms.html" class="hover:underline hover:text-slate-900 dark:hover:text-white">Terms of Optimization Service</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- DYNAMIC INTERACTIONS SCRIPTS -->
+  <script>
+    // Theme Switcher Core Setup
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    const sunIcon = document.getElementById('theme-toggle-sun-icon');
+    const moonIcon = document.getElementById('theme-toggle-moon-icon');
+
+    // Init Theme Check
+    if (localStorage.getItem('color-theme') === 'light' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: light)').matches)) {
+        document.documentElement.classList.remove('dark');
+        sunIcon.classList.add('hidden');
+        moonIcon.classList.remove('hidden');
+    } else {
+        document.documentElement.classList.add('dark');
+        sunIcon.classList.remove('hidden');
+        moonIcon.classList.add('hidden');
+    }
+
+    themeToggleBtn.addEventListener('click', function() {
+        sunIcon.classList.toggle('hidden');
+        moonIcon.classList.toggle('hidden');
+
+        if (document.documentElement.classList.contains('dark')) {
+            document.documentElement.classList.remove('dark');
+            localStorage.setItem('color-theme', 'light');
+        } else {
+            document.documentElement.classList.add('dark');
+            localStorage.setItem('color-theme', 'dark');
+        }
+    });
+
+    // Mobile Hamburger Menu Toggle
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    // Interactive Form Submit State Simulation
+    function handleIntakeSubmit(event) {
+      event.preventDefault();
+      // Show customized success screen overlay smoothly
+      const successOverlay = document.getElementById('form-success-card');
+      successOverlay.classList.remove('hidden');
+      successOverlay.classList.add('animate-fade-in');
+    }
+
+    function resetForm() {
+      document.getElementById('intake-form').reset();
+      const successOverlay = document.getElementById('form-success-card');
+      successOverlay.classList.add('hidden');
+    }
+
+    // Dynamic FAQ Accordion State System
+    function toggleAccordion(id) {
+      const element = document.getElementById(id);
+      const icon = document.getElementById(id + '-icon');
+      
+      if (element.classList.contains('hidden')) {
+        element.classList.remove('hidden');
+        icon.textContent = '−';
+        icon.classList.add('text-electric-500', 'dark:text-cyanNeon-400');
+      } else {
+        element.classList.add('hidden');
+        icon.textContent = '+';
+        icon.classList.remove('text-electric-500', 'dark:text-cyanNeon-400');
+      }
+    }
+  </script>
+</body>
+</html>
