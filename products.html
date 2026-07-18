@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IanFit | Premium Fitness Programs & Recovery Protocols</title>
+  <meta name="description" content="Explore IanFit's ultra-accessible, biomechanically precise training, injury recovery protocols, and metabolic blueprints. Complete cost transparency and deep physiological learning.">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            electricBlue: '#0052FF',
+            lightCyan: '#00E5FF',
+            darkBg: '#080B11',
+            darkCard: '#0F1524',
+            lightBg: '#FFFFFF',
+            lightCard: '#F8FAFC',
+          },
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Google Fonts: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    /* Premium glow effects and smooth transitions */
+    .glow-blue {
+      box-shadow: 0 0 25px -5px rgba(0, 82, 255, 0.2);
+    }
+    .dark .glow-blue {
+      box-shadow: 0 0 35px -5px rgba(0, 82, 255, 0.45);
+    }
+    .glow-cyan {
+      box-shadow: 0 0 25px -5px rgba(0, 229, 255, 0.15);
+    }
+    .dark .glow-cyan {
+      box-shadow: 0 0 35px -5px rgba(0, 229, 255, 0.35);
+    }
+    .transition-theme {
+      transition: background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
+                  border-color 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
+                  text-color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+                  box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+  </style>
+</head>
+<body class="bg-white text-slate-900 dark:bg-darkBg dark:text-slate-100 transition-theme font-sans overflow-x-hidden antialiased">
+
+  <!-- THEME LOADER SCRIPT -->
+  <script>
+    // Safe standard immediate-run theme setter to prevent layout flashes
+    (function () {
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+    })();
+  </script>
+
+  <!-- GLOBAL NAV HEADER -->
+  <header class="sticky top-0 z-50 w-full border-b border-slate-200/80 dark:border-slate-800/80 bg-white/80 dark:bg-darkBg/80 backdrop-blur-md transition-theme">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      
+      <!-- Logo Branding -->
+      <a href="index.html" class="flex items-center space-x-2.5 group">
+        <div class="relative flex items-center justify-center w-10 h-10 rounded-xl bg-gradient-to-br from-electricBlue to-lightCyan transition-transform group-hover:scale-105">
+          <span class="text-white font-extrabold text-xl tracking-tight">IF</span>
+          <!-- Dynamic ambient pulse -->
+          <div class="absolute inset-0 rounded-xl bg-electricBlue/40 blur-md -z-10 group-hover:opacity-100 opacity-50 transition-opacity"></div>
+        </div>
+        <div class="flex flex-col">
+          <span class="text-lg font-bold tracking-tight text-slate-900 dark:text-white transition-theme">IanFit</span>
+          <span class="text-[10px] font-semibold tracking-widest text-electricBlue dark:text-lightCyan uppercase -mt-1">Human Machine</span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Menu -->
+      <nav class="hidden md:flex items-center space-x-1 lg:space-x-2">
+        <a href="index.html" class="px-4 py-2 text-sm font-semibold rounded-lg text-slate-600 dark:text-slate-300 hover:text-electricBlue dark:hover:text-lightCyan hover:bg-slate-50 dark:hover:bg-slate-900/50 transition-all">Home</a>
+        <a href="products.html" class="px-4 py-2 text-sm font-bold rounded-lg text-electricBlue dark:text-lightCyan bg-slate-100/80 dark:bg-slate-800/60 transition-all border border-slate-200/50 dark:border-slate-700/50">Programs</a>
+        <a href="about.html" class="px-4 py-2 text-sm font-semibold rounded-lg text-slate-600 dark:text-slate-300 hover:text-electricBlue dark:hover:text-lightCyan hover:bg-slate-50 dark:hover:bg-slate-900/50 transition-all">About Ian</a>
+        <a href="blog.html" class="px-4 py-2 text-sm font-semibold rounded-lg text-slate-600 dark:text-slate-300 hover:text-electricBlue dark:hover:text-lightCyan hover:bg-slate-50 dark:hover:bg-slate-900/50 transition-all">Deep Science</a>
+        <a href="contact.html" class="px-4 py-2 text-sm font-semibold rounded-lg text-slate-600 dark:text-slate-300 hover:text-electricBlue dark:hover:text-lightCyan hover:bg-slate-50 dark:hover:bg-slate-900/50 transition-all font-medium">Contact</a>
+      </nav>
+
+      <!-- Theme Switcher & Actions -->
+      <div class="flex items-center space-x-4">
+        <!-- Sun/Moon Theme Toggle -->
+        <button id="themeToggle" class="relative p-2.5 rounded-xl border border-slate-200 dark:border-slate-800 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-500 dark:text-slate-400 transition-all focus:outline-none focus:ring-2 focus:ring-electricBlue/50" aria-label="Toggle visual theme">
+          <!-- Moon Icon (visible in light mode) -->
+          <svg id="themeIconMoon" class="w-5 h-5 hidden dark:block text-[#00E5FF]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m0-12.728l.707.707m12.728 12.728l.707-.707M12 8a4 4 0 100 8 4 4 0 000-8z"></path>
+          </svg>
+          <!-- Sun Icon (visible in dark mode) -->
+          <svg id="themeIconSun" class="w-5 h-5 block dark:hidden text-[#0052FF]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+          </svg>
+        </button>
+
+        <!-- CTA Action -->
+        <a href="contact.html" class="hidden sm:inline-flex items-center justify-center px-5 py-2.5 rounded-xl text-sm font-bold bg-slate-900 text-white hover:bg-electricBlue dark:bg-white dark:text-slate-900 dark:hover:bg-lightCyan dark:hover:text-slate-950 transition-all transform hover:-translate-y-0.5 active:translate-y-0 shadow-sm">
+          Assess My Biology
+        </a>
+
+        <!-- Mobile Menu Trigger -->
+        <button id="mobileMenuBtn" class="md:hidden p-2.5 rounded-xl border border-slate-200 dark:border-slate-800 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 transition-theme">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Drawer -->
+    <div id="mobileDrawer" class="hidden md:hidden border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-darkBg px-6 py-6 space-y-4 transition-all">
+      <a href="index.html" class="block py-2 text-base font-semibold text-slate-700 dark:text-slate-300 hover:text-electricBlue dark:hover:text-lightCyan">Home</a>
+      <a href="products.html" class="block py-2 text-base font-bold text-electricBlue dark:text-lightCyan">Programs</a>
+      <a href="about.html" class="block py-2 text-base font-semibold text-slate-700 dark:text-slate-300 hover:text-electricBlue dark:hover:text-lightCyan">About Ian</a>
+      <a href="blog.html" class="block py-2 text-base font-semibold text-slate-700 dark:text-slate-300 hover:text-electricBlue dark:hover:text-lightCyan">Deep Science</a>
+      <a href="contact.html" class="block py-2 text-base font-semibold text-slate-700 dark:text-slate-300 hover:text-electricBlue dark:hover:text-lightCyan">Contact</a>
+      <div class="pt-4 border-t border-slate-200 dark:border-slate-800">
+        <a href="contact.html" class="w-full flex items-center justify-center px-5 py-3 rounded-xl bg-electricBlue text-white font-bold hover:bg-blue-700 transition-all">Assess My Biology</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- PRODUCTS HERO SECTION -->
+  <section class="relative pt-12 pb-20 md:py-28 overflow-hidden">
+    <!-- Abstract ambient vector glow in background -->
+    <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-electricBlue/10 dark:bg-electricBlue/5 rounded-full blur-[120px] pointer-events-none -z-10"></div>
+    <div class="absolute top-1/3 left-1/3 -translate-y-1/2 w-[350px] h-[350px] bg-lightCyan/10 dark:bg-lightCyan/5 rounded-full blur-[100px] pointer-events-none -z-10"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <!-- Tag / Badge -->
+      <span class="inline-flex items-center px-4 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase bg-slate-100 dark:bg-slate-800 text-electricBlue dark:text-lightCyan mb-6 border border-slate-200/60 dark:border-slate-700/60">
+        Engineered Adaptations
+      </span>
+      
+      <!-- Main Title -->
+      <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight max-w-4xl mx-auto leading-tight">
+        Precision Training &amp; <br class="hidden sm:inline" />
+        <span class="bg-gradient-to-r from-electricBlue via-blue-600 to-lightCyan bg-clip-text text-transparent dark:from-white dark:to-lightCyan">Permanent Recovery Protocols</span>
+      </h1>
+      
+      <!-- Subtitle & Philosophic Core -->
+      <p class="mt-6 text-lg md:text-xl text-slate-600 dark:text-slate-300 max-w-2xl mx-auto leading-relaxed">
+        We do not guess; we design. Select from highly specialized blueprints built to resolve foundational movement pain, optimize metabolic adaptation, and establish active autonomy.
+      </p>
+
+      <!-- Transparent Cost Promise Banner -->
+      <div class="mt-8 inline-flex items-center space-x-3 bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800/80 px-5 py-3 rounded-2xl max-w-lg text-left">
+        <span class="flex-shrink-0 flex items-center justify-center w-8 h-8 rounded-full bg-emerald-500/10 text-emerald-500 dark:text-emerald-400">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
+        </span>
+        <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 font-medium">
+          <strong class="text-slate-900 dark:text-white font-bold">100% Transparent Commitments:</strong> No hidden setup fees, recurring traps, or obscure scaling structures. Choose your depth.
+        </p>
+      </div>
+
+      <!-- Filter Controls -->
+      <div class="mt-14 flex flex-wrap justify-center gap-2 max-w-xl mx-auto bg-slate-100/80 dark:bg-slate-900/40 p-1.5 rounded-2xl border border-slate-200/50 dark:border-slate-800/50">
+        <button onclick="filterProducts('all')" id="filter-all" class="filter-btn active-filter px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all bg-white dark:bg-darkCard text-slate-950 dark:text-white shadow-sm">
+          All Blueprints
+        </button>
+        <button onclick="filterProducts('recovery')" id="filter-recovery" class="filter-btn px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all text-slate-600 dark:text-slate-400 hover:text-slate-950 dark:hover:text-white">
+          Injury &amp; Biomechanics
+        </button>
+        <button onclick="filterProducts('metabolic')" id="filter-metabolic" class="filter-btn px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all text-slate-600 dark:text-slate-400 hover:text-slate-950 dark:hover:text-white">
+          Energy &amp; Diet
+        </button>
+        <button onclick="filterProducts('coaching')" id="filter-coaching" class="filter-btn px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all text-slate-600 dark:text-slate-400 hover:text-slate-950 dark:hover:text-white">
+          Bespoke Coaching
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ASYMMETRICAL BENTO GRID PRODUCTS SECTION -->
+  <section class="pb-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+    <div id="productGrid" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+      <!-- CARD 1: Core Injury & Recovery (Double-wide Bento layout) -->
+      <div class="product-card md:col-span-2 bg-slate-50 dark:bg-darkCard rounded-3xl border border-slate-200/80 dark:border-slate-800/60 p-6 sm:p-8 flex flex-col justify-between hover:border-electricBlue/40 dark:hover:border-lightCyan/30 transition-all duration-300 group shadow-sm hover:shadow-md" data-category="recovery">
+        <div>
+          <!-- Tag & Metric -->
+          <div class="flex items-center justify-between mb-6">
+            <span class="px-3.5 py-1.5 rounded-lg text-[11px] font-bold tracking-wider uppercase bg-red-500/10 text-red-500 border border-red-500/20">
+              Corrective Exercise
+            </span>
+            <span class="text-xs font-semibold text-slate-400 dark:text-slate-500">12-Week Guided Masterclass</span>
+          </div>
+
+          <!-- Title -->
+          <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-snug">
+            The Permanent Injury Recovery &amp; Re-Engineering Protocol
+          </h3>
+          
+          <!-- Philosophy breakdown -->
+          <p class="mt-4 text-slate-600 dark:text-slate-300 max-w-2xl leading-relaxed">
+            Move permanently out of physical pain. We isolate destructive motor-habits that trigger joint wear, and build structurally pristine form. This program teaches you how your muscles, fascia, and joints are biologically engineered to leverage force safely.
+          </p>
+
+          <!-- Core Curriculum Bullet points -->
+          <div class="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+            <div class="flex items-start space-x-2.5">
+              <span class="text-electricBlue dark:text-lightCyan mt-1 flex-shrink-0">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path></svg>
+              </span>
+              <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400"><strong class="font-semibold text-slate-800 dark:text-slate-200">Joint Alignment Science:</strong> Structural deconstruction of knees, back, &amp; hips.</p>
+            </div>
+            <div class="flex items-start space-x-2.5">
+              <span class="text-electricBlue dark:text-lightCyan mt-1 flex-shrink-0">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path></svg>
+              </span>
+              <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400"><strong class="font-semibold text-slate-800 dark:text-slate-200">Pain Mapping Matrix:</strong> Real-time assessment protocols to target neural issues.</p>
+            </div>
+            <div class="flex items-start space-x-2.5">
+              <span class="text-electricBlue dark:text-lightCyan mt-1 flex-shrink-0">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path></svg>
+              </span>
+              <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400"><strong class="font-semibold text-slate-800 dark:text-slate-200">Myofascial Release:</strong> Dynamic routines for restoring structural slide-and-glide.</p>
+            </div>
+            <div class="flex items-start space-x-2.5">
+              <span class="text-electricBlue dark:text-lightCyan mt-1 flex-shrink-0">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path></svg>
+              </span>
+              <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400"><strong class="font-semibold text-slate-800 dark:text-slate-200">Integrated Biomechanics:</strong> Progressions back to major athletic patterns.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Action Area & Cost Breakdown -->
+        <div class="mt-8 pt-6 border-t border-slate-200 dark:border-slate-800 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+          <div>
+            <span class="text-[10px] tracking-widest text-slate-400 dark:text-slate-500 uppercase font-bold">Total Investment</span>
+            <div class="flex items-baseline space-x-1.5 mt-0.5">
+              <span class="text-3xl font-black text-slate-900 dark:text-white">$349</span>
+              <span class="text-xs font-semibold text-slate-400 dark:text-slate-500">one-time payment</span>
+            </div>
+          </div>
+          <div class="flex items-center space-x-3">
+            <a href="contact.html?program=injury-recovery" class="inline-flex items-center justify-center px-6 py-3 rounded-xl text-sm font-bold text-white bg-electricBlue hover:bg-blue-600 transition-all shadow-md shadow-blue-500/10">
+              Apply Now
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD 2: Biomechanics Mastery (Standard layout) -->
+      <div class="product-card bg-slate-50 dark:bg-darkCard rounded-3xl border border-slate-200/80 dark:border-slate-800/60 p-6 flex flex-col justify-between hover:border-electricBlue/40 dark:hover:border-lightCyan/30 transition-all duration-300 group shadow-sm hover:shadow-md" data-category="recovery">
+        <div>
+          <!-- Tag & Metric -->
+          <div class="flex items-center justify-between mb-6">
+            <span class="px-3.5 py-1.5 rounded-lg text-[11px] font-bold tracking-wider uppercase bg-[#00E5FF]/10 text-slate-800 dark:text-[#00E5FF] border border-[#00E5FF]/20">
+              Biomechanics
+            </span>
+            <span class="text-xs font-semibold text-slate-400 dark:text-slate-500">6 Modules</span>
+          </div>
+
+          <!-- Title -->
+          <h3 class="text-xl sm:text-2xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-snug">
+            Human Movement &amp; Gait Mechanics
+          </h3>
+
+          <!-- Details -->
+          <p class="mt-4 text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+            Pristine mastery over our daily, deep fundamental human movement: walking, jogging, running, and complex lifting. We reconstruct kinetic patterns so your body naturally moves with minimal internal wear.
+          </p>
+
+          <!-- Core points -->
+          <ul class="mt-5 space-y-3">
+            <li class="flex items-center space-x-2.5 text-xs text-slate-600 dark:text-slate-400">
+              <span class="w-1.5 h-1.5 rounded-full bg-lightCyan"></span>
+              <span>Gait, hip spiral, and foot-strike mastery</span>
+            </li>
+            <li class="flex items-center space-x-2.5 text-xs text-slate-600 dark:text-slate-400">
+              <span class="w-1.5 h-1.5 rounded-full bg-lightCyan"></span>
+              <span>Kinetic chain leak analysis (head to toe)</span>
+            </li>
+            <li class="flex items-center space-x-2.5 text-xs text-slate-600 dark:text-slate-400">
+              <span class="w-1.5 h-1.5 rounded-full bg-lightCyan"></span>
+              <span>Proprioceptive awareness drilling protocols</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Price and Call-to-action -->
+        <div class="mt-8 pt-6 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between">
+          <div>
+            <span class="text-[10px] tracking-widest text-slate-400 dark:text-slate-500 uppercase font-bold">Price</span>
+            <p class="text-2xl font-black text-slate-900 dark:text-white">$199</p>
+          </div>
+          <a href="contact.html?program=biomechanics" class="inline-flex items-center justify-center p-3 rounded-xl text-xs font-bold text-slate-900 dark:text-white hover:text-white hover:bg-electricBlue bg-slate-200/50 dark:bg-slate-800/80 transition-all">
+            Secure Access
+          </a>
+        </div>
+      </div>
+
+      <!-- CARD 3: Energy Engine & Diet (Standard layout) -->
+      <div class="product-card bg-slate-50 dark:bg-darkCard rounded-3xl border border-slate-200/80 dark:border-slate-800/60 p-6 flex flex-col justify-between hover:border-electricBlue/40 dark:hover:border-lightCyan/30 transition-all duration-300 group shadow-sm hover:shadow-md" data-category="metabolic">
+        <div>
+          <!-- Tag & Metric -->
+          <div class="flex items-center justify-between mb-6">
+            <span class="px-3.5 py-1.5 rounded-lg text-[11px] font-bold tracking-wider uppercase bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20">
+              Energy &amp; Fat Loss
+            </span>
+            <span class="text-xs font-semibold text-slate-400 dark:text-slate-500">8-Week Blueprint</span>
+          </div>
+
+          <!-- Title -->
+          <h3 class="text-xl sm:text-2xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-snug">
+            The Engine of Metabolic Adaptation
+          </h3>
+
+          <!-- Details -->
+          <p class="mt-4 text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+            Stop forcing system crashes. Learn how your cells create ATP energy, how they execute fat-adaptation, and exactly how they handle metabolic demand. We cut through complex physiological calculations to give you clean actionable diet protocols.
+          </p>
+
+          <!-- Core points -->
+          <ul class="mt-5 space-y-3">
+            <li class="flex items-center space-x-2.5 text-xs text-slate-600 dark:text-slate-400">
+              <span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span>
+              <span>Cellular fat oxidation mechanism education</span>
+            </li>
+            <li class="flex items-center space-x-2.5 text-xs text-slate-600 dark:text-slate-400">
+              <span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span>
+              <span>Unbiased nutritional design framework</span>
+            </li>
+            <li class="flex items-center space-x-2.5 text-xs text-slate-600 dark:text-slate-400">
+              <span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span>
+              <span>No-bloat metabolic rate restoration schedules</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Price and Call-to-action -->
+        <div class="mt-8 pt-6 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between">
+          <div>
+            <span class="text-[10px] tracking-widest text-slate-400 dark:text-slate-500 uppercase font-bold">Price</span>
+            <p class="text-2xl font-black text-slate-900 dark:text-white">$249</p>
+          </div>
+          <a href="contact.html?program=metabolic" class="inline-flex items-center justify-center p-3 rounded-xl text-xs font-bold text-slate-900 dark:text-white hover:text-white hover:bg-electricBlue bg-slate-200/50 dark:bg-slate-800/80 transition-all">
+            Secure Access
+          </a>
+        </div>
+      </div>
+
+      <!-- CARD 4: Interactive Commitment Calculator (Double-Wide Bento Widget Layout!) -->
+      <div class="product-card md:col-span-2 bg-gradient-to-br from-slate-50 to-slate-100/40 dark:from-darkCard dark:to-slate-900/60 rounded-3xl border border-slate-200/80 dark:border-slate-800/60 p-6 sm:p-8 flex flex-col justify-between hover:border-electricBlue/40 dark:hover:border-lightCyan/30 transition-all duration-300 group shadow-sm hover:shadow-md" data-category="all">
+        <div>
+          <!-- Tag & Metric -->
+          <div class="flex flex-wrap items-center justify-between gap-2 mb-6">
+            <span class="px-3.5 py-1.5 rounded-lg text-[11px] font-bold tracking-wider uppercase bg-electricBlue/10 text-electricBlue dark:text-lightCyan border border-electricBlue/20">
+              Interactive Blueprint Matcher
+            </span>
+            <span class="text-xs font-semibold text-emerald-500 dark:text-emerald-400">Real-time Adaptation Estimator</span>
+          </div>
+
+          <!-- Title -->
+          <h3 class="text-2xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-snug">
+            Biological Commitment Cost Analyzer
+          </h3>
+          <p class="mt-2 text-sm text-slate-600 dark:text-slate-400">
+            Let us determine exactly how much energetic resource, financial cost, and time commitment you need to budget to transform without biological system failures. Adjust parameters below to generate your score.
+          </p>
+
+          <!-- Interactive Sliders Group -->
+          <div class="mt-8 space-y-6 bg-white dark:bg-darkBg p-5 sm:p-6 rounded-2xl border border-slate-200/80 dark:border-slate-800/80">
+            
+            <!-- Slider 1: Pain/Discomfort Level -->
+            <div>
+              <div class="flex justify-between items-center mb-1.5">
+                <label for="painLevel" class="text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider">Joint/Pain Discomfort Level</label>
+                <span id="painVal" class="text-xs font-bold text-electricBlue dark:text-lightCyan bg-electricBlue/10 dark:bg-electricBlue/20 px-2 py-0.5 rounded-md">None</span>
+              </div>
+              <input type="range" id="painLevel" min="0" max="3" value="0" class="w-full h-2 bg-slate-200 dark:bg-slate-800 rounded-lg appearance-none cursor-pointer accent-electricBlue" oninput="calculateAdaptation()">
+              <div class="flex justify-between text-[10px] text-slate-400 mt-1">
+                <span>None</span>
+                <span>Minor Achiness</span>
+                <span>Consistent Discomfort</span>
+                <span>Severe/Movement Inhibited</span>
+              </div>
+            </div>
+
+            <!-- Slider 2: Weekly Commitment Hours -->
+            <div>
+              <div class="flex justify-between items-center mb-1.5">
+                <label for="hoursWeekly" class="text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider">Weekly Devoted Hours</label>
+                <span id="hoursVal" class="text-xs font-bold text-electricBlue dark:text-lightCyan bg-electricBlue/10 dark:bg-electricBlue/20 px-2 py-0.5 rounded-md">2 Hours</span>
+              </div>
+              <input type="range" id="hoursWeekly" min="2" max="10" value="2" class="w-full h-2 bg-slate-200 dark:bg-slate-800 rounded-lg appearance-none cursor-pointer accent-electricBlue" oninput="calculateAdaptation()">
+              <div class="flex justify-between text-[10px] text-slate-400 mt-1">
+                <span>2 hrs/wk</span>
+                <span>4 hrs/wk</span>
+                <span>6 hrs/wk</span>
+                <span>8 hrs/wk</span>
+                <span>10+ hrs/wk</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Output Result Panel -->
+        <div class="mt-8 pt-6 border-t border-slate-200 dark:border-slate-800 flex flex-col md:flex-row md:items-center justify-between gap-6">
+          <div class="space-y-1">
+            <span class="text-[10px] tracking-widest text-slate-400 dark:text-slate-500 uppercase font-bold">Suggested Blueprint Tier</span>
+            <div class="flex items-center space-x-2.5">
+              <span id="suggestedTier" class="text-xl font-extrabold text-slate-900 dark:text-white">Analyzing Inputs...</span>
+              <span id="tierBadge" class="px-2 py-0.5 rounded text-[10px] font-black uppercase bg-emerald-500/10 text-emerald-500 border border-emerald-500/20">Recommended</span>
+            </div>
+          </div>
+          <div class="flex items-center space-x-4">
+            <div class="text-right">
+              <span class="text-[10px] tracking-widest text-slate-400 dark:text-slate-500 uppercase font-bold">Est. Cost Range</span>
+              <p id="estCostRange" class="text-2xl font-black text-slate-900 dark:text-white">$199 - $349</p>
+            </div>
+            <a href="contact.html" class="inline-flex items-center justify-center px-5 py-3 rounded-xl text-xs font-bold text-white bg-slate-900 dark:bg-white dark:text-slate-950 hover:bg-electricBlue dark:hover:bg-lightCyan transition-all">
+              Claim Selection
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD 5: The Body Matrix Masterclass (Standard layout) -->
+      <div class="product-card bg-slate-50 dark:bg-darkCard rounded-3xl border border-slate-200/80 dark:border-slate-800/60 p-6 flex flex-col justify-between hover:border-electricBlue/40 dark:hover:border-lightCyan/30 transition-all duration-300 group shadow-sm hover:shadow-md" data-category="metabolic">
+        <div>
+          <!-- Tag & Metric -->
+          <div class="flex items-center justify-between mb-6">
+            <span class="px-3.5 py-1.5 rounded-lg text-[11px] font-bold tracking-wider uppercase bg-[#00E5FF]/10 text-slate-800 dark:text-[#00E5FF] border border-[#00E5FF]/20">
+              Biologic Matrix
+            </span>
+            <span class="text-xs font-semibold text-slate-400 dark:text-slate-500">Video &amp; Textbook</span>
+          </div>
+
+          <!-- Title -->
+          <h3 class="text-xl sm:text-2xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-snug">
+            The Biologic Matrix Masterclass
+          </h3>
+
+          <!-- Details -->
+          <p class="mt-4 text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+            A profound exploration of how your major systems (Brain, Heart, Lungs, Stomach, Muscle) operate as a single unified net. Gain true operational clarity over how hormone responses and digestive integrity dictate mental drive and output.
+          </p>
+
+          <!-- Core points -->
+          <ul class="mt-5 space-y-3">
+            <li class="flex items-center space-x-2.5 text-xs text-slate-600 dark:text-slate-400">
+              <span class="w-1.5 h-1.5 rounded-full bg-[#0052FF]"></span>
+              <span>Neurotransmitter manipulation for training longevity</span>
+            </li>
+            <li class="flex items-center space-x-2.5 text-xs text-slate-600 dark:text-slate-400">
+              <span class="w-1.5 h-1.5 rounded-full bg-[#0052FF]"></span>
+              <span>Gut health and local structural optimization</span>
+            </li>
+            <li class="flex items-center space-x-2.5 text-xs text-slate-600 dark:text-slate-400">
+              <span class="w-1.5 h-1.5 rounded-full bg-[#0052FF]"></span>
+              <span>VO2 Max adaptation and dynamic heart rate recovery</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Price and Call-to-action -->
+        <div class="mt-8 pt-6 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between">
+          <div>
+            <span class="text-[10px] tracking-widest text-slate-400 dark:text-slate-500 uppercase font-bold">Price</span>
+            <p class="text-2xl font-black text-slate-900 dark:text-white">$149</p>
+          </div>
+          <a href="contact.html?program=body-matrix" class="inline-flex items-center justify-center p-3 rounded-xl text-xs font-bold text-slate-900 dark:text-white hover:text-white hover:bg-electricBlue bg-slate-200/50 dark:bg-slate-800/80 transition-all">
+            Secure Access
+          </a>
+        </div>
+      </div>
+
+      <!-- CARD 6: Active Aging & Autonomy (Standard layout) -->
+      <div class="product-card bg-slate-50 dark:bg-darkCard rounded-3xl border border-slate-200/80 dark:border-slate-800/60 p-6 flex flex-col justify-between hover:border-electricBlue/40 dark:hover:border-lightCyan/30 transition-all duration-300 group shadow-sm hover:shadow-md" data-category="recovery">
+        <div>
+          <!-- Tag & Metric -->
+          <div class="flex items-center justify-between mb-6">
+            <span class="px-3.5 py-1.5 rounded-lg text-[11px] font-bold tracking-wider uppercase bg-purple-500/10 text-purple-600 dark:text-purple-400 border border-purple-500/20">
+              Lifelong Autonomy
+            </span>
+            <span class="text-xs font-semibold text-slate-400 dark:text-slate-500">Ongoing Protocol</span>
+          </div>
+
+          <!-- Title -->
+          <h3 class="text-xl sm:text-2xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-snug">
+            Active Aging &amp; Cellular Autonomy
+          </h3>
+
+          <!-- Details -->
+          <p class="mt-4 text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+            Keep your internal engines and muscles fully responsive. Build deep joint resilience, protect cellular bone density, and preserve elastic energy mechanisms at any biological stage.
+          </p>
+
+          <!-- Core points -->
+          <ul class="mt-5 space-y-3">
+            <li class="flex items-center space-x-2.5 text-xs text-slate-600 dark:text-slate-400">
+              <span class="w-1.5 h-1.5 rounded-full bg-purple-500"></span>
+              <span>Tendon density load protocols</span>
+            </li>
+            <li class="flex items-center space-x-2.5 text-xs text-slate-600 dark:text-slate-400">
+              <span class="w-1.5 h-1.5 rounded-full bg-purple-500"></span>
+              <span>Stability, reaction, and somatic nerve signals</span>
+            </li>
+            <li class="flex items-center space-x-2.5 text-xs text-slate-600 dark:text-slate-400">
+              <span class="w-1.5 h-1.5 rounded-full bg-purple-500"></span>
+              <span>Autonomic down-regulation &amp; sleep preservation</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Price and Call-to-action -->
+        <div class="mt-8 pt-6 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between">
+          <div>
+            <span class="text-[10px] tracking-widest text-slate-400 dark:text-slate-500 uppercase font-bold">Price</span>
+            <p class="text-2xl font-black text-slate-900 dark:text-white">$189</p>
+          </div>
+          <a href="contact.html?program=active-aging" class="inline-flex items-center justify-center p-3 rounded-xl text-xs font-bold text-slate-900 dark:text-white hover:text-white hover:bg-electricBlue bg-slate-200/50 dark:bg-slate-800/80 transition-all">
+            Secure Access
+          </a>
+        </div>
+      </div>
+
+      <!-- CARD 7: Premium 1-on-1 Bespoke (Double-wide Bento layout) -->
+      <div class="product-card md:col-span-2 bg-[#090D16] text-white rounded-3xl border border-electricBlue/30 p-6 sm:p-8 flex flex-col justify-between hover:border-lightCyan/60 transition-all duration-300 group shadow-[0_0_30px_-5px_rgba(0,82,255,0.15)]" data-category="coaching">
+        <div>
+          <!-- Tag & Metric -->
+          <div class="flex items-center justify-between mb-6">
+            <span class="px-3.5 py-1.5 rounded-lg text-[11px] font-bold tracking-wider uppercase bg-electricBlue/30 text-lightCyan border border-electricBlue/40">
+              1-on-1 Premium Coaching
+            </span>
+            <span class="text-xs font-semibold text-slate-400">Extremely Limited Intake (5 slots)</span>
+          </div>
+
+          <!-- Title -->
+          <h3 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight leading-snug">
+            Bespoke Human Bio-Engineering with Ian
+          </h3>
+          
+          <!-- Philosophy breakdown -->
+          <p class="mt-4 text-slate-300 max-w-2xl text-sm sm:text-base leading-relaxed">
+            The ultimate human physical recalibration. Work alongside Founder &amp; Head Coach Ian for comprehensive lifestyle biomechanics, individualized bio-metric tracking, neural mapping, and absolute form rebuilding. If you have hit constant plateaus or carry chronic training frustrations, we take complete structural accountability for your biology.
+          </p>
+
+          <!-- Core Curriculum Bullet points -->
+          <div class="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+            <div class="flex items-start space-x-2.5">
+              <span class="text-lightCyan mt-1 flex-shrink-0">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path></svg>
+              </span>
+              <p class="text-xs sm:text-sm text-slate-300"><strong class="font-semibold text-white">Full Video Bio-gait Mapping:</strong> Weekly video analyses of physical stride and lifting form.</p>
+            </div>
+            <div class="flex items-start space-x-2.5">
+              <span class="text-lightCyan mt-1 flex-shrink-0">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path></svg>
+              </span>
+              <p class="text-xs sm:text-sm text-slate-300"><strong class="font-semibold text-white">Custom Biomarker Reviews:</strong> Direct nutrition structuring tailored to your recovery capacity.</p>
+            </div>
+            <div class="flex items-start space-x-2.5">
+              <span class="text-lightCyan mt-1 flex-shrink-0">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path></svg>
+              </span>
+              <p class="text-xs sm:text-sm text-slate-300"><strong class="font-semibold text-white">Direct Message Access:</strong> Constant priority connection to Ian for immediate troubleshooting.</p>
+            </div>
+            <div class="flex items-start space-x-2.5">
+              <span class="text-lightCyan mt-1 flex-shrink-0">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path></svg>
+              </span>
+              <p class="text-xs sm:text-sm text-slate-300"><strong class="font-semibold text-white">Total Autonomy Transition:</strong> We educate you systematically so you never need a personal coach again.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Action Area & Cost Breakdown -->
+        <div class="mt-8 pt-6 border-t border-slate-800 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+          <div>
+            <span class="text-[10px] tracking-widest text-slate-400 uppercase font-bold">Monthly Retainer</span>
+            <div class="flex items-baseline space-x-1.5 mt-0.5">
+              <span class="text-3xl font-black text-white">$450</span>
+              <span class="text-xs font-semibold text-slate-400">per month (no contract)</span>
+            </div>
+          </div>
+          <div class="flex items-center space-x-3">
+            <a href="contact.html?program=bespoke" class="inline-flex items-center justify-center px-6 py-3 rounded-xl text-sm font-bold bg-white text-darkBg hover:bg-lightCyan transition-all shadow-md">
+              Secure Consultation
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- THE COMPARATIVE MATRIX SECTION -->
+  <section class="py-20 bg-slate-50 dark:bg-darkCard/40 border-y border-slate-200/60 dark:border-slate-800/80">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span class="text-xs font-bold text-electricBlue dark:text-lightCyan tracking-widest uppercase">Transparency Law</span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight mt-3 text-slate-900 dark:text-white">Compare Our Protocols</h2>
+        <p class="text-slate-600 dark:text-slate-300 mt-4 leading-relaxed">
+          We detail everything clearly. Determine exactly which structure integrates best with your routine and budget.
+        </p>
+      </div>
+
+      <!-- Responsive Table Container -->
+      <div class="overflow-x-auto rounded-2xl border border-slate-200/80 dark:border-slate-800/80 bg-white dark:bg-darkBg">
+        <table class="w-full text-left border-collapse">
+          <thead>
+            <tr class="bg-slate-50 dark:bg-darkCard border-b border-slate-200 dark:border-slate-800/80">
+              <th class="p-5 text-xs font-bold text-slate-400 dark:text-slate-500 tracking-wider uppercase">Features &amp; Support</th>
+              <th class="p-5 text-xs font-bold text-slate-900 dark:text-white tracking-wider uppercase">Independent Blueprints</th>
+              <th class="p-5 text-xs font-bold text-electricBlue dark:text-lightCyan tracking-wider uppercase">The Complete Suite</th>
+              <th class="p-5 text-xs font-bold text-slate-900 dark:text-white tracking-wider uppercase">Bespoke 1-on-1</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-100 dark:divide-slate-800/60 text-sm">
+            <tr>
+              <td class="p-5 font-bold text-slate-900 dark:text-white">Educational Video Access</td>
+              <td class="p-5 text-slate-600 dark:text-slate-300">Standard Access (by topic)</td>
+              <td class="p-5 text-slate-600 dark:text-slate-300">Lifetime (All programs)</td>
+              <td class="p-5 text-slate-600 dark:text-slate-300">Custom Video Resource library</td>
+            </tr>
+            <tr>
+              <td class="p-5 font-bold text-slate-900 dark:text-white">Movement Biomechanics Review</td>
+              <td class="p-5 text-slate-400">Self-monitored</td>
+              <td class="p-5 text-slate-600 dark:text-slate-300">Guided checklist</td>
+              <td class="p-5 font-semibold text-emerald-500 dark:text-emerald-400">Unlimited Gait &amp; lifting analysis</td>
+            </tr>
+            <tr>
+              <td class="p-5 font-bold text-slate-900 dark:text-white">Nutritional Metabolic Audits</td>
+              <td class="p-5 text-slate-600 dark:text-slate-300">Calculators included</td>
+              <td class="p-5 font-semibold text-emerald-500 dark:text-emerald-400">Personalized calibration matrix</td>
+              <td class="p-5 font-semibold text-emerald-500 dark:text-emerald-400">Full diet optimization audits</td>
+            </tr>
+            <tr>
+              <td class="p-5 font-bold text-slate-900 dark:text-white">Direct Chat Support (with Ian)</td>
+              <td class="p-5 text-slate-400">No</td>
+              <td class="p-5 text-slate-600 dark:text-slate-300">Bi-weekly QA forum</td>
+              <td class="p-5 font-semibold text-emerald-500 dark:text-emerald-400">Priority WhatsApp / SMS</td>
+            </tr>
+            <tr>
+              <td class="p-5 font-bold text-slate-900 dark:text-white">Biomarker Assessments</td>
+              <td class="p-5 text-slate-400">No</td>
+              <td class="p-5 text-slate-400">No</td>
+              <td class="p-5 font-semibold text-emerald-500 dark:text-emerald-400">Custom biomarker audits</td>
+            </tr>
+            <tr class="bg-slate-50/50 dark:bg-darkCard/20">
+              <td class="p-5 font-bold text-slate-900 dark:text-white">Pricing Model</td>
+              <td class="p-5 font-extrabold text-slate-900 dark:text-white">From $149 (one-time)</td>
+              <td class="p-5 font-extrabold text-electricBlue dark:text-lightCyan">$599 (one-time)</td>
+              <td class="p-5 font-extrabold text-slate-900 dark:text-white">$450 / month</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- SYSTEM CORE FAQS -->
+  <section class="py-24 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16">
+      <span class="text-xs font-bold text-electricBlue dark:text-lightCyan tracking-widest uppercase">Answering the Core Skeptic</span>
+      <h2 class="text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white mt-3">Product &amp; Pricing FAQs</h2>
+      <p class="text-slate-600 dark:text-slate-400 mt-4">We respect your intelligence. No sales-loops, only structural transparency.</p>
+    </div>
+
+    <!-- Accordion Group -->
+    <div class="space-y-4">
+      
+      <!-- FAQ item 1 -->
+      <div class="faq-item border border-slate-200 dark:border-slate-800 rounded-2xl bg-white dark:bg-darkBg transition-all">
+        <button onclick="toggleFaq(this)" class="w-full flex items-center justify-between p-6 text-left focus:outline-none">
+          <span class="font-bold text-slate-900 dark:text-white text-base sm:text-lg">Are there monthly hidden subscriptions built into standard blueprints?</span>
+          <span class="faq-icon text-slate-400 transition-transform">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path></svg>
+          </span>
+        </button>
+        <div class="faq-content hidden px-6 pb-6 text-sm sm:text-base text-slate-600 dark:text-slate-400 border-t border-slate-100 dark:border-slate-800/80 pt-4 leading-relaxed">
+          Absolutely not. All digital programs, guides, and courses are strictly standard single-transaction purchases. You own them forever, including any future version refinements Ian publishes.
+        </div>
+      </div>
+
+      <!-- FAQ item 2 -->
+      <div class="faq-item border border-slate-200 dark:border-slate-800 rounded-2xl bg-white dark:bg-darkBg transition-all">
+        <button onclick="toggleFaq(this)" class="w-full flex items-center justify-between p-6 text-left focus:outline-none">
+          <span class="font-bold text-slate-900 dark:text-white text-base sm:text-lg">I am in intense chronic joint pain. Which program should I secure first?</span>
+          <span class="faq-icon text-slate-400 transition-transform">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path></svg>
+          </span>
+        </button>
+        <div class="faq-content hidden px-6 pb-6 text-sm sm:text-base text-slate-600 dark:text-slate-400 border-t border-slate-100 dark:border-slate-800/80 pt-4 leading-relaxed">
+          We strongly advise <strong class="text-slate-900 dark:text-white">The Permanent Injury Recovery Protocol</strong>. We isolate deep muscular dysfunction before introducing heavy metabolic adaptions. If your biomechanics are compromised, fat loss training will likely compound mechanical friction. Resolve the architecture first.
+        </div>
+      </div>
+
+      <!-- FAQ item 3 -->
+      <div class="faq-item border border-slate-200 dark:border-slate-800 rounded-2xl bg-white dark:bg-darkBg transition-all">
+        <button onclick="toggleFaq(this)" class="w-full flex items-center justify-between p-6 text-left focus:outline-none">
+          <span class="font-bold text-slate-900 dark:text-white text-base sm:text-lg">What happens if a custom program is too intense for my age?</span>
+          <span class="faq-icon text-slate-400 transition-transform">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path></svg>
+          </span>
+        </button>
+        <div class="faq-content hidden px-6 pb-6 text-sm sm:text-base text-slate-600 dark:text-slate-400 border-t border-slate-100 dark:border-slate-800/80 pt-4 leading-relaxed">
+          Every movement model we supply features scaling vectors. We scale load angles, intensity rates, and dynamic density. You can begin at point-zero safely. We guarantee our work. Reach out to our team if you need to down-scale or modify your dynamic track.
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CTA CONCLUDING SECTION -->
+  <section class="py-20 relative overflow-hidden bg-slate-900 text-white dark:bg-darkCard/80 border-t border-slate-800">
+    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-900/30 via-slate-900 to-slate-950 -z-10"></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+      <h2 class="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight leading-tight">
+        Not sure which biology route is yours?
+      </h2>
+      <p class="mt-4 text-slate-300 max-w-xl mx-auto text-sm sm:text-base leading-relaxed">
+        Submit a baseline movement assessment. Ian and our physical training specialists will audit your inputs and recommend the precise architectural path.
+      </p>
+      <div class="mt-8 flex flex-col sm:flex-row justify-center items-center gap-4">
+        <a href="contact.html" class="w-full sm:w-auto px-8 py-4 rounded-xl text-sm font-bold bg-white text-slate-950 hover:bg-lightCyan transition-all shadow-lg transform hover:-translate-y-0.5">
+          Submit Assessment Form
+        </a>
+        <a href="about.html" class="w-full sm:w-auto px-8 py-4 rounded-xl text-sm font-bold border border-slate-700 text-slate-300 hover:text-white hover:bg-slate-800 transition-all">
+          Meet Founder Ian
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- GLOBAL FOOTER -->
+  <footer class="border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-darkBg transition-theme py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Top Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-10 pb-12">
+        <!-- Brand Description -->
+        <div class="md:col-span-2 space-y-4">
+          <div class="flex items-center space-x-2">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-electricBlue to-lightCyan flex items-center justify-center font-extrabold text-white text-sm">IF</div>
+            <span class="text-lg font-bold text-slate-900 dark:text-white">IanFit</span>
+          </div>
+          <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 max-w-sm leading-relaxed">
+            Pioneering accessible human movement education, permanent dynamic injury resolution, and uncompromising kinetic metrics.
+          </p>
+        </div>
+
+        <!-- Site Navigation -->
+        <div>
+          <h4 class="text-xs font-bold tracking-widest text-slate-400 dark:text-slate-500 uppercase mb-4">Sitemap</h4>
+          <ul class="space-y-2.5 text-xs sm:text-sm">
+            <li><a href="index.html" class="text-slate-600 dark:text-slate-400 hover:text-electricBlue dark:hover:text-lightCyan">Home</a></li>
+            <li><a href="products.html" class="text-slate-600 dark:text-slate-400 hover:text-electricBlue dark:hover:text-lightCyan font-semibold">Our Programs</a></li>
+            <li><a href="about.html" class="text-slate-600 dark:text-slate-400 hover:text-electricBlue dark:hover:text-lightCyan">About Ian</a></li>
+            <li><a href="blog.html" class="text-slate-600 dark:text-slate-400 hover:text-electricBlue dark:hover:text-lightCyan">Science Blog</a></li>
+            <li><a href="contact.html" class="text-slate-600 dark:text-slate-400 hover:text-electricBlue dark:hover:text-lightCyan">Contact</a></li>
+          </ul>
+        </div>
+
+        <!-- Support Info -->
+        <div>
+          <h4 class="text-xs font-bold tracking-widest text-slate-400 dark:text-slate-500 uppercase mb-4">Integrity Links</h4>
+          <ul class="space-y-2.5 text-xs sm:text-sm">
+            <li><a href="privacy.html" class="text-slate-600 dark:text-slate-400 hover:text-electricBlue dark:hover:text-lightCyan">Privacy Policy</a></li>
+            <li><a href="terms.html" class="text-slate-600 dark:text-slate-400 hover:text-electricBlue dark:hover:text-lightCyan">Terms of Service</a></li>
+            <li class="text-slate-400 dark:text-slate-500">Support: admin@ianfit.com</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Bottom Bar -->
+      <div class="pt-8 border-t border-slate-200 dark:border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <p class="text-xs text-slate-500 dark:text-slate-400">
+          &copy; <span id="currentYear"></span> IanFit Inc. All global rights reserved. Built to optimize human potential.
+        </p>
+        <p class="text-[10px] text-slate-400">
+          Disclaimer: Any advice offered in IanFit programs is designed for high-leverage movement restoration. Consult clinical entities prior to commencing loaded athletic protocols if managing severe biological pathology.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- DYNAMIC CORE SCRIPTS -->
+  <script>
+    // Theme Toggle implementation
+    const themeToggleBtn = document.getElementById('themeToggle');
+    themeToggleBtn.addEventListener('click', () => {
+      if (document.documentElement.classList.contains('dark')) {
+        document.documentElement.classList.remove('dark');
+        localStorage.setItem('theme', 'light');
+      } else {
+        document.documentElement.classList.add('dark');
+        localStorage.setItem('theme', 'dark');
+      }
+    });
+
+    // Mobile Drawer Navigation toggle
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileDrawer = document.getElementById('mobileDrawer');
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileDrawer.classList.toggle('hidden');
+    });
+
+    // Copyright Auto Year
+    document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+    // FAQ Accordion mechanism
+    function toggleFaq(button) {
+      const item = button.closest('.faq-item');
+      const content = item.querySelector('.faq-content');
+      const icon = item.querySelector('.faq-icon');
+      
+      const isOpen = !content.classList.contains('hidden');
+      
+      // Close all open FAQs to maintain minimal UI footprint
+      document.querySelectorAll('.faq-content').forEach(el => el.classList.add('hidden'));
+      document.querySelectorAll('.faq-icon').forEach(el => el.classList.remove('rotate-180'));
+      
+      if (!isOpen) {
+        content.classList.remove('hidden');
+        icon.classList.add('rotate-180');
+      }
+    }
+
+    // Product Filter system
+    function filterProducts(category) {
+      const cards = document.querySelectorAll('.product-card');
+      const buttons = document.querySelectorAll('.filter-btn');
+
+      // Update button styling states
+      buttons.forEach(btn => {
+        btn.classList.remove('bg-white', 'dark:bg-darkCard', 'text-slate-950', 'dark:text-white', 'shadow-sm', 'active-filter');
+        btn.classList.add('text-slate-600', 'dark:text-slate-400');
+      });
+
+      const activeBtn = document.getElementById(`filter-${category}`);
+      if (activeBtn) {
+        activeBtn.classList.remove('text-slate-600', 'dark:text-slate-400');
+        activeBtn.classList.add('bg-white', 'dark:bg-darkCard', 'text-slate-950', 'dark:text-white', 'shadow-sm', 'active-filter');
+      }
+
+      // Smooth card transition filters
+      cards.forEach(card => {
+        const cat = card.getAttribute('data-category');
+        if (category === 'all' || cat === category) {
+          card.style.display = 'flex';
+          setTimeout(() => {
+            card.style.opacity = '1';
+            card.style.transform = 'translateY(0)';
+          }, 50);
+        } else {
+          card.style.opacity = '0';
+          card.style.transform = 'translateY(10px)';
+          setTimeout(() => {
+            card.style.display = 'none';
+          }, 200);
+        }
+      });
+    }
+
+    // Interactive Biological Commitment Calculator
+    function calculateAdaptation() {
+      const painLevel = parseInt(document.getElementById('painLevel').value);
+      const hoursWeekly = parseInt(document.getElementById('hoursWeekly').value);
+      
+      const painValText = document.getElementById('painVal');
+      const hoursValText = document.getElementById('hoursVal');
+      const suggestedTierText = document.getElementById('suggestedTier');
+      const estCostRangeText = document.getElementById('estCostRange');
+
+      // Update Slider Visual text representations
+      const painLabels = ["None", "Minor Achiness", "Consistent Discomfort", "Severe/Inhibited"];
+      painValText.textContent = painLabels[painLevel];
+      hoursValText.textContent = `${hoursWeekly} Hours`;
+
+      // Core analysis algorithm
+      let suggested = "Human Gait Blueprint";
+      let costRange = "$199";
+
+      if (painLevel >= 2) {
+        // High physical discomfort triggers mandatory corrective focus
+        suggested = "Permanent Injury Recovery";
+        costRange = "$349";
+      } else if (hoursWeekly >= 6 && painLevel <= 1) {
+        // High time availability and low physical distress triggers high-capacity matrix or bespoke coaching options
+        suggested = "The Biologic Matrix / Bespoke";
+        costRange = "$149 - $450/mo";
+      } else if (painLevel === 1) {
+        suggested = "Biomechanics Gait Masterclass";
+        costRange = "$199";
+      } else {
+        suggested = "Metabolic Engine Blueprint";
+        costRange = "$249";
+      }
+
+      suggestedTierText.textContent = suggested;
+      estCostRangeText.textContent = costRange;
+    }
+
+    // Initial run of commitment calculator on runtime
+    window.addEventListener('DOMContentLoaded', () => {
+      calculateAdaptation();
+    });
+  </script>
+</body>
+</html>
