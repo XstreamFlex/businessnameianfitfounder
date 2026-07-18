@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IanFit | Elite Personal Fitness & Permanent Athletic Recovery</title>
+  <!-- SEO & Fonts -->
+  <meta name="description" content="Master human biomechanics, eliminate chronic pain, and unlock lifetime metabolic vitality. Highly educational personal training and custom structural recovery with Head Coach Ian.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS Play CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              electric: '#0052ff',
+              electricDark: '#003eb3',
+              cyan: '#06b6d4',
+              cyanDark: '#0891b2',
+              lightBg: '#f8fafc',
+              darkBg: '#090d16',
+              darkSurface: '#111827',
+              darkBorder: '#1f2937',
+            }
+          },
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+          },
+          animation: {
+            'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Global Transitions for Dark Mode Switch */
+    *, *::before, *::after {
+      transition: background-color 0.3s ease, border-color 0.3s ease, text-decoration-color 0.3s ease;
+    }
+    
+    /* Elegant gradient glassmorphism shadows */
+    .bento-card {
+      position: relative;
+      overflow: hidden;
+    }
+    .bento-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      padding: 1px;
+      background: linear-gradient(to bottom right, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+    }
+    .dark .bento-card::after {
+      background: linear-gradient(to bottom right, rgba(255,255,255,0.08), rgba(0,82,255,0.15));
+    }
+  </style>
+</head>
+<body class="bg-brand-lightBg text-slate-900 dark:bg-brand-darkBg dark:text-slate-100 font-sans antialiased selection:bg-brand-electric/30">
+
+  <!-- ================= GLOBAL STICKY HEADER ================= -->
+  <header class="sticky top-0 z-50 w-full border-b border-slate-200/80 bg-white/85 backdrop-blur-md dark:border-brand-darkBorder/70 dark:bg-brand-darkBg/85">
+    <div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-8">
+      
+      <!-- Brand Logo -->
+      <a href="index.html" class="flex items-center space-x-3 group">
+        <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-electric text-white shadow-lg shadow-brand-electric/30 group-hover:scale-105 transition-transform">
+          <!-- Athletic Matrix Icon -->
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-5 h-5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
+          </svg>
+        </div>
+        <div>
+          <span class="text-xl font-extrabold tracking-tight text-slate-900 dark:text-white">Ian<span class="text-brand-electric">Fit</span></span>
+          <span class="block text-[10px] font-bold uppercase tracking-widest text-slate-400 dark:text-slate-500">Human Adaptation</span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Tree (Relative Paths) -->
+      <nav class="hidden md:flex items-center space-x-8 text-sm font-semibold tracking-wide">
+        <a href="index.html" class="relative text-brand-electric dark:text-brand-cyan after:absolute after:bottom-[-20px] after:left-0 after:h-[2px] after:w-full after:bg-brand-electric dark:after:bg-brand-cyan">Home</a>
+        <a href="products.html" class="text-slate-600 hover:text-brand-electric dark:text-slate-300 dark:hover:text-brand-cyan transition-colors">Products &amp; Training</a>
+        <a href="about.html" class="text-slate-600 hover:text-brand-electric dark:text-slate-300 dark:hover:text-brand-cyan transition-colors">About Ian</a>
+        <a href="blog.html" class="text-slate-600 hover:text-brand-electric dark:text-slate-300 dark:hover:text-brand-cyan transition-colors">Science Journal</a>
+        <a href="contact.html" class="text-slate-600 hover:text-brand-electric dark:text-slate-300 dark:hover:text-brand-cyan transition-colors">Contact</a>
+      </nav>
+
+      <!-- Action Elements & Theme Toggle -->
+      <div class="flex items-center space-x-4">
+        
+        <!-- Theme Toggle Button -->
+        <button id="theme-toggle" aria-label="Toggle visual theme" class="rounded-full p-2.5 text-slate-500 hover:bg-slate-100 dark:text-slate-400 dark:hover:bg-slate-800 transition-all border border-slate-200 dark:border-brand-darkBorder">
+          <!-- Sun Icon (visible in Dark Mode) -->
+          <svg id="theme-toggle-light-icon" class="hidden h-5 w-5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m0 13.5V21M4.25 12h2.25m13.5 0L21 12M18.364 5.636l-1.591 1.591M6.515 17.485l-1.591 1.591m12.728 0l-1.591-1.591M6.515 6.515l-1.591-1.591M12 7.5a4.5 4.5 0 100 9 4.5 4.5 0 000-9z" />
+          </svg>
+          <!-- Moon Icon (visible in Light Mode) -->
+          <svg id="theme-toggle-dark-icon" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" />
+          </svg>
+        </button>
+
+        <!-- CTA Button -->
+        <a href="contact.html" class="hidden sm:inline-flex items-center justify-center rounded-xl bg-brand-electric hover:bg-brand-electricDark px-5 py-2.5 text-sm font-bold text-white shadow-lg shadow-brand-electric/25 transition-all hover:scale-[1.02] active:scale-95">
+          Consult Coach Ian
+        </a>
+
+        <!-- Mobile Menu Toggle Button -->
+        <button id="mobile-menu-btn" class="inline-flex md:hidden rounded-lg p-2 text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800" aria-label="Toggle Menu">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Drawer Navigation -->
+    <div id="mobile-menu" class="hidden md:hidden border-t border-slate-200 dark:border-brand-darkBorder bg-white dark:bg-brand-darkBg px-6 py-4 space-y-3">
+      <a href="index.html" class="block rounded-lg px-3 py-2 text-base font-semibold text-brand-electric dark:text-brand-cyan">Home</a>
+      <a href="products.html" class="block rounded-lg px-3 py-2 text-base font-semibold text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800">Products &amp; Training</a>
+      <a href="about.html" class="block rounded-lg px-3 py-2 text-base font-semibold text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800">About Ian</a>
+      <a href="blog.html" class="block rounded-lg px-3 py-2 text-base font-semibold text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800">Science Journal</a>
+      <a href="contact.html" class="block rounded-lg px-3 py-2 text-base font-semibold text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800">Contact</a>
+      <a href="contact.html" class="block w-full text-center rounded-xl bg-brand-electric py-3 text-sm font-bold text-white shadow-md">Consult Coach Ian</a>
+    </div>
+  </header>
+
+  <!-- ================= HERO & CORE ETHOS BANNER ================= -->
+  <section class="relative overflow-hidden pt-12 pb-24 md:pt-20 md:pb-32">
+    <!-- Atmospheric Background Glow Elements -->
+    <div class="absolute -top-40 left-1/2 -z-10 h-[500px] w-[500px] -translate-x-1/2 rounded-full bg-brand-electric/10 blur-[120px] dark:bg-brand-electric/20 pointer-events-none"></div>
+    <div class="absolute top-1/4 right-0 -z-10 h-[400px] w-[400px] rounded-full bg-brand-cyan/10 blur-[100px] dark:bg-brand-cyan/15 pointer-events-none"></div>
+
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+      <div class="text-center">
+        
+        <!-- Live Badge -->
+        <span class="inline-flex items-center space-x-2 rounded-full border border-brand-electric/30 bg-brand-electric/5 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-brand-electric dark:border-brand-cyan/30 dark:bg-brand-cyan/5 dark:text-brand-cyan">
+          <span class="relative flex h-2 w-2">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-electric dark:bg-brand-cyan opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-2 w-2 bg-brand-electric dark:bg-brand-cyan"></span>
+          </span>
+          <span>Adaptive Movement &amp; Recovery Ecosystem</span>
+        </span>
+
+        <!-- Primary Value Statement -->
+        <h1 class="mt-6 text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white sm:text-6xl lg:text-7xl">
+          Move without pain.<br>
+          <span class="bg-gradient-to-r from-brand-electric via-blue-500 to-brand-cyan bg-clip-text text-transparent">Re-engineer your biology.</span>
+        </h1>
+
+        <!-- Short Philosophy Hook -->
+        <p class="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-slate-600 dark:text-slate-300">
+          IanFit is the ultimate home for ultra-accessible, deeply educational training. We break down complex human physiology into clear, actionable rules so you can start, scale, and permanently master physical freedom.
+        </p>
+
+        <!-- CTAs -->
+        <div class="mt-10 flex flex-wrap justify-center gap-4">
+          <a href="#bento-grid" class="group inline-flex items-center space-x-2 rounded-xl bg-slate-900 px-6 py-3.5 text-base font-bold text-white hover:bg-brand-electric transition-all shadow-xl shadow-slate-900/10 dark:bg-white dark:text-slate-900 dark:hover:bg-brand-cyan hover:scale-[1.02]">
+            <span>Explore Educational Pillars</span>
+            <svg class="h-4 w-4 transform transition-transform group-hover:translate-y-1" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+            </svg>
+          </a>
+          <a href="products.html" class="inline-flex items-center space-x-2 rounded-xl border border-slate-300 bg-white/50 backdrop-blur-sm px-6 py-3.5 text-base font-bold text-slate-700 hover:bg-slate-50 dark:border-brand-darkBorder dark:bg-brand-darkBg/50 dark:text-slate-300 dark:hover:bg-slate-800/80">
+            <span>View Training Options</span>
+            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+            </svg>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= RAPID VALUE TICKER ================= -->
+  <div class="border-y border-slate-200/80 bg-white/50 dark:border-brand-darkBorder/70 dark:bg-brand-darkBg/40 py-6">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+        <div>
+          <span class="block text-3xl font-extrabold text-brand-electric dark:text-brand-cyan">100%</span>
+          <span class="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Biological Autonomy</span>
+        </div>
+        <div>
+          <span class="block text-3xl font-extrabold text-brand-electric dark:text-brand-cyan">0</span>
+          <span class="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Complex Jargon</span>
+        </div>
+        <div>
+          <span class="block text-3xl font-extrabold text-brand-electric dark:text-brand-cyan">24/7</span>
+          <span class="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Clarity &amp; Support</span>
+        </div>
+        <div>
+          <span class="block text-3xl font-extrabold text-brand-electric dark:text-brand-cyan">Permanent</span>
+          <span class="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Injury Resolution</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= THE BENTO GRID MATRIX ================= -->
+  <section id="bento-grid" class="py-24 lg:py-32">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+      
+      <!-- Section Header -->
+      <div class="max-w-3xl mb-16">
+        <h2 class="text-base font-extrabold uppercase tracking-widest text-brand-electric dark:text-brand-cyan">Educational Framework</h2>
+        <p class="mt-2 text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white sm:text-4xl">
+          The Anatomy of Physical Freedom
+        </p>
+        <p class="mt-4 text-base text-slate-600 dark:text-slate-300">
+          Traditional fitness teaches templates. IanFit teaches mechanisms. Understand how your body is wired to construct long-term safety, high performance, and rapid metabolic output.
+        </p>
+      </div>
+
+      <!-- Bento Grid Layout -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+        <!-- Card 1: Corrective Exercise & Injury Recovery (Spans 2 columns on desktop) -->
+        <div class="bento-card group relative flex flex-col justify-between rounded-3xl bg-white p-8 border border-slate-200/80 dark:border-brand-darkBorder dark:bg-slate-900 md:col-span-2 overflow-hidden shadow-sm hover:shadow-xl hover:shadow-brand-electric/5 transition-all">
+          <div class="absolute -right-10 -bottom-10 h-40 w-40 rounded-full bg-brand-electric/5 group-hover:scale-150 transition-transform"></div>
+          <div>
+            <div class="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-brand-electric/10 text-brand-electric dark:bg-brand-electric/20 dark:text-brand-cyan mb-6">
+              <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12.25 12.25m-7.25 0a7.25 7.25 0 1114.5 0 7.25 7.25 0 01-14.5 0z" />
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m-3-3h6" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-slate-900 dark:text-white">Corrective Exercise &amp; Permanent Recovery</h3>
+            <p class="mt-3 text-slate-600 dark:text-slate-300 leading-relaxed text-sm">
+              Stop hiding pain with temporary wraps or short-term fixes. We diagnose hidden motor control faults and re-engineer daily movement habits. Rebuild standard structural patterns from the ground up to enjoy life permanently pain-free.
+            </p>
+          </div>
+          <div class="mt-8 flex items-center space-x-2 text-sm font-bold text-brand-electric dark:text-brand-cyan group-hover:translate-x-2 transition-transform">
+            <span>Our Recovery Protocol</span>
+            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
+          </div>
+        </div>
+
+        <!-- Card 2: Biomechanics Mastery -->
+        <div class="bento-card group relative flex flex-col justify-between rounded-3xl bg-white p-8 border border-slate-200/80 dark:border-brand-darkBorder dark:bg-slate-900 overflow-hidden shadow-sm hover:shadow-xl hover:shadow-brand-electric/5 transition-all">
+          <div>
+            <div class="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-cyan-100/80 text-brand-cyan dark:bg-brand-cyan/20 dark:text-brand-cyan mb-6">
+              <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-slate-900 dark:text-white">Biomechanics Mastery</h3>
+            <p class="mt-3 text-slate-600 dark:text-slate-300 leading-relaxed text-sm">
+              We break down the kinetic chain of human transit. Discover how to walk, run, hinge, and lift safely, maximizing biological efficiency while ensuring complete lifetime injury resistance.
+            </p>
+          </div>
+          <div class="mt-8 flex items-center space-x-2 text-sm font-bold text-brand-electric dark:text-brand-cyan group-hover:translate-x-2 transition-transform">
+            <span>Learn Human Biomechanics</span>
+            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
+          </div>
+        </div>
+
+        <!-- Card 3: Energy Engine & Fat Adaptation -->
+        <div class="bento-card group relative flex flex-col justify-between rounded-3xl bg-white p-8 border border-slate-200/80 dark:border-brand-darkBorder dark:bg-slate-900 overflow-hidden shadow-sm hover:shadow-xl hover:shadow-brand-electric/5 transition-all">
+          <div>
+            <div class="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-100/80 text-emerald-600 dark:bg-emerald-500/20 dark:text-emerald-400 mb-6">
+              <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-slate-900 dark:text-white">Energy &amp; Fat Loss</h3>
+            <p class="mt-3 text-slate-600 dark:text-slate-300 leading-relaxed text-sm">
+              Pull back the biological curtain. Master mitochondrial pathways, metabolic adaptation, and energy transfer mechanisms. Achieve fat loss through clear metabolic leverage instead of starvation.
+            </p>
+          </div>
+          <div class="mt-8 flex items-center space-x-2 text-sm font-bold text-emerald-600 dark:text-emerald-400 group-hover:translate-x-2 transition-transform">
+            <span>Unveil Metabolic Rules</span>
+            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
+          </div>
+        </div>
+
+        <!-- Card 4: True Nutritional Impact -->
+        <div class="bento-card group relative flex flex-col justify-between rounded-3xl bg-white p-8 border border-slate-200/80 dark:border-brand-darkBorder dark:bg-slate-900 overflow-hidden shadow-sm hover:shadow-xl hover:shadow-brand-electric/5 transition-all">
+          <div>
+            <div class="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-amber-100/80 text-amber-600 dark:bg-amber-500/20 dark:text-amber-400 mb-6">
+              <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 8.25v-1.5m0 1.5c-1.355 0-2.5.495-2.5 1.25s1.145 1.25 2.5 1.25 2.5.495 2.5 1.25-1.145 1.25-2.5 1.25M12 14v1.5M12 14c-1.355 0-2.5-.495-2.5-1.25s1.145-1.25 2.5-1.25 2.5-.495 2.5-1.25-1.145-1.25-2.5-1.25M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-slate-900 dark:text-white">True Nutritional Impact</h3>
+            <p class="mt-3 text-slate-600 dark:text-slate-300 leading-relaxed text-sm">
+              Isolate high-leverage fuel changes. Cut through industry gimmicks to uncover accurate metabolic realities that transform energy, stabilize blood glucose, and structure cellular regeneration.
+            </p>
+          </div>
+          <div class="mt-8 flex items-center space-x-2 text-sm font-bold text-amber-600 dark:text-amber-400 group-hover:translate-x-2 transition-transform">
+            <span>Explore Fuel Strategy</span>
+            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
+          </div>
+        </div>
+
+        <!-- Card 5: Active Aging & Lifelong Autonomy -->
+        <div class="bento-card group relative flex flex-col justify-between rounded-3xl bg-white p-8 border border-slate-200/80 dark:border-brand-darkBorder dark:bg-slate-900 overflow-hidden shadow-sm hover:shadow-xl hover:shadow-brand-electric/5 transition-all">
+          <div>
+            <div class="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-indigo-100/80 text-indigo-600 dark:bg-indigo-500/20 dark:text-indigo-400 mb-6">
+              <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-slate-900 dark:text-white">Active Aging &amp; Lifelong Autonomy</h3>
+            <p class="mt-3 text-slate-600 dark:text-slate-300 leading-relaxed text-sm">
+              Keep the human machine highly responsive, dense, and physically integrated at any age. We protect joint space, improve absolute bone density, and scale movement to guarantee lifelong physical autonomy.
+            </p>
+          </div>
+          <div class="mt-8 flex items-center space-x-2 text-sm font-bold text-indigo-600 dark:text-indigo-400 group-hover:translate-x-2 transition-transform">
+            <span>Age Intelligently</span>
+            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
+          </div>
+        </div>
+
+        <!-- Card 6: The Body Matrix (Spans 3 columns on desktop for strong visual weight) -->
+        <div class="bento-card group relative flex flex-col justify-between rounded-3xl bg-gradient-to-r from-brand-electric/5 to-brand-cyan/5 p-8 border border-brand-electric/20 dark:border-brand-cyan/30 dark:bg-gradient-to-r dark:from-brand-electric/10 dark:to-brand-cyan/10 md:col-span-3 overflow-hidden shadow-sm hover:shadow-xl transition-all">
+          <div class="absolute right-0 top-0 h-full w-1/3 bg-radial-gradient opacity-10 pointer-events-none"></div>
+          <div>
+            <div class="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-brand-electric text-white mb-6 shadow-md shadow-brand-electric/20">
+              <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z" />
+              </svg>
+            </div>
+            <h3 class="text-2xl font-extrabold text-slate-900 dark:text-white">The Body Matrix: Integrated Systems Regulation</h3>
+            <p class="mt-4 text-slate-600 dark:text-slate-300 leading-relaxed text-base max-w-4xl">
+              We never isolate muscle from the underlying command hardware. Your brain, heart, lungs, stomach, and biomechanical engine operate as a singular unified matrix. By unlocking nervous system regulation, structural respiration, and gut motility, we optimize mood, intrinsic athletic drive, and aesthetic body composition at a fundamental level.
+            </p>
+          </div>
+          <div class="mt-8 flex flex-wrap gap-3">
+            <span class="rounded-lg bg-slate-100 dark:bg-slate-800 px-3 py-1.5 text-xs font-bold text-slate-700 dark:text-slate-300">Neural Drive &amp; Vagus Nerve</span>
+            <span class="rounded-lg bg-slate-100 dark:bg-slate-800 px-3 py-1.5 text-xs font-bold text-slate-700 dark:text-slate-300">Respiration Volume</span>
+            <span class="rounded-lg bg-slate-100 dark:bg-slate-800 px-3 py-1.5 text-xs font-bold text-slate-700 dark:text-slate-300">Visceral Integration</span>
+            <span class="rounded-lg bg-slate-100 dark:bg-slate-800 px-3 py-1.5 text-xs font-bold text-slate-700 dark:text-slate-300">Autonomic Safety</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= FOUNDER BRIEF: MEET COACH IAN ================= -->
+  <section class="border-t border-slate-200/80 bg-white dark:border-brand-darkBorder/70 dark:bg-slate-950 py-24">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        
+        <!-- Interactive Design Showcase / Vector Grid -->
+        <div class="relative flex justify-center">
+          <div class="absolute inset-0 bg-gradient-to-tr from-brand-electric to-brand-cyan opacity-10 blur-3xl dark:opacity-20"></div>
+          <div class="relative w-full max-w-md rounded-3xl border border-slate-200/80 bg-slate-50 dark:border-brand-darkBorder dark:bg-slate-900 p-8 shadow-xl">
+            <!-- Grid Lines Background -->
+            <div class="absolute inset-0 grid grid-cols-6 grid-rows-6 gap-2 p-4 opacity-10 pointer-events-none">
+              <div class="border border-brand-electric"></div><div class="border border-brand-electric"></div><div class="border border-brand-electric"></div><div class="border border-brand-electric"></div><div class="border border-brand-electric"></div><div class="border border-brand-electric"></div>
+              <div class="border border-brand-electric"></div><div class="border border-brand-electric"></div><div class="border border-brand-electric"></div><div class="border border-brand-electric"></div><div class="border border-brand-electric"></div><div class="border border-brand-electric"></div>
+              <div class="border border-brand-electric"></div><div class="border border-brand-electric"></div><div class="border border-brand-electric"></div><div class="border border-brand-electric"></div><div class="border border-brand-electric"></div><div class="border border-brand-electric"></div>
+            </div>
+            
+            <div class="relative z-10 flex flex-col justify-between h-80">
+              <div>
+                <span class="text-xs font-extrabold uppercase tracking-widest text-brand-electric dark:text-brand-cyan">Biological Assessment Matrix</span>
+                <h4 class="mt-2 text-2xl font-black text-slate-900 dark:text-white">Active System Response</h4>
+              </div>
+              <div class="space-y-3">
+                <div class="flex items-center justify-between border-b border-slate-200 dark:border-brand-darkBorder pb-2">
+                  <span class="text-sm text-slate-500">Biomechanics Standard</span>
+                  <span class="text-sm font-bold text-emerald-500">Pristine Integrity</span>
+                </div>
+                <div class="flex items-center justify-between border-b border-slate-200 dark:border-brand-darkBorder pb-2">
+                  <span class="text-sm text-slate-500">Joint Space Index</span>
+                  <span class="text-sm font-bold text-brand-electric dark:text-brand-cyan">Maximal</span>
+                </div>
+                <div class="flex items-center justify-between pb-2">
+                  <span class="text-sm text-slate-500">Sympathetic / Para Balanced</span>
+                  <span class="text-sm font-bold text-slate-900 dark:text-white">Optimized</span>
+                </div>
+              </div>
+              <div class="flex items-center space-x-3">
+                <div class="h-4 w-4 rounded-full bg-brand-electric animate-ping"></div>
+                <span class="text-xs font-extrabold tracking-widest text-slate-500 uppercase">System Ready for Adaptation</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Coach Ethos Copy -->
+        <div class="flex flex-col justify-center">
+          <span class="text-base font-extrabold uppercase tracking-widest text-brand-electric dark:text-brand-cyan">Founder &amp; Head Coach</span>
+          <h3 class="mt-2 text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white sm:text-4xl">Meet Ian</h3>
+          <p class="mt-6 text-slate-600 dark:text-slate-300 leading-relaxed">
+            I built IanFit out of intense frustration with the standard fitness industry's trend loops. Traditional models either crush you under excessive, unmeasured load, or try to patch over complex mechanical damage with generic mobility worksheets.
+          </p>
+          <p class="mt-4 text-slate-600 dark:text-slate-300 leading-relaxed">
+            I approach your physical body as a fine-tuned integrated dynamic machine. My job is to act as your expert mechanical engineer. I show you why a certain hinge pattern acts aggressively on your lower back, how to restore accurate deep cellular breathing, and guide you down a path of lifelong physical mastery.
+          </p>
+          
+          <div class="mt-10 flex items-center space-x-6">
+            <a href="about.html" class="inline-flex items-center space-x-2 rounded-xl bg-brand-electric hover:bg-brand-electricDark px-6 py-3 text-sm font-bold text-white transition-all">
+              <span>Read Ian's Complete Journey</span>
+              <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+              </svg>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= THE INTERACTIVE ROI & COMMITMENT CALCULATOR ================= -->
+  <section class="py-24 bg-slate-50 dark:bg-brand-darkBg/60 border-t border-slate-200/80 dark:border-brand-darkBorder/70">
+    <div class="mx-auto max-w-5xl px-6 lg:px-8">
+      
+      <!-- Component Header -->
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span class="text-base font-extrabold uppercase tracking-widest text-brand-electric dark:text-brand-cyan">Custom Adaptation Calculator</span>
+        <h3 class="mt-2 text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white">Calculate Your Pathway</h3>
+        <p class="mt-4 text-slate-600 dark:text-slate-300">
+          Personalized adaptation requires realistic structural commitment. Select your physical priority and workload options to analyze your projected timeline and focus areas.
+        </p>
+      </div>
+
+      <!-- Calculator Box -->
+      <div class="rounded-3xl border border-slate-200/80 bg-white p-8 dark:border-brand-darkBorder dark:bg-slate-900 shadow-xl">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+          
+          <!-- Form Parameters -->
+          <div class="space-y-6">
+            <div>
+              <label for="calc-goal" class="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-2">Biological Goal</label>
+              <select id="calc-goal" class="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm font-medium focus:border-brand-electric focus:outline-none dark:border-brand-darkBorder dark:bg-brand-darkBg dark:text-slate-100">
+                <option value="recovery">Corrective Exercise &amp; Pain Recovery</option>
+                <option value="biomechanics">Biomechanics &amp; Elite Form Mastery</option>
+                <option value="energy">Metabolic Acceleration &amp; Fat Loss</option>
+                <option value="longevity">Active Aging &amp; Cellular Longevity</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="calc-commitment" class="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-2">Weekly Time Commitment</label>
+              <select id="calc-commitment" class="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm font-medium focus:border-brand-electric focus:outline-none dark:border-brand-darkBorder dark:bg-brand-darkBg dark:text-slate-100">
+                <option value="minimal">1 - 2 Hours / Week (Basic Upkeep)</option>
+                <option value="moderate">3 - 4 Hours / Week (Steady Adaptation)</option>
+                <option value="optimal">5+ Hours / Week (Rapid Reconstruction)</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="calc-pain" class="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-2">Current Physical Pain/Discomfort Level</label>
+              <select id="calc-pain" class="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm font-medium focus:border-brand-electric focus:outline-none dark:border-brand-darkBorder dark:bg-brand-darkBg dark:text-slate-100">
+                <option value="none">Zero Pain (Just Optimization)</option>
+                <option value="mild">Mild Tension / Occasional Soreness</option>
+                <option value="severe">Chronic Structural Pain</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Calculated Results Panel -->
+          <div class="rounded-2xl bg-brand-electric/5 p-6 border border-brand-electric/10 dark:bg-brand-electric/10 dark:border-brand-electric/20 flex flex-col justify-between">
+            <div>
+              <span class="text-xs font-extrabold uppercase tracking-widest text-brand-electric dark:text-brand-cyan">Projected Path Assessment</span>
+              
+              <div class="mt-6">
+                <span class="block text-xs text-slate-500 uppercase font-semibold">Estimated Adaptation Phase</span>
+                <span id="output-weeks" class="text-3xl font-black text-slate-900 dark:text-white">8 - 12 Weeks</span>
+              </div>
+
+              <div class="mt-4">
+                <span class="block text-xs text-slate-500 uppercase font-semibold">Primary Bio-System Target</span>
+                <span id="output-target" class="text-lg font-bold text-brand-electric dark:text-brand-cyan">Joint Congruency &amp; Motor Maps</span>
+              </div>
+
+              <div class="mt-4">
+                <span class="block text-xs text-slate-500 uppercase font-semibold">Estimated Monthly Financial Allocation</span>
+                <span id="output-investment" class="text-lg font-bold text-slate-800 dark:text-white">$250 - $450 / mo</span>
+              </div>
+            </div>
+
+            <div class="mt-8">
+              <p class="text-xs text-slate-500 leading-relaxed">
+                *Estimates are calculated based on baseline human biological data and the selected targets. Exact pathways require a full motion screen.
+              </p>
+              <a href="contact.html" class="mt-4 block w-full text-center rounded-xl bg-brand-electric hover:bg-brand-electricDark text-white py-3 text-sm font-bold transition-all shadow-md">
+                Lock in My Pathway
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= CLIENT TRANSFORMATIONS (PREVIEW) ================= -->
+  <section class="py-24 bg-white dark:bg-slate-950">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+      
+      <!-- Header -->
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span class="text-base font-extrabold uppercase tracking-widest text-brand-electric dark:text-brand-cyan">Documented Transformations</span>
+        <h3 class="mt-2 text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white">Real Adaptations, Permanent Outcomes</h3>
+        <p class="mt-4 text-slate-600 dark:text-slate-300">
+          Hear from individuals who fully transitioned out of systemic pain matrices and unlocked athletic performance levels they assumed were permanently lost.
+        </p>
+      </div>
+
+      <!-- Testimonial Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        
+        <!-- Testimonial 1 -->
+        <div class="rounded-3xl border border-slate-200/80 bg-slate-50 p-8 dark:border-brand-darkBorder dark:bg-slate-900">
+          <div class="flex items-center space-x-1 text-amber-500 mb-4">
+            <!-- 5 Stars -->
+            <svg class="h-5 w-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+            <svg class="h-5 w-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+            <svg class="h-5 w-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+            <svg class="h-5 w-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+            <svg class="h-5 w-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+          </div>
+          <p class="text-slate-700 dark:text-slate-300 italic text-sm leading-relaxed">
+            "I spent four years seeking recovery for chronic hamstring issues. Ian identified a pelvic tilt habit that was overstressing the tissue. Within three weeks of correct motor retraining, I was completely out of pain."
+          </p>
+          <div class="mt-6 flex items-center space-x-3 border-t border-slate-200 dark:border-brand-darkBorder pt-4">
+            <div class="h-10 w-10 rounded-full bg-slate-300 flex items-center justify-center font-bold text-slate-800 text-xs">
+              MS
+            </div>
+            <div>
+              <span class="block text-sm font-bold text-slate-900 dark:text-white">Marcus Sterling</span>
+              <span class="block text-[11px] text-slate-500 uppercase tracking-widest font-semibold">Running enthusiast</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonial 2 -->
+        <div class="rounded-3xl border border-slate-200/80 bg-slate-50 p-8 dark:border-brand-darkBorder dark:bg-slate-900">
+          <div class="flex items-center space-x-1 text-amber-500 mb-4">
+            <svg class="h-5 w-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+            <svg class="h-5 w-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+            <svg class="h-5 w-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+            <svg class="h-5 w-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+            <svg class="h-5 w-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+          </div>
+          <p class="text-slate-700 dark:text-slate-300 italic text-sm leading-relaxed">
+            "Ian's approach to the body system matrix changed everything. He linked my sleep quality and digestion parameters directly to physical training capacity. Unlocking metabolic fat adaptation followed automatically."
+          </p>
+          <div class="mt-6 flex items-center space-x-3 border-t border-slate-200 dark:border-brand-darkBorder pt-4">
+            <div class="h-10 w-10 rounded-full bg-slate-300 flex items-center justify-center font-bold text-slate-800 text-xs">
+              EL
+            </div>
+            <div>
+              <span class="block text-sm font-bold text-slate-900 dark:text-white">Elena Rostova</span>
+              <span class="block text-[11px] text-slate-500 uppercase tracking-widest font-semibold">Corporate Executive</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonial 3 -->
+        <div class="rounded-3xl border border-slate-200/80 bg-slate-50 p-8 dark:border-brand-darkBorder dark:bg-slate-900">
+          <div class="flex items-center space-x-1 text-amber-500 mb-4">
+            <svg class="h-5 w-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+            <svg class="h-5 w-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+            <svg class="h-5 w-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+            <svg class="h-5 w-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+            <svg class="h-5 w-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+          </div>
+          <p class="text-slate-700 dark:text-slate-300 italic text-sm leading-relaxed">
+            "I'm training at 55 with absolute knee comfort and high movement range. Ian's active aging logic gave me my performance capabilities back. I lift, hike, and play without any looming physical dread."
+          </p>
+          <div class="mt-6 flex items-center space-x-3 border-t border-slate-200 dark:border-brand-darkBorder pt-4">
+            <div class="h-10 w-10 rounded-full bg-slate-300 flex items-center justify-center font-bold text-slate-800 text-xs">
+              DN
+            </div>
+            <div>
+              <span class="block text-sm font-bold text-slate-900 dark:text-white">Dr. Neil Vance</span>
+              <span class="block text-[11px] text-slate-500 uppercase tracking-widest font-semibold">Orthopedic Specialist</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= COHESIVE MULTI-PAGE ECOSYSTEM LINKS ================= -->
+  <section class="border-t border-slate-200/80 bg-slate-50 dark:border-brand-darkBorder/70 dark:bg-brand-darkBg/30 py-24">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+      
+      <div class="flex flex-col md:flex-row md:items-end md:justify-between mb-12">
+        <div>
+          <span class="text-base font-extrabold uppercase tracking-widest text-brand-electric dark:text-brand-cyan">Internal Platform Nav</span>
+          <h3 class="mt-2 text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white">The Training Platform</h3>
+        </div>
+        <p class="mt-4 md:mt-0 max-w-md text-slate-600 dark:text-slate-300 text-sm">
+          IanFit functions as a complete localized educational suite. Browse our tailored program matrices and deep biological essays.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        
+        <!-- Platform Link Card 1 -->
+        <div class="rounded-3xl border border-slate-200 dark:border-brand-darkBorder bg-white p-8 dark:bg-slate-900 flex flex-col justify-between hover:shadow-lg transition-all">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-widest text-slate-400">Section Preview</span>
+            <h4 class="mt-2 text-xl font-bold text-slate-900 dark:text-white">Dynamic Program Materials</h4>
+            <p class="mt-3 text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
+              Discover our biomechanical masterclasses, personal consultation blueprints, and targeted custom adaptation courses. Transparent program pricing and time allocations laid out clearly.
+            </p>
+          </div>
+          <a href="products.html" class="mt-8 inline-flex items-center space-x-2 text-sm font-extrabold text-brand-electric dark:text-brand-cyan">
+            <span>Explore All Training Products</span>
+            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
+          </a>
+        </div>
+
+        <!-- Platform Link Card 2 -->
+        <div class="rounded-3xl border border-slate-200 dark:border-brand-darkBorder bg-white p-8 dark:bg-slate-900 flex flex-col justify-between hover:shadow-lg transition-all">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-widest text-slate-400">Journal Preview</span>
+            <h4 class="mt-2 text-xl font-bold text-slate-900 dark:text-white">The Biomechanical Journal</h4>
+            <p class="mt-3 text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
+              Read advanced breakdowns of metabolic adaptation, kinetic walking kinematics, spine safety variables, and visceral nervous system balance studies.
+            </p>
+          </div>
+          <a href="blog.html" class="mt-8 inline-flex items-center space-x-2 text-sm font-extrabold text-brand-electric dark:text-brand-cyan">
+            <span>Read Coach Ian's Journal</span>
+            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
+          </a>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= FINAL HIGH-CONVERTING CALL TO ACTION ================= -->
+  <section class="relative overflow-hidden py-24 md:py-32 bg-slate-950 text-white">
+    <!-- Blue/Cyan Ambient Radial Background -->
+    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-brand-electric/25 via-slate-950 to-slate-950 pointer-events-none"></div>
+
+    <div class="relative z-10 mx-auto max-w-5xl px-6 lg:px-8 text-center">
+      <span class="text-xs font-extrabold uppercase tracking-widest text-brand-cyan">Direct Consultation</span>
+      <h2 class="mt-4 text-3xl font-extrabold tracking-tight sm:text-5xl">Re-engineer Your Physical Destiny</h2>
+      <p class="mx-auto mt-6 max-w-2xl text-base text-slate-300 leading-relaxed">
+        Do not allow poor joint mechanics, persistent chronic patterns, or metabolic confusion to dictate your limits. Partner with Ian for pure, uncompromised, system-focused results.
+      </p>
+      
+      <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a href="contact.html" class="w-full sm:w-auto inline-flex justify-center rounded-xl bg-brand-electric hover:bg-brand-electricDark px-8 py-4 text-base font-bold text-white shadow-xl shadow-brand-electric/30 transition-all hover:scale-[1.02]">
+          Initiate Physical Audit
+        </a>
+        <a href="about.html" class="w-full sm:w-auto inline-flex justify-center rounded-xl border border-slate-700 bg-white/5 hover:bg-white/10 px-8 py-4 text-base font-bold text-slate-300 transition-all">
+          Explore Philosophy First
+        </a>
+      </div>
+
+      <p class="mt-6 text-xs text-slate-500">
+        No subscription commitments. Every assessment begins with a manual biological structure diagnostic.
+      </p>
+    </div>
+  </section>
+
+  <!-- ================= GLOBAL CORPORATE FOOTER ================= -->
+  <footer class="border-t border-slate-200/80 bg-white py-12 dark:border-brand-darkBorder/70 dark:bg-brand-darkBg text-slate-600 dark:text-slate-400">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+        
+        <!-- Brand Core -->
+        <div class="space-y-4">
+          <div class="flex items-center space-x-3">
+            <div class="flex h-8 w-8 items-center justify-center rounded-lg bg-brand-electric text-white">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-4 h-4">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
+              </svg>
+            </div>
+            <span class="text-lg font-extrabold tracking-tight text-slate-900 dark:text-white">Ian<span class="text-brand-electric">Fit</span></span>
+          </div>
+          <p class="text-xs leading-relaxed text-slate-500">
+            Highly educational personal adaptation strategies &amp; permanent mechanical body recovery. Move exactly as nature designed.
+          </p>
+        </div>
+
+        <!-- Sitemap Links -->
+        <div>
+          <h4 class="text-xs font-extrabold uppercase tracking-widest text-slate-900 dark:text-white mb-4">Core Ecosystem</h4>
+          <ul class="space-y-2 text-xs">
+            <li><a href="index.html" class="hover:text-brand-electric dark:hover:text-brand-cyan">Home Gateway</a></li>
+            <li><a href="products.html" class="hover:text-brand-electric dark:hover:text-brand-cyan">Products &amp; Training</a></li>
+            <li><a href="about.html" class="hover:text-brand-electric dark:hover:text-brand-cyan">About Ian</a></li>
+            <li><a href="blog.html" class="hover:text-brand-electric dark:hover:text-brand-cyan">Science Journal</a></li>
+            <li><a href="contact.html" class="hover:text-brand-electric dark:hover:text-brand-cyan">Contact Portal</a></li>
+          </ul>
+        </div>
+
+        <!-- Structural Domains -->
+        <div>
+          <h4 class="text-xs font-extrabold uppercase tracking-widest text-slate-900 dark:text-white mb-4">Focus Pathways</h4>
+          <ul class="space-y-2 text-xs">
+            <li><a href="products.html" class="hover:text-brand-electric dark:hover:text-brand-cyan">Pain &amp; Kinetic Correction</a></li>
+            <li><a href="products.html" class="hover:text-brand-electric dark:hover:text-brand-cyan">Joint Congruency Guides</a></li>
+            <li><a href="products.html" class="hover:text-brand-electric dark:hover:text-brand-cyan">Metabolic Regulation</a></li>
+            <li><a href="products.html" class="hover:text-brand-electric dark:hover:text-brand-cyan">Lifelong System Longevity</a></li>
+          </ul>
+        </div>
+
+        <!-- Compliance & Legal (Local relative links) -->
+        <div>
+          <h4 class="text-xs font-extrabold uppercase tracking-widest text-slate-900 dark:text-white mb-4">Regulatory &amp; Legal</h4>
+          <ul class="space-y-2 text-xs">
+            <li><a href="privacy.html" class="hover:text-brand-electric dark:hover:text-brand-cyan">Privacy &amp; System Policy</a></li>
+            <li><a href="terms.html" class="hover:text-brand-electric dark:hover:text-brand-cyan">Terms of Physical Practice</a></li>
+            <li><a href="disclaimer.html" class="hover:text-brand-electric dark:hover:text-brand-cyan">Medical Liability Disclaimer</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Footer Bottom -->
+      <div class="mt-12 border-t border-slate-200 dark:border-brand-darkBorder pt-6 flex flex-col md:flex-row items-center justify-between text-xs text-slate-500">
+        <span>&copy; <span id="current-year"></span> IanFit Corporate Ecosystem. All rights reserved.</span>
+        <span class="mt-2 md:mt-0">Deep Biomechanics, Scaled Intelligently.</span>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- ================= SCRIPTS & SYSTEM FUNCTIONALITY ================= -->
+  <script>
+    // 1. Theme (Dark/Light Mode Toggle Switcher)
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+    const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+
+    // Init theme based on storage or preference
+    if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.documentElement.classList.add('dark');
+      themeToggleLightIcon.classList.remove('hidden');
+      themeToggleDarkIcon.classList.add('hidden');
+    } else {
+      document.documentElement.classList.remove('dark');
+      themeToggleLightIcon.classList.add('hidden');
+      themeToggleDarkIcon.classList.remove('hidden');
+    }
+
+    themeToggleBtn.addEventListener('click', function() {
+      // Toggle Icons
+      themeToggleDarkIcon.classList.toggle('hidden');
+      themeToggleLightIcon.classList.toggle('hidden');
+
+      // Toggle state and localStorage
+      if (document.documentElement.classList.contains('dark')) {
+        document.documentElement.classList.remove('dark');
+        localStorage.setItem('color-theme', 'light');
+      } else {
+        document.documentElement.classList.add('dark');
+        localStorage.setItem('color-theme', 'dark');
+      }
+    });
+
+    // 2. Mobile Nav Menu Toggle
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    // 3. Dynamic Interactive Adaptation/Commitment Calculator Logic
+    const calcGoal = document.getElementById('calc-goal');
+    const calcCommitment = document.getElementById('calc-commitment');
+    const calcPain = document.getElementById('calc-pain');
+
+    const outputWeeks = document.getElementById('output-weeks');
+    const outputTarget = document.getElementById('output-target');
+    const outputInvestment = document.getElementById('output-investment');
+
+    function runCalculation() {
+      const goal = calcGoal.value;
+      const commit = calcCommitment.value;
+      const pain = calcPain.value;
+
+      let weeksMin = 6;
+      let weeksMax = 12;
+      let targetSystem = 'Structural Respiration & Motor Control';
+      let pricing = '$250 - $450 / mo';
+
+      // Adjust timelines based on pain profile
+      if (pain === 'severe') {
+        weeksMin += 6;
+        weeksMax += 8;
+        targetSystem = 'Connective Joint Space & Unloading Pain Loops';
+      } else if (pain === 'mild') {
+        weeksMin += 2;
+        weeksMax += 4;
+      }
+
+      // Adjust systems targeted based on biological goals
+      if (goal === 'biomechanics') {
+        targetSystem = (pain === 'severe') ? 'Kinetic Restructuring & Neuromuscular Paths' : 'Major Transit Mechanics & Lifting Form';
+      } else if (goal === 'energy') {
+        targetSystem = 'Adipose Tissue Target & Aerobic Mitochondria Output';
+      } else if (goal === 'longevity') {
+        targetSystem = 'Sympathetic State Balancing & Absolute Joint Protection';
+      }
+
+      // Timeline acceleration based on hours committed
+      if (commit === 'optimal') {
+        weeksMin = Math.max(4, weeksMin - 2);
+        weeksMax = Math.max(6, weeksMax - 3);
+      } else if (commit === 'minimal') {
+        weeksMin += 4;
+        weeksMax += 6;
+      }
+
+      // Investment transparency tier calculations
+      if (commit === 'minimal') {
+        pricing = '$150 - $250 / mo';
+      } else if (commit === 'optimal') {
+        pricing = '$450 - $750 / mo';
+      } else {
+        pricing = '$250 - $450 / mo';
+      }
+
+      // Update calculations visualizer
+      outputWeeks.textContent = `${weeksMin} - ${weeksMax} Weeks`;
+      outputTarget.textContent = targetSystem;
+      outputInvestment.textContent = pricing;
+    }
+
+    [calcGoal, calcCommitment, calcPain].forEach(el => {
+      el.addEventListener('change', runCalculation);
+    });
+
+    // Run baseline initialization calculation
+    runCalculation();
+
+    // 4. Update Current Year in Footer
+    document.getElementById('current-year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
